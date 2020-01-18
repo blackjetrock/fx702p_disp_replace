@@ -69,14 +69,23 @@ set d2 0
 
 foreach line [split $txt "\n"] {
 
-    if { [regexp -- {[0-9]+[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)} $line all addr data oe we op] } {
+    if { [regexp -- {([0-9]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)} $line all pos addr data oe we op] } {
 	#puts "$addr $data $oe $we $op"
+
+        if { [expr ([string trimleft $pos 0] % 2)] == 0 } {
+            continue
+        }
 
 	if { $we == 0 } {
 	    #puts "$addr <- $data"
 	    set sp [string repeat " " [expr 1*0x$addr]]
-	    puts "$sp$data"
-	}
+	    puts "$pos $addr $oe   $sp$data"
+	} else {
+	    #puts "$addr <- $data"
+	    set sp [string repeat " " [expr 32+1*0x$addr]]
+	    puts "$pos $addr $oe   $sp$data"
+        }
+
 	
 	
     }
