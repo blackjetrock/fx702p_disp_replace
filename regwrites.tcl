@@ -60,34 +60,83 @@ proc fx702pchar {n} {
 	}
 	
     }
-    return "???"
+    return "?$n?"
+}
+
+set ::A C
+set ::B D
+
+set ::A E
+set ::B F
+
+for {set i 3} {$i <= 12} {incr i 1} {
+    set hi [format "%02X" $i]
+    set ::DATA($::A,$hi) " "
+    set ::DATA($::B,$hi) " "
+    
+}
+
+proc display_regs {a b} {
+    puts -nonewline "<"
+    for {set i 3} {$i <= 12} {incr i 1} {
+	set hi [format "%02X" [expr (9-($i-3))+3]]
+	
+	if { ($::DATA($a,$hi) == " ") || ($::DATA($b,$hi)== " ") } {
+	    set ::LCD($hi) " "
+	} else {
+	    
+
+	    set h $::DATA($a,$hi)
+	    set l $::DATA($b,$hi)
+	    
+	    set v $h$l
+	    set ch [fx702pchar [expr 0x$v]]
+	    set ::LCD($hi) $ch
+	}
+	puts -nonewline $::LCD($hi)
+    }
+    puts ">"
 }
 
 set str ""
 set d1 0
 set d2 0
 
+set ra "-"
+
 foreach line [split $txt "\n"] {
 
     if { [regexp -- {([0-9]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)} $line all pos addr data oe we op] } {
 	#puts "$addr $data $oe $we $op"
 
+	if { $pos == 0000 } {
+	    continue
+	}
+	
         if { [expr ([string trimleft $pos 0] % 2)] == 0 } {
             continue
         }
 
-	if { $we == 0 } {
-	    #puts "$addr <- $data"
-	    set sp [string repeat " " [expr 1*0x$addr]]
-	    puts "$pos $addr $oe   $sp$data"
+	if { ($oe == 1) && ($addr == 03) && ($we == 1) } {
+	    set ra "$data"
 	} else {
-	    #puts "$addr <- $data"
+	    #set ra "-"
+	}
+	
+	if { $we == 0 } {
+	    puts "$addr <- $data"
+	    set sp [string repeat " " [expr 1*0x$addr]]
+	    puts "$pos $addr $ra $oe   $sp$data"
+	    set ::DATA($ra,$addr) $data
+	} else {
+	    puts "$addr <- $data"
 	    set sp [string repeat " " [expr 32+1*0x$addr]]
-	    puts "$pos $addr $oe   $sp$data"
+	    puts "$pos $addr $ra $oe   $sp$data"
         }
 
-	
-	
+	display_regs $::A $::B
+
     }
 }
+
 
