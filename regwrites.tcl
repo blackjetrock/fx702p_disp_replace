@@ -50,6 +50,7 @@ set ::MAP {
     0x60 "CNT"
     0x5B "SX"
     0x5C "SY"
+    0x5E "_"
     
 }
 
@@ -60,40 +61,42 @@ proc fx702pchar {n} {
 	}
 	
     }
-    return "?$n?"
+    return [format "?%02X?" $n]
 }
 
-set ::A C
-set ::B D
+set ::A {C E}
+set ::B {D F}
 
-set ::A E
-set ::B F
-
-for {set i 3} {$i <= 12} {incr i 1} {
-    set hi [format "%02X" $i]
-    set ::DATA($::A,$hi) " "
-    set ::DATA($::B,$hi) " "
-    
+foreach a $::A b $::B {
+    puts "a,b = $a, $b"
+    for {set i 3} {$i <= 12} {incr i 1} {
+	set hi [format "%02X" $i]
+	set ::DATA($a,$hi) " "
+	set ::DATA($b,$hi) " "
+    }
 }
 
 proc display_regs {a b} {
     puts -nonewline "<"
-    for {set i 3} {$i <= 12} {incr i 1} {
-	set hi [format "%02X" [expr (9-($i-3))+3]]
-	
-	if { ($::DATA($a,$hi) == " ") || ($::DATA($b,$hi)== " ") } {
-	    set ::LCD($hi) " "
-	} else {
+    foreach a $::A b $::B {
+	for {set i 3} {$i <= 12} {incr i 1} {
+	    set hi [format "%02X" [expr (9-($i-3))+3]]
 	    
-
-	    set h $::DATA($a,$hi)
-	    set l $::DATA($b,$hi)
-	    
-	    set v $h$l
-	    set ch [fx702pchar [expr 0x$v]]
-	    set ::LCD($hi) $ch
+	    if { ($::DATA($a,$hi) == " ") || ($::DATA($b,$hi)== " ") } {
+		set ::LCD($hi) " "
+	    } else {
+		
+		
+		set h $::DATA($a,$hi)
+		set l $::DATA($b,$hi)
+		
+		set v $h$l
+		set ch [fx702pchar [expr 0x$v]]
+		set ::LCD($hi) $ch
+	    }
+	    puts -nonewline $::LCD($hi)
 	}
-	puts -nonewline $::LCD($hi)
+
     }
     puts ">"
 }
@@ -117,21 +120,33 @@ foreach line [split $txt "\n"] {
             continue
         }
 
-	if { ($oe == 1) && ($addr == 03) && ($we == 1) } {
+	
+	if { ($oe == 1) && ($addr == 03) && ($op == 0) } {
 	    set ra "$data"
+	    #puts "                                    ra=$ra"
 	} else {
 	    #set ra "-"
 	}
+
+	if { ($oe == 1) && ($addr == "0A") && ($op == 0) } {
+	    set ra "-"
+	    #puts "                                    ra=$ra"
+	}
+
+	if { ($oe == 1) && ($addr == "00") && ($op == 0) } {
+	    set ra "-"
+	    #puts "                                    ra=$ra"
+	}
 	
 	if { $we == 0 } {
-	    puts "$addr <- $data"
+	    #puts "$addr <- $data"
 	    set sp [string repeat " " [expr 1*0x$addr]]
-	    puts "$pos $addr $ra $oe   $sp$data"
+	    #puts "$pos $addr $ra $oe $op   $sp$data"
 	    set ::DATA($ra,$addr) $data
 	} else {
-	    puts "$addr <- $data"
+	    #puts "$addr <- $data"
 	    set sp [string repeat " " [expr 32+1*0x$addr]]
-	    puts "$pos $addr $ra $oe   $sp$data"
+	    #puts "$pos $addr $ra $oe $op   $sp$data"
         }
 
 	display_regs $::A $::B
