@@ -123,30 +123,30 @@ foreach line [split $txt "\n"] {
 	
 	if { ($oe == 1) && ($addr == 03) && ($op == 0) } {
 	    set ra "$data"
-	    #puts "                                    ra=$ra"
+	    puts "                                    ra=$ra"
 	} else {
 	    #set ra "-"
 	}
 
 	if { ($oe == 1) && ($addr == "0A") && ($op == 0) } {
 	    set ra "-"
-	    #puts "                                    ra=$ra"
+	    puts "                                    ra=$ra"
 	}
 
 	if { ($oe == 1) && ($addr == "00") && ($op == 0) } {
 	    set ra "-"
-	    #puts "                                    ra=$ra"
+	    puts "                                    ra=$ra"
 	}
 	
 	if { $we == 0 } {
-	    #puts "$addr <- $data"
+	    puts "$addr <- $data"
 	    set sp [string repeat " " [expr 1*0x$addr]]
-	    #puts "$pos $addr $ra $oe $op   $sp$data"
+	    puts "$pos $addr $ra $oe $op   $sp$data"
 	    set ::DATA($ra,$addr) $data
 	} else {
-	    #puts "$addr <- $data"
+	    puts "$addr <- $data"
 	    set sp [string repeat " " [expr 32+1*0x$addr]]
-	    #puts "$pos $addr $ra $oe $op   $sp$data"
+	    puts "$pos $addr $ra $oe $op   $sp$data"
         }
 
 	display_regs $::A $::B
