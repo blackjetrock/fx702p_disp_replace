@@ -76,6 +76,12 @@ foreach a $::A b $::B {
     }
 }
 
+    for {set i 1} {$i <= 12} {incr i 1} {
+	set hi [format "%02X" $i]
+	set ::ANN($hi) " "
+
+    }
+
 proc display_regs {a b} {
     puts -nonewline "<"
     foreach a $::A b $::B {
@@ -99,6 +105,59 @@ proc display_regs {a b} {
 
     }
     puts ">"
+
+    puts -nonewline "<"
+    for {set i 1} {$i <= 12} {incr i 1} {
+	set hi [format "%02X" [expr $i]]
+	switch $::ANN($hi) {
+	    0 {
+		set a "    "
+	    }
+	    8 {
+		switch $hi {
+		    0B {
+			set a " 0B "
+		    }
+		    0A {
+			set a " DEG"
+		    }
+		    09 {
+			set a " RAD"
+		    }
+		    08 {
+			set a " GRA"
+		    }
+		    07 {
+			set a " 07 "
+		    }
+		    06 {
+			set a " TRC"
+		    }
+		    05 {
+			set a " 05 "
+		    }
+		    04 {
+			set a " PRT"
+		    }
+		    03 {
+			set a " 03 "
+		    }
+		    02 {
+			set a " 02 "
+		    }
+		    01 {
+			set a " 01 "
+		    }
+		}
+	    }
+	    default {
+		set a "    "
+	    }
+	}
+	
+	puts -nonewline $a
+    }
+    puts ">"
 }
 
 set str ""
@@ -106,6 +165,8 @@ set d1 0
 set d2 0
 
 set ra "-"
+set an "-"
+
 
 foreach line [split $txt "\n"] {
 
@@ -120,14 +181,28 @@ foreach line [split $txt "\n"] {
             continue
         }
 
-	
+	# Indicators
+	if { ($oe == 1) && ($addr == "0B") && ($op == 0) } {
+	    set an "$data"
+	    puts "                                                 an=$an"
+	} else {
+	    #set ra "-"
+	}
+
+       # Characters
 	if { ($oe == 1) && ($addr == 03) && ($op == 0) } {
 	    set ra "$data"
+	    set an "-"
 	    puts "                                    ra=$ra"
 	} else {
 	    #set ra "-"
 	}
 
+	if { ($oe == 1) && ($an  == "4") && ($op == 1) } {
+	    set ::ANN($addr) $data
+	    puts "                                    ANN($addr)=$data"
+	}
+	
 	if { ($oe == 1) && ($addr == "0A") && ($op == 0) } {
 	    set ra "-"
 	    puts "                                    ra=$ra"
@@ -139,14 +214,14 @@ foreach line [split $txt "\n"] {
 	}
 	
 	if { $we == 0 } {
-	    puts "$addr <- $data"
+	    #puts "$addr <- $data"
 	    set sp [string repeat " " [expr 1*0x$addr]]
-	    puts "$pos $addr $ra $oe $op   $sp$data"
+	    #puts "$pos $addr $ra $oe $op   $sp$data"
 	    set ::DATA($ra,$addr) $data
 	} else {
-	    puts "$addr <- $data"
+	    #puts "$addr <- $data"
 	    set sp [string repeat " " [expr 32+1*0x$addr]]
-	    puts "$pos $addr $ra $oe $op   $sp$data"
+	    #puts "$pos $addr $ra $oe $op   $sp$data"
         }
 
 	display_regs $::A $::B
