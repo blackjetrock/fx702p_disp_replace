@@ -167,7 +167,7 @@ set d2 0
 set ra "-"
 set an "-"
 
-set ::DEBUG    1
+set ::DEBUG    0
 set ::DEBUG_W  1
 set ::DISPLAY_ON 0
 
@@ -215,23 +215,32 @@ foreach line [split $txt "\n"] {
 	    set ra "-"
 	    puts "                                    ra=$ra"
 	}
+
+	switch $op {
+ 	    0 {
+		set opstr "CMD "
+	    }
+ 	    1 {
+		set opstr "DATA"
+	    }
+	}
 	
 	if { $we == 0 } {
 	    if { $::DEBUG_W } {
-		puts "$addr <- $data"
+		puts "$addr <<--$opstr $data"
 	    }
 	    set sp [string repeat " " [expr 1*0x$addr]]
 	    if { $::DEBUG } {
-		puts "$pos $addr $ra $oe $op   $sp$data"
+		puts "$pos $addr $ra $oe $op $we  $sp$data"
 	    }
 	    set ::DATA($ra,$addr) $data
 	} else {
 	    if { $::DEBUG_W } {
-		puts "$addr <- $data"
+		puts "$addr -->> $opstr $data"
 	    }
 	    set sp [string repeat " " [expr 32+1*0x$addr]]
 	    if { $::DEBUG } {
-		puts "$pos $addr $ra $oe $op   $sp$data"
+		puts "$pos $addr $ra $oe $op $we  $sp$data"
 	    }
         }
 
