@@ -122,10 +122,10 @@ proc display_regs {a b} {
 			set a " DEG"
 		    }
 		    09 {
-			set a " RAD"
+			set a " ARC"
 		    }
 		    08 {
-			set a " GRA"
+			set a " HYP"
 		    }
 		    07 {
 			set a " 07 "
@@ -167,6 +167,9 @@ set d2 0
 set ra "-"
 set an "-"
 
+set ::DEBUG    1
+set ::DEBUG_W  1
+set ::DISPLAY_ON 0
 
 foreach line [split $txt "\n"] {
 
@@ -214,17 +217,27 @@ foreach line [split $txt "\n"] {
 	}
 	
 	if { $we == 0 } {
-	    #puts "$addr <- $data"
+	    if { $::DEBUG_W } {
+		puts "$addr <- $data"
+	    }
 	    set sp [string repeat " " [expr 1*0x$addr]]
-	    #puts "$pos $addr $ra $oe $op   $sp$data"
+	    if { $::DEBUG } {
+		puts "$pos $addr $ra $oe $op   $sp$data"
+	    }
 	    set ::DATA($ra,$addr) $data
 	} else {
-	    #puts "$addr <- $data"
+	    if { $::DEBUG_W } {
+		puts "$addr <- $data"
+	    }
 	    set sp [string repeat " " [expr 32+1*0x$addr]]
-	    #puts "$pos $addr $ra $oe $op   $sp$data"
+	    if { $::DEBUG } {
+		puts "$pos $addr $ra $oe $op   $sp$data"
+	    }
         }
 
-	display_regs $::A $::B
+	if { $::DISPLAY_ON } {
+	    display_regs $::A $::B
+	}
 
     }
 }
