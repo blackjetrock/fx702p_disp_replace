@@ -1,0 +1,17 @@
+Blue pill STM32F103 connections to LCD
+
+
+Does not use 5V tolerant pins as the LCD is 3V3 capable.
+
+
+PE and PB are 5V tolerant. PA is not, so we use PA for the LCD connections.
+
+A0  :   D4
+
+
+
+
+Notes on schematic
+
+memory connector pin number reversed vs PCB
+Only 1 CE for LCD controllers.
