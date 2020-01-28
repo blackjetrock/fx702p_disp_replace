@@ -223,6 +223,10 @@ foreach line [split $txt "\n"] {
  	    1 {
 		set opstr "DATA"
 	    }
+	    default {
+		set opstr "????"
+	    }
+	    
 	}
 	
 	if { $we == 0 } {

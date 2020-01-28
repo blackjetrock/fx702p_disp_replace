@@ -6,12 +6,56 @@ Does not use 5V tolerant pins as the LCD is 3V3 capable.
 
 PE and PB are 5V tolerant. PA is not, so we use PA for the LCD connections.
 
-A0  :   D4
+A0  :  D4
+A1  :  D5
+A2  :  D6
+A3  :  D7
+
+A4  :  RS
+A5  :  EN
 
 
+FX702p connections:
 
+B4  :  D0
+B5  :  D1
+
+
+B6  :  D2
+B7  :  D3
+
+B8  :  A0
+B9  :  A1
+B10 :  A2
+B11 :  A3
+
+B0  :  CE
+B1  :  OE
+B12 :  OP
+B13 :  WE
+B14 :  CLK2
 
 Notes on schematic
 
 memory connector pin number reversed vs PCB
 Only 1 CE for LCD controllers.
+
+
+Port B values from ISR when switch on/off
+
+12274  2FF2
+11778  2E02
+16130  3F02
+11778  2E02
+16114  3EF2
+11778
+16114
+
+12274
+11778
+16130
+11778
+16114
+11778
+16114
+
