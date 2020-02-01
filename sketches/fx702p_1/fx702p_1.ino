@@ -83,7 +83,7 @@ const int fxnCLK = 14;
 // We need to translate to ASCII here, before display
 #define DISPLAY_BUFFER_LEN 20
 
-volatile int display_buffer[DISPLAY_BUFFER_LEN];
+volatile unsigned char display_buffer[DISPLAY_BUFFER_LEN];
 
 // Similar buffer for the four digit seven segment display. We map this to
 // ASCII as well before display
@@ -98,64 +98,30 @@ typedef struct
   char ascii;
 } MAP702P;
 
-int map702p[] = {
-  0x0f, ' ',
-  0x11, '?',
-  0x14, '\\',
-  0x18, ':',
-  0x30, '0',
-  0x31, '1',
-  0x32, '2',
-  0x33, '3',
-  0x34, '4',
-  0x35, '5',
-  0x36, '6',
-  0x37, '7',
-  0x38, '8',
-  0x39, '9',
-  0x40, 'A',
-  0x41, 'B',
-  0x42, 'C',
-  0x43, 'D',
-  0x44, 'E',
-  0x45, 'F',
-  0x46, 'G',
-  0x47, 'H',
-  0x48, 'I',
-  0x49, 'J',
-  0x4A, 'K',
-  0x4B, 'L',
-  0x4C, 'M',
-  0x4D, 'N',
-  0x4E, 'O',
-  0x4F, 'P',
-  0x50, 'Q',
-  0x51, 'R',
-  0x52, 'S',
-  0x53, 'T',
-  0x54, 'U',
-  0x55, 'V',
-  0x56, 'W',
-  0x57, 'X',
-  0x58, 'Y',
-  0x59, 'Z',
-  0x5E, '_',
-  0x00, '@',   
-};
+unsigned char map702ps[259] =
+// 0123456789ABCDEF
+  "??????????????? "
+  "????\"#$;:,>\xa6=\xd1<\xb7"
+  "+-*/^?!?)???(???"
+  "0123456789.\xf7???\xe3"
+  "ABCDEFGHIJKLMNOP"
+  "QRSTUVWXYZ????_?"
+  "????????????????"
+  "????????????????"
+  "????????????????"
+  "????????????????"
+  "????????????????"
+  "????????????????"
+  "????????????????"
+  "????????????????"
+  "????????????????"
+  "????????????????"
+  ;
 
-char fx702pchar(int n)
+
+char fx702pschar(int n)
 {
-  int i;
-  
-  for(i=0; map702p[i]!= 0; i+=2)
-    {
-      if ( n == map702p[i] )
-	{
-	  return(map702p[i+1]);
-	}
-      
-    }
-  return '?';
+  return(map702ps[n & 255]);
 }
 
 
@@ -187,41 +153,178 @@ void isr(void)
 #define BITVAL(VAL,BITNUM) ((VAL & (1L << BITNUM)) >> BITNUM)
 #define BITFIELD(VAL,LSBITNUM,MASK) ((VAL >> LSBITNUM) & MASK)
 
+volatile  int dri = 0;
+volatile  int reg[16];
+#define REG_BUFFER_LEN 16
+
 void ce_isr(void)
 {
   int portval;
   int oe, ce, we, op, clk;
-  int data, addr;
-  
-  // Read port B, that has all our signals
+  unsigned char data, addr;
+  int clock_phase = 1;  // First transition is phase 0
+  int last_clk = 0;
+  int done = 0;
+  int active_edge = 0;
+  int a;
+  int glitch_count = 0;
   
   portval = (PIN_MAP[fxCE].gpio_device)->regs->IDR;
-
-  ce = BITVAL(portval, fxnCE);
-  op = BITVAL(portval, fxnOP);
-  we = BITVAL(portval, fxnWE);
-  oe = BITVAL(portval, fxnOE);
-  clk = BITVAL(portval, fxnCLK);
-  data = BITFIELD(portval,fxnD0, 0xF);
-  addr = BITFIELD(portval,fxnA0, 0xF);
+  last_clk = BITVAL(portval, fxnCLK);
   
-  // display port
-  display_buffer[0] = 0x30 + ce;
-  display_buffer[1] = 0x30 + oe;
-  display_buffer[2] = 0x30 + we;
-  display_buffer[3] = 0x30 + op;
-  display_buffer[4] = 0x30 + clk;
-  
-  display_buffer[9] = 0x30 + (portval & (1 << 13)) >> 13;
+  // Clock in on falling edges of clock, only use second clock
+  while( !done )
+    {
+      // Read port B, that has all our signals
+      portval = (PIN_MAP[fxCE].gpio_device)->regs->IDR;
+      
+      ce = BITVAL(portval, fxnCE);
+      op = BITVAL(portval, fxnOP);
+      we = BITVAL(portval, fxnWE);
+      oe = BITVAL(portval, fxnOE);
+      clk = BITVAL(portval, fxnCLK);
+      
+      // display port
+#if 0      
+      display_buffer[0] = 0x30 + ce;
+      display_buffer[1] = 0x30 + oe;
+      display_buffer[2] = 0x30 + we;
+      display_buffer[3] = 0x30 + op;
+      display_buffer[4] = 0x30 + clk;
+      display_buffer[5] = 0x30 + data;
+      display_buffer[6] = 0x30 + addr;
 
-  Serial.println(portval);
+      display_buffer[addr] = 0x30+data;
+    
+#endif
+      
+      // Detect rising edges
+      // Debounce possible glitches
+      if( glitch_count > 0 )
+	{
+	  glitch_count--;
+	}
+
+      // Don't look for rising edges immediately after we have found one
+      if( glitch_count == 0 )
+	{
+	  if( (last_clk == 0) && (clk == 1) )
+	    {
+	      active_edge = 1;
+	      glitch_count = 4;
+	      
+	      // Next clock phase. First phase is 0, second phase is 1
+	      // We ignore anything on phase 0
+	      //
+	      clock_phase = !clock_phase;
+	    }
+	  else
+	    {
+	      active_edge = 0;
+	    }
+	}
+      last_clk = clk;
+      
+      if( (oe == 1) && active_edge && (clock_phase == 1) )
+	{
+	  data = BITFIELD(portval,fxnD0, 0xF);
+	  addr = BITFIELD(portval,fxnA0, 0xF);
+	  data ^= 0xF;
+	  addr ^= 0xF;
+
+	  // write cycle
+	  
+	  if( op == 0 )
+	    {
+	      // Command read/write. reads and writes seem to set commands up
+	      reg[addr] = data;
+
+#if 0
+	      display_buffer[dri++] = data+0x30;
+	      if( dri >= 20 )
+		{
+		  dri = 0;
+		}
+#endif
+	    }
+	}
+
+      
+      // Data read or write
+      if( (op == 1) && (we == 0) && active_edge && (clock_phase ==1) )
+	{
+	  data = BITFIELD(portval,fxnD0, 0xF);
+	  addr = BITFIELD(portval,fxnA0, 0xF);
+	  data ^= 0xF;
+	  addr ^= 0xF;
+	  
+	  //display_buffer[1] = 0x43;
+#if 0
+	  display_buffer[dri++] = data+0x30;
+	  if( dri >= 20 )
+	    {
+	      dri = 0;
+	    }
+#endif
+
+	  if( (addr>=3) && (addr<=12))
+	    {
+	      switch(reg[3])
+		{
+		case 0xC:
+		  a = (addr - 3)+10;
+		  if( (a >= 0) && (a <=19))
+		    {
+		      display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+		    }
+		  break;
+		  
+		case 0xD:
+		  a = (addr - 3)+10;
+		  if( (a >= 0) && (a <=19))
+		    {
+		      display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+		    }
+		  break;
+		  
+		case 0xE:
+		  a = (addr - 3);
+		  if( (a >= 0) && (a <=19))
+		    {
+		      display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+		    }
+		  break;
+		  
+		case 0xF:
+		  a = (addr - 3);
+		  if( (a >= 0) && (a <=19))
+		    {
+		      display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+		    }
+		  break;
+		  
+		default:
+		  //	  display_buffer[addr] = reg[3]+0x30;
+		  break;
+		}
+	    }
+	}
+      
+      
+      // CE goes inactive, we stop processing the cycle
+      if( ce == 1 )
+	{
+	  done = 1;
+	}
+    }  
 }
+
 
 void setup() {
   int i;
-
-  Serial.begin(9600);
   
+  Serial.begin(9600);
+      
   // set up the LCD's number of columns and rows:
   lcd.begin(20, 4);
   
@@ -235,7 +338,7 @@ void setup() {
     }
   
   pinMode(PB0, INPUT);
-  
+
   // Attach an interrupt to the CE line
   //  attachInterrupt(digitalPinToInterrupt(PB0), ce_isr, FALLING);
   attachInterrupt(PB0, ce_isr, FALLING);
@@ -257,8 +360,15 @@ void loop() {
   lcd.setCursor(0, 0);
   for(i=0; i< DISPLAY_BUFFER_LEN; i++)
     {
-      lcd.setCursor(i, 0);
-      lcd.print(fx702pchar(display_buffer[i]));
+      lcd.setCursor(19-i, 0);
+      lcd.print(fx702pschar(display_buffer[i]));
+    }
+
+  lcd.setCursor(0, 3);
+  for(i=0; i< REG_BUFFER_LEN; i++)
+    {
+      lcd.setCursor(i, 3);
+      lcd.print(fx702pschar(reg[i]+0x30));
     }
   
   //return;
@@ -269,11 +379,11 @@ void loop() {
 
   if ( f )
     {
-    lcd.print("F1 F2 RUN DEG TRACE");
-  }
+      lcd.print("F1 F2 RUN DEG TRACE");
+    }
   else
     {
-    lcd.print("   F2 RUN DEG TRACE");
+      lcd.print("   F2 RUN DEG TRACE");
     }
 
   if( digitalRead(PB0) )
@@ -292,6 +402,6 @@ void loop() {
   //lcd.print(millis() / 100);
 
   //  Serial.println((PIN_MAP[fxCE].gpio_device)->regs->IDR);
-    delay(1000);
+  delay(1);
 }
 
