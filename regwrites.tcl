@@ -167,8 +167,8 @@ set d2 0
 set ra "-"
 set an "-"
 
-set ::DEBUG    0
-set ::DEBUG_W  1
+set ::DEBUG    1
+set ::DEBUG_W  0
 set ::DISPLAY_ON 0
 
 foreach line [split $txt "\n"] {

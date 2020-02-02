@@ -62,6 +62,21 @@ volatile int seven_seg[4];
 // Annunciator display bits. Non zero means annunciator is on
 volatile int annunciators[12];
 
+char * anntext[12] = {
+  "1",
+  "2",
+  "3",
+  "4",
+  "p",
+  "6",
+  "t",
+  "8",
+  "g",
+  "r",
+  "d",
+  "c",
+};
+
 typedef struct
 {
   int in;
@@ -208,7 +223,7 @@ void ce_isr(void)
 	  data ^= 0xF;
 	  addr ^= 0xF;
 
-	  // write cycle
+	  // write or read cycle
 	  
 	  if( op == 0 )
 	    {
@@ -233,7 +248,7 @@ void ce_isr(void)
 	}
 
       
-      // Data read or write
+      // Data write
       if( (op == 1) && (we == 0) && active_edge && (clock_phase ==1) )
 	{
 	  data = BITFIELD(portval,fxnD0, 0xF);
@@ -256,6 +271,15 @@ void ce_isr(void)
 		  seven_seg[addr] = data;
 		}
 	    }
+
+	  if( reg[0xB] = 0x4 )
+	    {
+	      if( (addr >=1) && (addr <=0xB) )
+		{
+		  annunciators[addr] = data;
+		}
+	    }
+
 	  
 	  if( (addr>=3) && (addr<=12))
 	    {
@@ -312,16 +336,17 @@ void ce_isr(void)
 
 void setup() {
   int i;
+
+  for(i=0;i<4;i++)
+    {
+      seven_seg[i] = 0;
+    }
   
   Serial.begin(9600);
       
   // set up the LCD's number of columns and rows:
   lcd.begin(20, 4);
   
-  // Print a message to the LCD.
-  lcd.setCursor(0, 3);	
-  lcd.print("READY P0:_123456789");
-
   for(i=0; i<DISPLAY_BUFFER_LEN; i++)
     {
       display_buffer[i] = 0x0F;
@@ -358,13 +383,14 @@ void loop() {
       lcd.print(fx702pschar(display_buffer[i]));
     }
 
+#if 0
   lcd.setCursor(0, 3);
   for(i=0; i< REG_BUFFER_LEN; i++)
     {
       lcd.setCursor(i, 3);
       lcd.print(fx702pschar(reg[i]+0x30));
     }
-  
+#endif
   //return;
   // set the cursor to column 0, line 1
   // (note: line 1 is the second row, since counting begins with 0):
@@ -373,25 +399,79 @@ void loop() {
 
   if ( f )
     {
-      lcd.print("F1 F2 RUN DEG TRACE");
-      for(j=0;j<4;j++)
-	{
-	  lcd.print(seven_seg[j]);
-	}
+      lcd.setCursor(19, 3);
+      lcd.print("*");
     }
   else
     {
-      lcd.print("   F2 RUN DEG TRACE");
+      lcd.setCursor(19, 3);
+      lcd.print(" ");
     }
 
-  lcd.setCursor(0, 2);
-  lcd.print("    ARC PRINT ");
-  for(j=0;j<4;j++)
-    {
-      lcd.print(seven_seg[j]);
-    }
-
+  lcd.setCursor(0,3);
   
+  int v = 0;
+  for(j=3;j>=0;j--)
+    {
+      v*= 10;
+      v+= seven_seg[j];
+    }
+  lcd.print(v);
+  lcd.print(".");
+	  
+  lcd.setCursor(0, 2);
+  Serial.print(j);
+  Serial.print(":");
+  
+  for(j=1;j<0xB;j++)
+    {
+      Serial.print(annunciators[j]);
+      Serial.print(" ");
+      
+      if( annunciators[j] )
+	{
+	  lcd.print(annunciators[j]);
+	}
+      else
+	{
+	  lcd.print(" ");  
+	}
+    }
+  Serial.println("");
+  
+  lcd.setCursor(0,1);
+  if( annunciators[8] )
+    {
+      lcd.print("GRA");
+    }
+  if( annunciators[9] )
+    {
+      lcd.print("RAD");
+    }
+  if( annunciators[10] )
+    {
+      lcd.print("DEG");
+    }
+
+  lcd.setCursor(4,1);
+  if( annunciators[6] )
+    {
+      lcd.print("TRC");
+    }
+  else
+    {
+      lcd.print("   ");
+    }
+
+  lcd.setCursor(8,1);
+  if( annunciators[4] )
+    {
+      lcd.print("PRT");
+    }
+  else
+    {
+      lcd.print("   ");
+    }
 
   // print the number of seconds since reset:
   //lcd.print(millis() / 100);
@@ -399,6 +479,7 @@ void loop() {
   //  Serial.println((PIN_MAP[fxCE].gpio_device)->regs->IDR);
   delay(1);
 
+#if 0
   for(i=0; i<=19;i++)
     {
       Serial.print(fx702pschar(display_buffer[i]));
@@ -412,6 +493,6 @@ void loop() {
       Serial.print(" ");  
     }
   Serial.println("");
-
+#endif
 }
 
