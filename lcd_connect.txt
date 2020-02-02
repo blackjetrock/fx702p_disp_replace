@@ -5,6 +5,8 @@ Does not use 5V tolerant pins as the LCD is 3V3 capable.
 
 
 PE and PB are 5V tolerant. PA is not, so we use PA for the LCD connections.
+Not all PB is 5V tolerant, so we have to assign pins carefully. The pinout below is not
+correct (PB5 is not 5V tolerant for example).
 
 A0  :  D4
 A1  :  D5
