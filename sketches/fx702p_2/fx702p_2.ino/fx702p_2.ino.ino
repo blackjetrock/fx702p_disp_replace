@@ -13,9 +13,14 @@
 
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
+#define  PCB_VERSION 1
+
+#if !PCB_VERSION
+// Wired version
+
 const int rs = PA4, en = PA5, d4 = PA0, d5 = PA1, d6 = PA2, d7 = PA3;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
-
+o
 // Pin names
 const int fxD0  = PB4;
 const int fxD1  = PB5;
@@ -47,6 +52,45 @@ const int fxnOP  = 12;
 const int fxnWE  = 13;
 const int fxnCLK = 14;
 const int fxnCE2 = 15;
+
+#else
+// PCB version
+const int rs = PA4, en = PA5, d4 = PA3, d5 = PA2, d6 = PA1, d7 = PA0;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+// Pin names
+const int fxD0  = PB12;
+const int fxD1  = PB13;
+const int fxD2  = PB14;
+const int fxD3  = PB15;
+const int fxA0  = PB6;
+const int fxA1  = PB7;
+const int fxA2  = PB8;
+const int fxA3  = PB9;
+const int fxCE  = PA15;
+const int fxOE  = PB3;
+const int fxOP  = PB4;
+const int fxWE  = PB11;
+const int fxCLK = PB10;
+const int fxCE2 = PA12;
+
+// Pin bit offsets
+const int fxnD0  = 12;
+const int fxnD1  = 13;
+const int fxnD2  = 14;
+const int fxnD3  = 15;
+const int fxnA0  = 6;
+const int fxnA1  = 7;
+const int fxnA2  = 8;
+const int fxnA3  = 9;
+const int fxnCE  = 15;    // Port A
+const int fxnOE  = 3;
+const int fxnOP  = 4;
+const int fxnWE  = 11;
+const int fxnCLK = 10;
+const int fxnCE2 = 12;    // Port A
+
+#endif
 
 // Display buffer for the character display
 // Interrupt routine populates buffer with fx702p character codes
@@ -150,38 +194,52 @@ volatile  int reg[16];
 
 void ce_isr(void)
 {
-  int portval;
-  int oe, ce, we, op, clk;
+  volatile int portval, portvalce;
+  volatile int oe, ce, we, op, clk;
   unsigned char data, addr;
-  int clock_phase = 1;  // First transition is phase 0
+  int clock_phase = 0;  // First transition is phase 0
   int last_clk = 0;
   int done = 0;
   int active_edge = 0;
   int a;
   int glitch_count = 0;
+
+#if 0
+  display_buffer[5] = 0x40;
+#endif
   
-  portval = (PIN_MAP[fxCE].gpio_device)->regs->IDR;
+  portval = (PIN_MAP[fxD0].gpio_device)->regs->IDR;
   last_clk = BITVAL(portval, fxnCLK);
   
   // Clock in on falling edges of clock, only use second clock
   while( !done )
     {
       // Read port B, that has all our signals
-      portval = (PIN_MAP[fxCE].gpio_device)->regs->IDR;
+      portval = (PIN_MAP[fxD0].gpio_device)->regs->IDR;
+      portvalce = (PIN_MAP[fxCE].gpio_device)->regs->IDR;
+	    
       
-      ce = BITVAL(portval, fxnCE);
+      ce = BITVAL(portvalce, fxnCE);
       op = BITVAL(portval, fxnOP);
       we = BITVAL(portval, fxnWE);
       oe = BITVAL(portval, fxnOE);
       clk = BITVAL(portval, fxnCLK);
       
       // display port
-#if 0      
+  
+#if 0
       display_buffer[0] = 0x30 + ce;
       display_buffer[1] = 0x30 + oe;
+#endif
+
+#if 0
       display_buffer[2] = 0x30 + we;
       display_buffer[3] = 0x30 + op;
       display_buffer[4] = 0x30 + clk;
+#endif
+
+#if 0
+      
       display_buffer[5] = 0x30 + data;
       display_buffer[6] = 0x30 + addr;
 
@@ -331,6 +389,10 @@ void ce_isr(void)
 	  done = 1;
 	}
     }  
+#if 0
+  display_buffer[6] = 0x41;
+#endif
+
 }
 
 
@@ -343,7 +405,8 @@ void setup() {
     }
   
   Serial.begin(9600);
-      
+  Serial.println("fx702p Replacement Display");
+  
   // set up the LCD's number of columns and rows:
   lcd.begin(20, 4);
   
@@ -351,13 +414,13 @@ void setup() {
     {
       display_buffer[i] = 0x0F;
     }
-  
-  pinMode(PB0, INPUT);
-  pinMode(PB15, INPUT);
+
+  //  pinMode(PB0, INPUT);
+  pinMode(fxCE, INPUT);
 
   // Attach an interrupt to the CE line
   //  attachInterrupt(digitalPinToInterrupt(PB0), ce_isr, FALLING);
-  attachInterrupt(PB0, ce_isr, FALLING);
+  attachInterrupt(fxCE, ce_isr, FALLING);
   //  attachInterrupt(PB15, ce_isr, FALLING);
   
 }
@@ -476,18 +539,17 @@ void loop() {
   // print the number of seconds since reset:
   //lcd.print(millis() / 100);
 
-  //  Serial.println((PIN_MAP[fxCE].gpio_device)->regs->IDR);
-  delay(1);
+  //  Serial.println((PIN_MAP[fxD0].gpio_device)->regs->IDR);
+  delay(100);
 
-#if 0
-  for(i=0; i<=19;i++)
+#if 1
+  for(i=19; i>=0;i--)
     {
       Serial.print(fx702pschar(display_buffer[i]));
-      Serial.print(" ");  
     }
   Serial.println("");  
 
-  for(i=0; i<=19;i++)
+  for(i=19; i>=0;i--)
     {
       Serial.print(display_buffer[i], HEX);
       Serial.print(" ");  
