@@ -1,0 +1,13 @@
+*~
+\#*\#
+*.pdf
+*.PDF
+datasheets/*
+*.png
+scope_traces
+pictures
+*-
+*.cmd
+*.net
+*.bak*
+la4800_phi2_clk_ce_qual
