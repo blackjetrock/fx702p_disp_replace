@@ -273,6 +273,23 @@ void ce_isr(void)
 	    }
 	}
       last_clk = clk;
+
+      if( (oe == 0) && (we == 1) && active_edge && (clock_phase == 1) )
+	{
+	  data = BITFIELD(portval,fxnD0, 0xF);
+	  addr = BITFIELD(portval,fxnA0, 0xF);
+	  data ^= 0xF;
+	  addr ^= 0xF;
+	  
+      	  // write or read cycle
+	  if( reg[0] = 0xB )
+	    {
+	      if( (addr >=0) && (addr <=3) )
+		{
+		  seven_seg[addr] = data;
+		}
+	    }
+	}
       
       if( (oe == 1) && active_edge && (clock_phase == 1) )
 	{
@@ -281,7 +298,6 @@ void ce_isr(void)
 	  data ^= 0xF;
 	  addr ^= 0xF;
 
-	  // write or read cycle
 	  
 	  if( op == 0 )
 	    {
@@ -322,6 +338,7 @@ void ce_isr(void)
 	      dri = 0;
 	    }
 #endif
+#if 0
 	  if( reg[0] = 0xB )
 	    {
 	      if( (addr >=0) && (addr <=3) )
@@ -329,7 +346,7 @@ void ce_isr(void)
 		  seven_seg[addr] = data;
 		}
 	    }
-
+#endif
 	  if( reg[0xB] = 0x4 )
 	    {
 	      if( (addr >=1) && (addr <=0xB) )
@@ -457,8 +474,6 @@ void loop() {
   //return;
   // set the cursor to column 0, line 1
   // (note: line 1 is the second row, since counting begins with 0):
-  lcd.setCursor(0, 1);
-  // print the number of seconds since reset:
 
   if ( f )
     {
@@ -474,17 +489,22 @@ void loop() {
   lcd.setCursor(0,3);
   
   int v = 0;
-  for(j=3;j>=0;j--)
+  if( seven_seg[3] != 0xF )
     {
-      v*= 10;
-      v+= seven_seg[j];
+      seven_seg[3] = seven_seg[3] & 3;
+      for(j=3;j>=0;j--)
+	{
+	  lcd.print(seven_seg[j]);
+	  //lcd.print(":");
+	}
     }
-  lcd.print(v);
-  lcd.print(".");
-	  
+  else
+    {
+      lcd.print("        ");
+    }
+
+  #if 1
   lcd.setCursor(0, 2);
-  Serial.print(j);
-  Serial.print(":");
   
   for(j=1;j<0xB;j++)
     {
@@ -501,38 +521,46 @@ void loop() {
 	}
     }
   Serial.println("");
+  #endif
   
-  lcd.setCursor(0,1);
+
   if( annunciators[8] )
     {
+      lcd.setCursor(0,1);
       lcd.print("GRA");
     }
   if( annunciators[9] )
     {
+      lcd.setCursor(0,1);
       lcd.print("RAD");
     }
   if( annunciators[10] )
     {
+      lcd.setCursor(0,1);
       lcd.print("DEG");
     }
 
-  lcd.setCursor(4,1);
+
   if( annunciators[6] )
     {
+      lcd.setCursor(4,1);
       lcd.print("TRC");
     }
   else
     {
+      lcd.setCursor(4,1);
       lcd.print("   ");
     }
 
-  lcd.setCursor(8,1);
+
   if( annunciators[4] )
     {
+      lcd.setCursor(8,1);
       lcd.print("PRT");
     }
   else
     {
+      lcd.setCursor(8,1);
       lcd.print("   ");
     }
 
@@ -555,6 +583,21 @@ void loop() {
       Serial.print(" ");  
     }
   Serial.println("");
+
+  for(i=0; i<16;i++)
+    {
+      Serial.print(reg[i]);
+      Serial.print(" ");
+    }
+    Serial.println("");
+
+    for(i=3;i>=0;i--)
+      {
+	Serial.print(seven_seg[i]);
+	Serial.print(":");
+      }
+    Serial.println("");
+    
 #endif
 }
 

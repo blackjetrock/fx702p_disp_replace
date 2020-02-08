@@ -167,20 +167,26 @@ set d2 0
 set ra "-"
 set an "-"
 
-set ::DEBUG    1
-set ::DEBUG_W  0
-set ::DISPLAY_ON 0
+set ::DEBUG         0
+set ::DEBUG_W       1
+set ::DISPLAY_ON    0
+set ::DELTA_DISPLAY 1
+set ::CLOCK_PHASE   0
 
 foreach line [split $txt "\n"] {
 
     if { [regexp -- {([0-9]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)[ ]+([0-9A-F]+)} $line all pos addr data oe we op] } {
-	#puts "$addr $data $oe $we $op"
+	if { [string length $addr] == 1 } {
+	    set addr "0$addr"
+	}
+	#puts "<<$line>>"
+	#puts "pos=$pos A=$addr D=$data OE=$oe WE=$we OP=$op"
 
 	if { $pos == 0000 } {
 	    continue
 	}
 	
-        if { [expr ([string trimleft $pos 0] % 2)] == 0 } {
+        if { [expr ([string trimleft $pos 0] % 2)] == $::CLOCK_PHASE } {
             continue
         }
 
@@ -231,7 +237,7 @@ foreach line [split $txt "\n"] {
 	
 	if { $we == 0 } {
 	    if { $::DEBUG_W } {
-		puts "$addr <<--$opstr $data"
+		puts "$opstr $addr <- $data"
 	    }
 	    set sp [string repeat " " [expr 1*0x$addr]]
 	    if { $::DEBUG } {
@@ -240,7 +246,7 @@ foreach line [split $txt "\n"] {
 	    set ::DATA($ra,$addr) $data
 	} else {
 	    if { $::DEBUG_W } {
-		puts "$addr -->> $opstr $data"
+		puts "$opstr $addr -> $data"
 	    }
 	    set sp [string repeat " " [expr 32+1*0x$addr]]
 	    if { $::DEBUG } {

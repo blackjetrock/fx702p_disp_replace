@@ -1,0 +1,1635 @@
+a,b = C, D
+a,b = E, F
+A=0F D=1 OE=1 WE=0 OP=00000000
+0F <<--???? 1
+3 0F - 1 00000000 0                 1
+<                    >
+<                                                >
+A=03 D=D OE=1 WE=1 OP=0
+                                    ra=D
+03 -->> CMD  D
+0001 03 D 1 0 1                                     D
+<                    >
+<                                                >
+A=04 D=D OE=1 WE=1 OP=0
+A=04 D=0 OE=1 WE=1 OP=0
+04 -->> CMD  0
+0003 04 D 1 0 1                                      0
+<                    >
+<                                                >
+A=05 D=0 OE=1 WE=1 OP=0
+A=05 D=8 OE=1 WE=1 OP=0
+05 -->> CMD  8
+0005 05 D 1 0 1                                       8
+<                    >
+<                                                >
+A=03 D=F OE=1 WE=1 OP=0
+A=03 D=C OE=1 WE=1 OP=0
+                                    ra=C
+03 -->> CMD  C
+0007 03 C 1 0 1                                     C
+<                    >
+<                                                >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=0 OE=0 WE=1 OP=1
+03 -->> DATA 0
+0009 03 C 0 1 1                                     0
+<                    >
+<                                                >
+A=04 D=0 OE=0 WE=1 OP=1
+A=04 D=0 OE=0 WE=1 OP=1
+04 -->> DATA 0
+0011 04 C 0 1 1                                      0
+<                    >
+<                                                >
+A=05 D=0 OE=0 WE=1 OP=1
+A=05 D=0 OE=0 WE=1 OP=1
+05 -->> DATA 0
+0013 05 C 0 1 1                                       0
+<                    >
+<                                                >
+A=06 D=0 OE=0 WE=1 OP=1
+A=06 D=0 OE=0 WE=1 OP=1
+06 -->> DATA 0
+0015 06 C 0 1 1                                        0
+<                    >
+<                                                >
+A=07 D=0 OE=0 WE=1 OP=1
+A=07 D=0 OE=0 WE=1 OP=1
+07 -->> DATA 0
+0017 07 C 0 1 1                                         0
+<                    >
+<                                                >
+A=08 D=0 OE=0 WE=1 OP=1
+A=08 D=0 OE=0 WE=1 OP=1
+08 -->> DATA 0
+0019 08 C 0 1 1                                          0
+<                    >
+<                                                >
+A=09 D=0 OE=0 WE=1 OP=1
+A=09 D=0 OE=0 WE=1 OP=1
+09 -->> DATA 0
+0021 09 C 0 1 1                                           0
+<                    >
+<                                                >
+A=0A D=0 OE=0 WE=1 OP=1
+A=0A D=0 OE=0 WE=1 OP=1
+0A -->> DATA 0
+0023 0A C 0 1 1                                            0
+<                    >
+<                                                >
+A=0B D=0 OE=0 WE=1 OP=1
+A=0B D=0 OE=0 WE=1 OP=1
+0B -->> DATA 0
+0025 0B C 0 1 1                                             0
+<                    >
+<                                                >
+A=0C D=0 OE=0 WE=1 OP=1
+A=0C D=0 OE=0 WE=1 OP=1
+0C -->> DATA 0
+0027 0C C 0 1 1                                              0
+<                    >
+<                                                >
+A=03 D=3 OE=1 WE=1 OP=0
+A=03 D=D OE=1 WE=1 OP=0
+                                    ra=D
+03 -->> CMD  D
+0029 03 D 1 0 1                                     D
+<                    >
+<                                                >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=F OE=0 WE=1 OP=1
+03 -->> DATA F
+0031 03 D 0 1 1                                     F
+<                    >
+<                                                >
+A=04 D=F OE=0 WE=1 OP=1
+A=04 D=F OE=0 WE=1 OP=1
+04 -->> DATA F
+0033 04 D 0 1 1                                      F
+<                    >
+<                                                >
+A=05 D=F OE=0 WE=1 OP=1
+A=05 D=F OE=0 WE=1 OP=1
+05 -->> DATA F
+0035 05 D 0 1 1                                       F
+<                    >
+<                                                >
+A=06 D=F OE=0 WE=1 OP=1
+A=06 D=F OE=0 WE=1 OP=1
+06 -->> DATA F
+0037 06 D 0 1 1                                        F
+<                    >
+<                                                >
+A=07 D=F OE=0 WE=1 OP=1
+A=07 D=F OE=0 WE=1 OP=1
+07 -->> DATA F
+0039 07 D 0 1 1                                         F
+<                    >
+<                                                >
+A=08 D=F OE=0 WE=1 OP=1
+A=08 D=F OE=0 WE=1 OP=1
+08 -->> DATA F
+0041 08 D 0 1 1                                          F
+<                    >
+<                                                >
+A=09 D=F OE=0 WE=1 OP=1
+A=09 D=F OE=0 WE=1 OP=1
+09 -->> DATA F
+0043 09 D 0 1 1                                           F
+<                    >
+<                                                >
+A=0A D=F OE=0 WE=1 OP=1
+A=0A D=F OE=0 WE=1 OP=1
+0A -->> DATA F
+0045 0A D 0 1 1                                            F
+<                    >
+<                                                >
+A=0B D=F OE=0 WE=1 OP=1
+A=0B D=F OE=0 WE=1 OP=1
+0B -->> DATA F
+0047 0B D 0 1 1                                             F
+<                    >
+<                                                >
+A=0C D=F OE=0 WE=1 OP=1
+A=0C D=F OE=0 WE=1 OP=1
+0C -->> DATA F
+0049 0C D 0 1 1                                              F
+<                    >
+<                                                >
+A=03 D=0 OE=1 WE=1 OP=1
+A=03 D=F OE=1 WE=0 OP=1
+03 <<--DATA F
+0051 03 D 1 1 0     F
+<                    >
+<                                                >
+A=04 D=F OE=1 WE=1 OP=1
+A=04 D=F OE=1 WE=0 OP=1
+04 <<--DATA F
+0053 04 D 1 1 0      F
+<                    >
+<                                                >
+A=05 D=F OE=1 WE=1 OP=1
+A=05 D=F OE=1 WE=0 OP=1
+05 <<--DATA F
+0055 05 D 1 1 0       F
+<                    >
+<                                                >
+A=06 D=F OE=1 WE=1 OP=1
+A=06 D=F OE=1 WE=0 OP=1
+06 <<--DATA F
+0057 06 D 1 1 0        F
+<                    >
+<                                                >
+A=07 D=F OE=1 WE=1 OP=1
+A=07 D=F OE=1 WE=0 OP=1
+07 <<--DATA F
+0059 07 D 1 1 0         F
+<                    >
+<                                                >
+A=08 D=F OE=1 WE=1 OP=1
+A=08 D=F OE=1 WE=0 OP=1
+08 <<--DATA F
+0061 08 D 1 1 0          F
+<                    >
+<                                                >
+A=09 D=F OE=1 WE=1 OP=1
+A=09 D=F OE=1 WE=0 OP=1
+09 <<--DATA F
+0063 09 D 1 1 0           F
+<                    >
+<                                                >
+A=0A D=F OE=1 WE=1 OP=1
+A=0A D=F OE=1 WE=0 OP=1
+0A <<--DATA F
+0065 0A D 1 1 0            F
+<                    >
+<                                                >
+A=0B D=F OE=1 WE=1 OP=1
+A=0B D=F OE=1 WE=0 OP=1
+0B <<--DATA F
+0067 0B D 1 1 0             F
+<                    >
+<                                                >
+A=0C D=F OE=1 WE=1 OP=1
+A=0C D=1 OE=1 WE=0 OP=1
+0C <<--DATA 1
+0069 0C D 1 1 0              1
+<                    >
+<                                                >
+A=03 D=F OE=1 WE=1 OP=0
+A=03 D=C OE=1 WE=1 OP=0
+                                    ra=C
+03 -->> CMD  C
+0071 03 C 1 0 1                                     C
+<                    >
+<                                                >
+A=03 D=F OE=1 WE=1 OP=1
+A=03 D=0 OE=1 WE=0 OP=1
+03 <<--DATA 0
+0073 03 C 1 1 0     0
+<                    >
+<                                                >
+A=04 D=0 OE=1 WE=1 OP=1
+A=04 D=0 OE=1 WE=0 OP=1
+04 <<--DATA 0
+0075 04 C 1 1 0      0
+<                    >
+<                                                >
+A=05 D=0 OE=1 WE=1 OP=1
+A=05 D=0 OE=1 WE=0 OP=1
+05 <<--DATA 0
+0077 05 C 1 1 0       0
+<                    >
+<                                                >
+A=06 D=0 OE=1 WE=1 OP=1
+A=06 D=0 OE=1 WE=0 OP=1
+06 <<--DATA 0
+0079 06 C 1 1 0        0
+<                    >
+<                                                >
+A=07 D=0 OE=1 WE=1 OP=1
+A=07 D=0 OE=1 WE=0 OP=1
+07 <<--DATA 0
+0081 07 C 1 1 0         0
+<                    >
+<                                                >
+A=08 D=0 OE=1 WE=1 OP=1
+A=08 D=0 OE=1 WE=0 OP=1
+08 <<--DATA 0
+0083 08 C 1 1 0          0
+<                    >
+<                                                >
+A=09 D=0 OE=1 WE=1 OP=1
+A=09 D=0 OE=1 WE=0 OP=1
+09 <<--DATA 0
+0085 09 C 1 1 0           0
+<                    >
+<                                                >
+A=0A D=0 OE=1 WE=1 OP=1
+A=0A D=0 OE=1 WE=0 OP=1
+0A <<--DATA 0
+0087 0A C 1 1 0            0
+<                    >
+<                                                >
+A=0B D=0 OE=1 WE=1 OP=1
+A=0B D=0 OE=1 WE=0 OP=1
+0B <<--DATA 0
+0089 0B C 1 1 0             0
+<                    >
+<                                                >
+A=0C D=0 OE=1 WE=1 OP=1
+A=0C D=3 OE=1 WE=0 OP=1
+0C <<--DATA 3
+0091 0C C 1 1 0              3
+<1                   >
+<                                                >
+A=03 D=F OE=1 WE=1 OP=0
+A=03 D=C OE=1 WE=1 OP=0
+                                    ra=C
+03 -->> CMD  C
+0093 03 C 1 0 1                                     C
+<1                   >
+<                                                >
+A=04 D=C OE=1 WE=1 OP=0
+A=04 D=0 OE=1 WE=1 OP=0
+04 -->> CMD  0
+0095 04 C 1 0 1                                      0
+<1                   >
+<                                                >
+A=05 D=0 OE=1 WE=1 OP=0
+A=05 D=8 OE=1 WE=1 OP=0
+05 -->> CMD  8
+0097 05 C 1 0 1                                       8
+<1                   >
+<                                                >
+A=00 D=B OE=1 WE=1 OP=0
+A=00 D=B OE=1 WE=1 OP=0
+                                    ra=-
+00 -->> CMD  B
+0099 00 - 1 0 1                                  B
+<1                   >
+<                                                >
+A=03 D=F OE=1 WE=1 OP=0
+A=03 D=C OE=1 WE=1 OP=0
+                                    ra=C
+03 -->> CMD  C
+0101 03 C 1 0 1                                     C
+<1                   >
+<                                                >
+A=04 D=C OE=1 WE=1 OP=0
+A=04 D=0 OE=1 WE=1 OP=0
+04 -->> CMD  0
+0103 04 C 1 0 1                                      0
+<1                   >
+<                                                >
+A=05 D=0 OE=1 WE=1 OP=0
+A=05 D=8 OE=1 WE=1 OP=0
+05 -->> CMD  8
+0105 05 C 1 0 1                                       8
+<1                   >
+<                                                >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=0 OE=0 WE=1 OP=1
+03 -->> DATA 0
+0107 03 C 0 1 1                                     0
+<1                   >
+<                                                >
+A=04 D=0 OE=0 WE=1 OP=1
+A=04 D=0 OE=0 WE=1 OP=1
+04 -->> DATA 0
+0109 04 C 0 1 1                                      0
+<1                   >
+<                                                >
+A=05 D=0 OE=0 WE=1 OP=1
+A=05 D=0 OE=0 WE=1 OP=1
+05 -->> DATA 0
+0111 05 C 0 1 1                                       0
+<1                   >
+<                                                >
+A=06 D=0 OE=0 WE=1 OP=1
+A=06 D=0 OE=0 WE=1 OP=1
+06 -->> DATA 0
+0113 06 C 0 1 1                                        0
+<1                   >
+<                                                >
+A=07 D=0 OE=0 WE=1 OP=1
+A=07 D=0 OE=0 WE=1 OP=1
+07 -->> DATA 0
+0115 07 C 0 1 1                                         0
+<1                   >
+<                                                >
+A=08 D=0 OE=0 WE=1 OP=1
+A=08 D=0 OE=0 WE=1 OP=1
+08 -->> DATA 0
+0117 08 C 0 1 1                                          0
+<1                   >
+<                                                >
+A=09 D=0 OE=0 WE=1 OP=1
+A=09 D=0 OE=0 WE=1 OP=1
+09 -->> DATA 0
+0119 09 C 0 1 1                                           0
+<1                   >
+<                                                >
+A=0A D=0 OE=0 WE=1 OP=1
+A=0A D=0 OE=0 WE=1 OP=1
+0A -->> DATA 0
+0121 0A C 0 1 1                                            0
+<1                   >
+<                                                >
+A=0B D=0 OE=0 WE=1 OP=1
+A=0B D=0 OE=0 WE=1 OP=1
+0B -->> DATA 0
+0123 0B C 0 1 1                                             0
+<1                   >
+<                                                >
+A=0C D=0 OE=0 WE=1 OP=1
+A=0C D=3 OE=0 WE=1 OP=1
+0C -->> DATA 3
+0125 0C C 0 1 1                                              3
+<1                   >
+<                                                >
+A=03 D=3 OE=1 WE=1 OP=0
+A=03 D=D OE=1 WE=1 OP=0
+                                    ra=D
+03 -->> CMD  D
+0127 03 D 1 0 1                                     D
+<1                   >
+<                                                >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=F OE=0 WE=1 OP=1
+03 -->> DATA F
+0129 03 D 0 1 1                                     F
+<1                   >
+<                                                >
+A=04 D=F OE=0 WE=1 OP=1
+A=04 D=F OE=0 WE=1 OP=1
+04 -->> DATA F
+0131 04 D 0 1 1                                      F
+<1                   >
+<                                                >
+A=05 D=F OE=0 WE=1 OP=1
+A=05 D=F OE=0 WE=1 OP=1
+05 -->> DATA F
+0133 05 D 0 1 1                                       F
+<1                   >
+<                                                >
+A=06 D=F OE=0 WE=1 OP=1
+A=06 D=F OE=0 WE=1 OP=1
+06 -->> DATA F
+0135 06 D 0 1 1                                        F
+<1                   >
+<                                                >
+A=07 D=F OE=0 WE=1 OP=1
+A=07 D=F OE=0 WE=1 OP=1
+07 -->> DATA F
+0137 07 D 0 1 1                                         F
+<1                   >
+<                                                >
+A=08 D=F OE=0 WE=1 OP=1
+A=08 D=F OE=0 WE=1 OP=1
+08 -->> DATA F
+0139 08 D 0 1 1                                          F
+<1                   >
+<                                                >
+A=09 D=F OE=0 WE=1 OP=1
+A=09 D=F OE=0 WE=1 OP=1
+09 -->> DATA F
+0141 09 D 0 1 1                                           F
+<1                   >
+<                                                >
+A=0A D=F OE=0 WE=1 OP=1
+A=0A D=F OE=0 WE=1 OP=1
+0A -->> DATA F
+0143 0A D 0 1 1                                            F
+<1                   >
+<                                                >
+A=0B D=F OE=0 WE=1 OP=1
+A=0B D=F OE=0 WE=1 OP=1
+0B -->> DATA F
+0145 0B D 0 1 1                                             F
+<1                   >
+<                                                >
+A=0C D=F OE=0 WE=1 OP=1
+A=0C D=1 OE=0 WE=1 OP=1
+0C -->> DATA 1
+0147 0C D 0 1 1                                              1
+<1                   >
+<                                                >
+A=03 D=F OE=1 WE=1 OP=0
+A=03 D=E OE=1 WE=1 OP=0
+                                    ra=E
+03 -->> CMD  E
+0149 03 E 1 0 1                                     E
+<1                   >
+<                                                >
+A=04 D=E OE=1 WE=1 OP=0
+A=04 D=0 OE=1 WE=1 OP=0
+04 -->> CMD  0
+0151 04 E 1 0 1                                      0
+<1                   >
+<                                                >
+A=05 D=0 OE=1 WE=1 OP=0
+A=05 D=8 OE=1 WE=1 OP=0
+05 -->> CMD  8
+0153 05 E 1 0 1                                       8
+<1                   >
+<                                                >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=0 OE=0 WE=1 OP=1
+03 -->> DATA 0
+0155 03 E 0 1 1                                     0
+<1                   >
+<                                                >
+A=04 D=0 OE=0 WE=1 OP=1
+A=04 D=0 OE=0 WE=1 OP=1
+04 -->> DATA 0
+0157 04 E 0 1 1                                      0
+<1                   >
+<                                                >
+A=05 D=0 OE=0 WE=1 OP=1
+A=05 D=0 OE=0 WE=1 OP=1
+05 -->> DATA 0
+0159 05 E 0 1 1                                       0
+<1                   >
+<                                                >
+A=06 D=0 OE=0 WE=1 OP=1
+A=06 D=0 OE=0 WE=1 OP=1
+06 -->> DATA 0
+0161 06 E 0 1 1                                        0
+<1                   >
+<                                                >
+A=07 D=0 OE=0 WE=1 OP=1
+A=07 D=0 OE=0 WE=1 OP=1
+07 -->> DATA 0
+0163 07 E 0 1 1                                         0
+<1                   >
+<                                                >
+A=08 D=0 OE=0 WE=1 OP=1
+A=08 D=0 OE=0 WE=1 OP=1
+08 -->> DATA 0
+0165 08 E 0 1 1                                          0
+<1                   >
+<                                                >
+A=09 D=0 OE=0 WE=1 OP=1
+A=09 D=0 OE=0 WE=1 OP=1
+09 -->> DATA 0
+0167 09 E 0 1 1                                           0
+<1                   >
+<                                                >
+A=0A D=0 OE=0 WE=1 OP=1
+A=0A D=0 OE=0 WE=1 OP=1
+0A -->> DATA 0
+0169 0A E 0 1 1                                            0
+<1                   >
+<                                                >
+A=0B D=0 OE=0 WE=1 OP=1
+A=0B D=0 OE=0 WE=1 OP=1
+0B -->> DATA 0
+0171 0B E 0 1 1                                             0
+<1                   >
+<                                                >
+A=0C D=0 OE=0 WE=1 OP=1
+A=0C D=0 OE=0 WE=1 OP=1
+0C -->> DATA 0
+0173 0C E 0 1 1                                              0
+<1                   >
+<                                                >
+A=03 D=1 OE=1 WE=1 OP=0
+A=03 D=F OE=1 WE=1 OP=0
+                                    ra=F
+03 -->> CMD  F
+0175 03 F 1 0 1                                     F
+<1                   >
+<                                                >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=F OE=0 WE=1 OP=1
+03 -->> DATA F
+0177 03 F 0 1 1                                     F
+<1                   >
+<                                                >
+A=04 D=F OE=0 WE=1 OP=1
+A=04 D=F OE=0 WE=1 OP=1
+04 -->> DATA F
+0179 04 F 0 1 1                                      F
+<1                   >
+<                                                >
+A=05 D=F OE=0 WE=1 OP=1
+A=05 D=F OE=0 WE=1 OP=1
+05 -->> DATA F
+0181 05 F 0 1 1                                       F
+<1                   >
+<                                                >
+A=06 D=F OE=0 WE=1 OP=1
+A=06 D=F OE=0 WE=1 OP=1
+06 -->> DATA F
+0183 06 F 0 1 1                                        F
+<1                   >
+<                                                >
+A=06 D=F OE=0 WE=1 OP=1
+A=07 D=F OE=0 WE=1 OP=1
+07 -->> DATA F
+0185 07 F 0 1 1                                         F
+<1                   >
+<                                                >
+A=08 D=F OE=0 WE=1 OP=1
+A=08 D=F OE=0 WE=1 OP=1
+08 -->> DATA F
+0187 08 F 0 1 1                                          F
+<1                   >
+<                                                >
+A=09 D=F OE=0 WE=1 OP=1
+A=09 D=F OE=0 WE=1 OP=1
+09 -->> DATA F
+0189 09 F 0 1 1                                           F
+<1                   >
+<                                                >
+A=0A D=F OE=0 WE=1 OP=1
+A=0A D=F OE=0 WE=1 OP=1
+0A -->> DATA F
+0191 0A F 0 1 1                                            F
+<1                   >
+<                                                >
+A=0A D=F OE=0 WE=1 OP=1
+A=0B D=F OE=0 WE=1 OP=1
+0B -->> DATA F
+0193 0B F 0 1 1                                             F
+<1                   >
+<                                                >
+A=0C D=F OE=0 WE=1 OP=1
+A=0C D=F OE=0 WE=1 OP=1
+0C -->> DATA F
+0195 0C F 0 1 1                                              F
+<1                   >
+<                                                >
+A=09 D=F OE=1 WE=1 OP=0
+A=09 D=0 OE=1 WE=1 OP=0
+09 -->> CMD  0
+0197 09 F 1 0 1                                           0
+<1                   >
+<                                                >
+A=0A D=0 OE=1 WE=1 OP=0
+A=0A D=0 OE=1 WE=1 OP=0
+                                    ra=-
+0A -->> CMD  0
+0199 0A - 1 0 1                                            0
+<1                   >
+<                                                >
+A=0B D=0 OE=1 WE=1 OP=0
+A=0B D=0 OE=1 WE=1 OP=0
+                                                 an=0
+0B -->> CMD  0
+0201 0B - 1 0 1                                             0
+<1                   >
+<                                                >
+A=01 D=B OE=1 WE=1 OP=1
+A=01 D=B OE=1 WE=0 OP=1
+01 <<--DATA B
+0203 01 - 1 1 0   B
+<1                   >
+<                                                >
+A=02 D=B OE=1 WE=1 OP=1
+A=02 D=B OE=1 WE=0 OP=1
+02 <<--DATA B
+0205 02 - 1 1 0    B
+<1                   >
+<                                                >
+A=03 D=B OE=1 WE=1 OP=1
+A=03 D=F OE=1 WE=0 OP=1
+03 <<--DATA F
+0207 03 - 1 1 0     F
+<1                   >
+<                                                >
+A=04 D=F OE=1 WE=1 OP=1
+A=04 D=F OE=1 WE=0 OP=1
+04 <<--DATA F
+0209 04 - 1 1 0      F
+<1                   >
+<                                                >
+A=05 D=F OE=1 WE=1 OP=1
+A=05 D=F OE=1 WE=0 OP=1
+05 <<--DATA F
+0211 05 - 1 1 0       F
+<1                   >
+<                                                >
+A=06 D=F OE=1 WE=1 OP=1
+A=06 D=F OE=1 WE=0 OP=1
+06 <<--DATA F
+0213 06 - 1 1 0        F
+<1                   >
+<                                                >
+A=06 D=F OE=1 WE=1 OP=1
+A=07 D=F OE=1 WE=0 OP=1
+07 <<--DATA F
+0215 07 - 1 1 0         F
+<1                   >
+<                                                >
+A=08 D=F OE=1 WE=1 OP=1
+A=08 D=F OE=1 WE=0 OP=1
+08 <<--DATA F
+0217 08 - 1 1 0          F
+<1                   >
+<                                                >
+A=09 D=F OE=1 WE=1 OP=1
+A=09 D=F OE=1 WE=0 OP=1
+09 <<--DATA F
+0219 09 - 1 1 0           F
+<1                   >
+<                                                >
+A=0A D=F OE=1 WE=1 OP=1
+A=0A D=F OE=1 WE=0 OP=1
+0A <<--DATA F
+0221 0A - 1 1 0            F
+<1                   >
+<                                                >
+A=0A D=F OE=1 WE=1 OP=1
+A=0B D=F OE=1 WE=0 OP=1
+0B <<--DATA F
+0223 0B - 1 1 0             F
+<1                   >
+<                                                >
+A=0C D=F OE=1 WE=1 OP=1
+A=0C D=F OE=1 WE=0 OP=1
+0C <<--DATA F
+0225 0C - 1 1 0              F
+<1                   >
+<                                                >
+A=09 D=F OE=1 WE=1 OP=0
+A=09 D=0 OE=1 WE=1 OP=0
+09 -->> CMD  0
+0227 09 - 1 0 1                                           0
+<1                   >
+<                                                >
+A=0A D=0 OE=1 WE=1 OP=0
+A=0A D=0 OE=1 WE=1 OP=0
+                                    ra=-
+0A -->> CMD  0
+0229 0A - 1 0 1                                            0
+<1                   >
+<                                                >
+A=0B D=0 OE=1 WE=1 OP=0
+A=0B D=4 OE=1 WE=1 OP=0
+                                                 an=4
+0B -->> CMD  4
+0231 0B - 1 0 1                                             4
+<1                   >
+<                                                >
+A=01 D=0 OE=1 WE=1 OP=1
+A=01 D=0 OE=1 WE=0 OP=1
+                                    ANN(01)=0
+01 <<--DATA 0
+0233 01 - 1 1 0   0
+<1                   >
+<                                                >
+A=02 D=0 OE=1 WE=1 OP=1
+A=02 D=0 OE=1 WE=0 OP=1
+                                    ANN(02)=0
+02 <<--DATA 0
+0235 02 - 1 1 0    0
+<1                   >
+<                                                >
+A=03 D=0 OE=1 WE=1 OP=1
+A=03 D=0 OE=1 WE=0 OP=1
+                                    ANN(03)=0
+03 <<--DATA 0
+0237 03 - 1 1 0     0
+<1                   >
+<                                                >
+A=04 D=0 OE=1 WE=1 OP=1
+A=04 D=0 OE=1 WE=0 OP=1
+                                    ANN(04)=0
+04 <<--DATA 0
+0239 04 - 1 1 0      0
+<1                   >
+<                                                >
+A=05 D=0 OE=1 WE=1 OP=1
+A=05 D=0 OE=1 WE=0 OP=1
+                                    ANN(05)=0
+05 <<--DATA 0
+0241 05 - 1 1 0       0
+<1                   >
+<                                                >
+A=06 D=0 OE=1 WE=1 OP=1
+A=06 D=0 OE=1 WE=0 OP=1
+                                    ANN(06)=0
+06 <<--DATA 0
+0243 06 - 1 1 0        0
+<1                   >
+<                                                >
+A=07 D=0 OE=1 WE=1 OP=1
+A=07 D=0 OE=1 WE=0 OP=1
+                                    ANN(07)=0
+07 <<--DATA 0
+0245 07 - 1 1 0         0
+<1                   >
+<                                                >
+A=08 D=0 OE=1 WE=1 OP=1
+A=08 D=0 OE=1 WE=0 OP=1
+                                    ANN(08)=0
+08 <<--DATA 0
+0247 08 - 1 1 0          0
+<1                   >
+<                                                >
+A=09 D=0 OE=1 WE=1 OP=1
+A=09 D=0 OE=1 WE=0 OP=1
+                                    ANN(09)=0
+09 <<--DATA 0
+0249 09 - 1 1 0           0
+<1                   >
+<                                                >
+A=0A D=0 OE=1 WE=1 OP=1
+A=0A D=8 OE=1 WE=0 OP=1
+                                    ANN(0A)=8
+0A <<--DATA 8
+0251 0A - 1 1 0            8
+<1                   >
+<                                     DEG        >
+A=0B D=8 OE=1 WE=1 OP=1
+A=0B D=0 OE=1 WE=0 OP=1
+                                    ANN(0B)=0
+0B <<--DATA 0
+0253 0B - 1 1 0             0
+<1                   >
+<                                     DEG        >
+A=0C D=0 OE=1 WE=1 OP=1
+A=0C D=0 OE=1 WE=0 OP=1
+                                    ANN(0C)=0
+0C <<--DATA 0
+0255 0C - 1 1 0              0
+<1                   >
+<                                     DEG        >
+A=03 D=F OE=1 WE=1 OP=0
+A=03 D=D OE=1 WE=1 OP=0
+                                    ra=D
+03 -->> CMD  D
+0257 03 D 1 0 1                                     D
+<1                   >
+<                                     DEG        >
+A=04 D=D OE=1 WE=1 OP=0
+A=04 D=0 OE=1 WE=1 OP=0
+04 -->> CMD  0
+0259 04 D 1 0 1                                      0
+<1                   >
+<                                     DEG        >
+A=05 D=0 OE=1 WE=1 OP=0
+A=05 D=8 OE=1 WE=1 OP=0
+05 -->> CMD  8
+0261 05 D 1 0 1                                       8
+<1                   >
+<                                     DEG        >
+A=03 D=F OE=1 WE=1 OP=0
+A=03 D=C OE=1 WE=1 OP=0
+                                    ra=C
+03 -->> CMD  C
+0263 03 C 1 0 1                                     C
+<1                   >
+<                                     DEG        >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=0 OE=0 WE=1 OP=1
+03 -->> DATA 0
+0265 03 C 0 1 1                                     0
+<1                   >
+<                                     DEG        >
+A=04 D=0 OE=0 WE=1 OP=1
+A=04 D=0 OE=0 WE=1 OP=1
+04 -->> DATA 0
+0267 04 C 0 1 1                                      0
+<1                   >
+<                                     DEG        >
+A=05 D=0 OE=0 WE=1 OP=1
+A=05 D=0 OE=0 WE=1 OP=1
+05 -->> DATA 0
+0269 05 C 0 1 1                                       0
+<1                   >
+<                                     DEG        >
+A=06 D=0 OE=0 WE=1 OP=1
+A=06 D=0 OE=0 WE=1 OP=1
+06 -->> DATA 0
+0271 06 C 0 1 1                                        0
+<1                   >
+<                                     DEG        >
+A=07 D=0 OE=0 WE=1 OP=1
+A=07 D=0 OE=0 WE=1 OP=1
+07 -->> DATA 0
+0273 07 C 0 1 1                                         0
+<1                   >
+<                                     DEG        >
+A=08 D=0 OE=0 WE=1 OP=1
+A=08 D=0 OE=0 WE=1 OP=1
+08 -->> DATA 0
+0275 08 C 0 1 1                                          0
+<1                   >
+<                                     DEG        >
+A=09 D=0 OE=0 WE=1 OP=1
+A=09 D=0 OE=0 WE=1 OP=1
+09 -->> DATA 0
+0277 09 C 0 1 1                                           0
+<1                   >
+<                                     DEG        >
+A=0A D=0 OE=0 WE=1 OP=1
+A=0A D=0 OE=0 WE=1 OP=1
+0A -->> DATA 0
+0279 0A C 0 1 1                                            0
+<1                   >
+<                                     DEG        >
+A=0B D=0 OE=0 WE=1 OP=1
+A=0B D=0 OE=0 WE=1 OP=1
+0B -->> DATA 0
+0281 0B C 0 1 1                                             0
+<1                   >
+<                                     DEG        >
+A=0C D=0 OE=0 WE=1 OP=1
+A=0C D=3 OE=0 WE=1 OP=1
+0C -->> DATA 3
+0283 0C C 0 1 1                                              3
+<1                   >
+<                                     DEG        >
+A=03 D=3 OE=1 WE=1 OP=0
+A=03 D=D OE=1 WE=1 OP=0
+                                    ra=D
+03 -->> CMD  D
+0285 03 D 1 0 1                                     D
+<1                   >
+<                                     DEG        >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=F OE=0 WE=1 OP=1
+03 -->> DATA F
+0287 03 D 0 1 1                                     F
+<1                   >
+<                                     DEG        >
+A=04 D=F OE=0 WE=1 OP=1
+A=04 D=F OE=0 WE=1 OP=1
+04 -->> DATA F
+0289 04 D 0 1 1                                      F
+<1                   >
+<                                     DEG        >
+A=05 D=F OE=0 WE=1 OP=1
+A=05 D=F OE=0 WE=1 OP=1
+05 -->> DATA F
+0291 05 D 0 1 1                                       F
+<1                   >
+<                                     DEG        >
+A=06 D=F OE=0 WE=1 OP=1
+A=06 D=F OE=0 WE=1 OP=1
+06 -->> DATA F
+0293 06 D 0 1 1                                        F
+<1                   >
+<                                     DEG        >
+A=07 D=F OE=0 WE=1 OP=1
+A=07 D=F OE=0 WE=1 OP=1
+07 -->> DATA F
+0295 07 D 0 1 1                                         F
+<1                   >
+<                                     DEG        >
+A=08 D=F OE=0 WE=1 OP=1
+A=08 D=F OE=0 WE=1 OP=1
+08 -->> DATA F
+0297 08 D 0 1 1                                          F
+<1                   >
+<                                     DEG        >
+A=09 D=F OE=0 WE=1 OP=1
+A=09 D=F OE=0 WE=1 OP=1
+09 -->> DATA F
+0299 09 D 0 1 1                                           F
+<1                   >
+<                                     DEG        >
+A=0A D=F OE=0 WE=1 OP=1
+A=0A D=F OE=0 WE=1 OP=1
+0A -->> DATA F
+0301 0A D 0 1 1                                            F
+<1                   >
+<                                     DEG        >
+A=0B D=F OE=0 WE=1 OP=1
+A=0B D=F OE=0 WE=1 OP=1
+0B -->> DATA F
+0303 0B D 0 1 1                                             F
+<1                   >
+<                                     DEG        >
+A=0C D=F OE=0 WE=1 OP=1
+A=0C D=1 OE=0 WE=1 OP=1
+0C -->> DATA 1
+0305 0C D 0 1 1                                              1
+<1                   >
+<                                     DEG        >
+A=03 D=3 OE=1 WE=1 OP=1
+A=03 D=F OE=1 WE=0 OP=1
+03 <<--DATA F
+0307 03 D 1 1 0     F
+<1                   >
+<                                     DEG        >
+A=04 D=F OE=1 WE=1 OP=1
+A=04 D=F OE=1 WE=0 OP=1
+04 <<--DATA F
+0309 04 D 1 1 0      F
+<1                   >
+<                                     DEG        >
+A=05 D=F OE=1 WE=1 OP=1
+A=05 D=F OE=1 WE=0 OP=1
+05 <<--DATA F
+0311 05 D 1 1 0       F
+<1                   >
+<                                     DEG        >
+A=06 D=F OE=1 WE=1 OP=1
+A=06 D=F OE=1 WE=0 OP=1
+06 <<--DATA F
+0313 06 D 1 1 0        F
+<1                   >
+<                                     DEG        >
+A=07 D=F OE=1 WE=1 OP=1
+A=07 D=F OE=1 WE=0 OP=1
+07 <<--DATA F
+0315 07 D 1 1 0         F
+<1                   >
+<                                     DEG        >
+A=08 D=F OE=1 WE=1 OP=1
+A=08 D=F OE=1 WE=0 OP=1
+08 <<--DATA F
+0317 08 D 1 1 0          F
+<1                   >
+<                                     DEG        >
+A=09 D=F OE=1 WE=1 OP=1
+A=09 D=F OE=1 WE=0 OP=1
+09 <<--DATA F
+0319 09 D 1 1 0           F
+<1                   >
+<                                     DEG        >
+A=0A D=F OE=1 WE=1 OP=1
+A=0A D=F OE=1 WE=0 OP=1
+0A <<--DATA F
+0321 0A D 1 1 0            F
+<1                   >
+<                                     DEG        >
+A=0A D=F OE=1 WE=1 OP=1
+A=0B D=2 OE=1 WE=0 OP=1
+0B <<--DATA 2
+0323 0B D 1 1 0             2
+<1?02?                  >
+<                                     DEG        >
+A=0C D=2 OE=1 WE=1 OP=1
+A=0C D=1 OE=1 WE=0 OP=1
+0C <<--DATA 1
+0325 0C D 1 1 0              1
+<1?02?                  >
+<                                     DEG        >
+A=03 D=F OE=1 WE=1 OP=0
+A=03 D=C OE=1 WE=1 OP=0
+                                    ra=C
+03 -->> CMD  C
+0327 03 C 1 0 1                                     C
+<1?02?                  >
+<                                     DEG        >
+A=03 D=F OE=1 WE=1 OP=1
+A=03 D=0 OE=1 WE=0 OP=1
+03 <<--DATA 0
+0329 03 C 1 1 0     0
+<1?02?                  >
+<                                     DEG        >
+A=04 D=0 OE=1 WE=1 OP=1
+A=04 D=0 OE=1 WE=0 OP=1
+04 <<--DATA 0
+0331 04 C 1 1 0      0
+<1?02?                  >
+<                                     DEG        >
+A=05 D=0 OE=1 WE=1 OP=1
+A=05 D=0 OE=1 WE=0 OP=1
+05 <<--DATA 0
+0333 05 C 1 1 0       0
+<1?02?                  >
+<                                     DEG        >
+A=06 D=0 OE=1 WE=1 OP=1
+A=06 D=0 OE=1 WE=0 OP=1
+06 <<--DATA 0
+0335 06 C 1 1 0        0
+<1?02?                  >
+<                                     DEG        >
+A=07 D=0 OE=1 WE=1 OP=1
+A=07 D=0 OE=1 WE=0 OP=1
+07 <<--DATA 0
+0337 07 C 1 1 0         0
+<1?02?                  >
+<                                     DEG        >
+A=08 D=0 OE=1 WE=1 OP=1
+A=08 D=0 OE=1 WE=0 OP=1
+08 <<--DATA 0
+0339 08 C 1 1 0          0
+<1?02?                  >
+<                                     DEG        >
+A=09 D=0 OE=1 WE=1 OP=1
+A=09 D=0 OE=1 WE=0 OP=1
+09 <<--DATA 0
+0341 09 C 1 1 0           0
+<1?02?                  >
+<                                     DEG        >
+A=0A D=0 OE=1 WE=1 OP=1
+A=0A D=0 OE=1 WE=0 OP=1
+0A <<--DATA 0
+0343 0A C 1 1 0            0
+<1?02?                  >
+<                                     DEG        >
+A=0B D=0 OE=1 WE=1 OP=1
+A=0B D=3 OE=1 WE=0 OP=1
+0B <<--DATA 3
+0345 0B C 1 1 0             3
+<12                  >
+<                                     DEG        >
+A=0C D=3 OE=1 WE=1 OP=1
+A=0C D=3 OE=1 WE=0 OP=1
+0C <<--DATA 3
+0347 0C C 1 1 0              3
+<12                  >
+<                                     DEG        >
+A=03 D=F OE=1 WE=1 OP=0
+A=03 D=C OE=1 WE=1 OP=0
+                                    ra=C
+03 -->> CMD  C
+0349 03 C 1 0 1                                     C
+<12                  >
+<                                     DEG        >
+A=04 D=C OE=1 WE=1 OP=0
+A=04 D=0 OE=1 WE=1 OP=0
+04 -->> CMD  0
+0351 04 C 1 0 1                                      0
+<12                  >
+<                                     DEG        >
+A=05 D=0 OE=1 WE=1 OP=0
+A=05 D=8 OE=1 WE=1 OP=0
+05 -->> CMD  8
+0353 05 C 1 0 1                                       8
+<12                  >
+<                                     DEG        >
+A=00 D=B OE=1 WE=1 OP=0
+A=00 D=B OE=1 WE=1 OP=0
+                                    ra=-
+00 -->> CMD  B
+0355 00 - 1 0 1                                  B
+<12                  >
+<                                     DEG        >
+A=03 D=F OE=1 WE=1 OP=0
+A=03 D=C OE=1 WE=1 OP=0
+                                    ra=C
+03 -->> CMD  C
+0357 03 C 1 0 1                                     C
+<12                  >
+<                                     DEG        >
+A=04 D=C OE=1 WE=1 OP=0
+A=04 D=0 OE=1 WE=1 OP=0
+04 -->> CMD  0
+0359 04 C 1 0 1                                      0
+<12                  >
+<                                     DEG        >
+A=05 D=0 OE=1 WE=1 OP=0
+A=05 D=8 OE=1 WE=1 OP=0
+05 -->> CMD  8
+0361 05 C 1 0 1                                       8
+<12                  >
+<                                     DEG        >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=0 OE=0 WE=1 OP=1
+03 -->> DATA 0
+0363 03 C 0 1 1                                     0
+<12                  >
+<                                     DEG        >
+A=04 D=0 OE=0 WE=1 OP=1
+A=04 D=0 OE=0 WE=1 OP=1
+04 -->> DATA 0
+0365 04 C 0 1 1                                      0
+<12                  >
+<                                     DEG        >
+A=05 D=0 OE=0 WE=1 OP=1
+A=05 D=0 OE=0 WE=1 OP=1
+05 -->> DATA 0
+0367 05 C 0 1 1                                       0
+<12                  >
+<                                     DEG        >
+A=06 D=0 OE=0 WE=1 OP=1
+A=06 D=0 OE=0 WE=1 OP=1
+06 -->> DATA 0
+0369 06 C 0 1 1                                        0
+<12                  >
+<                                     DEG        >
+A=07 D=0 OE=0 WE=1 OP=1
+A=07 D=0 OE=0 WE=1 OP=1
+07 -->> DATA 0
+0371 07 C 0 1 1                                         0
+<12                  >
+<                                     DEG        >
+A=08 D=0 OE=0 WE=1 OP=1
+A=08 D=0 OE=0 WE=1 OP=1
+08 -->> DATA 0
+0373 08 C 0 1 1                                          0
+<12                  >
+<                                     DEG        >
+A=09 D=0 OE=0 WE=1 OP=1
+A=09 D=0 OE=0 WE=1 OP=1
+09 -->> DATA 0
+0375 09 C 0 1 1                                           0
+<12                  >
+<                                     DEG        >
+A=0A D=0 OE=0 WE=1 OP=1
+A=0A D=0 OE=0 WE=1 OP=1
+0A -->> DATA 0
+0377 0A C 0 1 1                                            0
+<12                  >
+<                                     DEG        >
+A=0B D=0 OE=0 WE=1 OP=1
+A=0B D=3 OE=0 WE=1 OP=1
+0B -->> DATA 3
+0379 0B C 0 1 1                                             3
+<12                  >
+<                                     DEG        >
+A=0C D=3 OE=0 WE=1 OP=1
+A=0C D=3 OE=0 WE=1 OP=1
+0C -->> DATA 3
+0381 0C C 0 1 1                                              3
+<12                  >
+<                                     DEG        >
+A=03 D=3 OE=1 WE=1 OP=0
+A=03 D=D OE=1 WE=1 OP=0
+                                    ra=D
+03 -->> CMD  D
+0383 03 D 1 0 1                                     D
+<12                  >
+<                                     DEG        >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=F OE=0 WE=1 OP=1
+03 -->> DATA F
+0385 03 D 0 1 1                                     F
+<12                  >
+<                                     DEG        >
+A=04 D=F OE=0 WE=1 OP=1
+A=04 D=F OE=0 WE=1 OP=1
+04 -->> DATA F
+0387 04 D 0 1 1                                      F
+<12                  >
+<                                     DEG        >
+A=05 D=F OE=0 WE=1 OP=1
+A=05 D=F OE=0 WE=1 OP=1
+05 -->> DATA F
+0389 05 D 0 1 1                                       F
+<12                  >
+<                                     DEG        >
+A=06 D=F OE=0 WE=1 OP=1
+A=06 D=F OE=0 WE=1 OP=1
+06 -->> DATA F
+0391 06 D 0 1 1                                        F
+<12                  >
+<                                     DEG        >
+A=07 D=F OE=0 WE=1 OP=1
+A=07 D=F OE=0 WE=1 OP=1
+07 -->> DATA F
+0393 07 D 0 1 1                                         F
+<12                  >
+<                                     DEG        >
+A=08 D=F OE=0 WE=1 OP=1
+A=08 D=F OE=0 WE=1 OP=1
+08 -->> DATA F
+0395 08 D 0 1 1                                          F
+<12                  >
+<                                     DEG        >
+A=09 D=F OE=0 WE=1 OP=1
+A=09 D=F OE=0 WE=1 OP=1
+09 -->> DATA F
+0397 09 D 0 1 1                                           F
+<12                  >
+<                                     DEG        >
+A=0A D=F OE=0 WE=1 OP=1
+A=0A D=F OE=0 WE=1 OP=1
+0A -->> DATA F
+0399 0A D 0 1 1                                            F
+<12                  >
+<                                     DEG        >
+A=0B D=F OE=0 WE=1 OP=1
+A=0B D=2 OE=0 WE=1 OP=1
+0B -->> DATA 2
+0401 0B D 0 1 1                                             2
+<12                  >
+<                                     DEG        >
+A=0C D=2 OE=0 WE=1 OP=1
+A=0C D=1 OE=0 WE=1 OP=1
+0C -->> DATA 1
+0403 0C D 0 1 1                                              1
+<12                  >
+<                                     DEG        >
+A=03 D=F OE=1 WE=1 OP=0
+A=03 D=E OE=1 WE=1 OP=0
+                                    ra=E
+03 -->> CMD  E
+0405 03 E 1 0 1                                     E
+<12                  >
+<                                     DEG        >
+A=04 D=E OE=1 WE=1 OP=0
+A=04 D=0 OE=1 WE=1 OP=0
+04 -->> CMD  0
+0407 04 E 1 0 1                                      0
+<12                  >
+<                                     DEG        >
+A=05 D=0 OE=1 WE=1 OP=0
+A=05 D=8 OE=1 WE=1 OP=0
+05 -->> CMD  8
+0409 05 E 1 0 1                                       8
+<12                  >
+<                                     DEG        >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=0 OE=0 WE=1 OP=1
+03 -->> DATA 0
+0411 03 E 0 1 1                                     0
+<12                  >
+<                                     DEG        >
+A=04 D=0 OE=0 WE=1 OP=1
+A=04 D=0 OE=0 WE=1 OP=1
+04 -->> DATA 0
+0413 04 E 0 1 1                                      0
+<12                  >
+<                                     DEG        >
+A=05 D=0 OE=0 WE=1 OP=1
+A=05 D=0 OE=0 WE=1 OP=1
+05 -->> DATA 0
+0415 05 E 0 1 1                                       0
+<12                  >
+<                                     DEG        >
+A=06 D=0 OE=0 WE=1 OP=1
+A=06 D=0 OE=0 WE=1 OP=1
+06 -->> DATA 0
+0417 06 E 0 1 1                                        0
+<12                  >
+<                                     DEG        >
+A=07 D=0 OE=0 WE=1 OP=1
+A=07 D=0 OE=0 WE=1 OP=1
+07 -->> DATA 0
+0419 07 E 0 1 1                                         0
+<12                  >
+<                                     DEG        >
+A=08 D=0 OE=0 WE=1 OP=1
+A=08 D=0 OE=0 WE=1 OP=1
+08 -->> DATA 0
+0421 08 E 0 1 1                                          0
+<12                  >
+<                                     DEG        >
+A=09 D=0 OE=0 WE=1 OP=1
+A=09 D=0 OE=0 WE=1 OP=1
+09 -->> DATA 0
+0423 09 E 0 1 1                                           0
+<12                  >
+<                                     DEG        >
+A=0A D=0 OE=0 WE=1 OP=1
+A=0A D=0 OE=0 WE=1 OP=1
+0A -->> DATA 0
+0425 0A E 0 1 1                                            0
+<12                  >
+<                                     DEG        >
+A=0B D=0 OE=0 WE=1 OP=1
+A=0B D=0 OE=0 WE=1 OP=1
+0B -->> DATA 0
+0427 0B E 0 1 1                                             0
+<12                  >
+<                                     DEG        >
+A=0C D=0 OE=0 WE=1 OP=1
+A=0C D=0 OE=0 WE=1 OP=1
+0C -->> DATA 0
+0429 0C E 0 1 1                                              0
+<12                  >
+<                                     DEG        >
+A=03 D=1 OE=1 WE=1 OP=0
+A=03 D=F OE=1 WE=1 OP=0
+                                    ra=F
+03 -->> CMD  F
+0431 03 F 1 0 1                                     F
+<12                  >
+<                                     DEG        >
+A=03 D=F OE=0 WE=1 OP=1
+A=03 D=F OE=0 WE=1 OP=1
+03 -->> DATA F
+0433 03 F 0 1 1                                     F
+<12                  >
+<                                     DEG        >
+A=04 D=F OE=0 WE=1 OP=1
+A=04 D=F OE=0 WE=1 OP=1
+04 -->> DATA F
+0435 04 F 0 1 1                                      F
+<12                  >
+<                                     DEG        >
+A=05 D=F OE=0 WE=1 OP=1
+A=05 D=F OE=0 WE=1 OP=1
+05 -->> DATA F
+0437 05 F 0 1 1                                       F
+<12                  >
+<                                     DEG        >
+A=06 D=F OE=0 WE=1 OP=1
+A=06 D=F OE=0 WE=1 OP=1
+06 -->> DATA F
+0439 06 F 0 1 1                                        F
+<12                  >
+<                                     DEG        >
+A=06 D=F OE=0 WE=1 OP=1
+A=07 D=F OE=0 WE=1 OP=1
+07 -->> DATA F
+0441 07 F 0 1 1                                         F
+<12                  >
+<                                     DEG        >
+A=08 D=F OE=0 WE=1 OP=1
+A=08 D=F OE=0 WE=1 OP=1
+08 -->> DATA F
+0443 08 F 0 1 1                                          F
+<12                  >
+<                                     DEG        >
+A=09 D=F OE=0 WE=1 OP=1
+A=09 D=F OE=0 WE=1 OP=1
+09 -->> DATA F
+0445 09 F 0 1 1                                           F
+<12                  >
+<                                     DEG        >
+A=0A D=F OE=0 WE=1 OP=1
+A=0A D=F OE=0 WE=1 OP=1
+0A -->> DATA F
+0447 0A F 0 1 1                                            F
+<12                  >
+<                                     DEG        >
+A=0A D=F OE=0 WE=1 OP=1
+A=0B D=F OE=0 WE=1 OP=1
+0B -->> DATA F
+0449 0B F 0 1 1                                             F
+<12                  >
+<                                     DEG        >
+A=0C D=F OE=0 WE=1 OP=1
+A=0C D=F OE=0 WE=1 OP=1
+0C -->> DATA F
+0451 0C F 0 1 1                                              F
+<12                  >
+<                                     DEG        >
+A=09 D=F OE=1 WE=1 OP=0
+A=09 D=0 OE=1 WE=1 OP=0
+09 -->> CMD  0
+0453 09 F 1 0 1                                           0
+<12                  >
+<                                     DEG        >
+A=0A D=0 OE=1 WE=1 OP=0
+A=0A D=0 OE=1 WE=1 OP=0
+                                    ra=-
+0A -->> CMD  0
+0455 0A - 1 0 1                                            0
+<12                  >
+<                                     DEG        >
+A=0B D=0 OE=1 WE=1 OP=0
+A=0B D=0 OE=1 WE=1 OP=0
+                                                 an=0
+0B -->> CMD  0
+0457 0B - 1 0 1                                             0
+<12                  >
+<                                     DEG        >
+A=01 D=B OE=1 WE=1 OP=1
+A=01 D=B OE=1 WE=0 OP=1
+01 <<--DATA B
+0459 01 - 1 1 0   B
+<12                  >
+<                                     DEG        >
+A=02 D=B OE=1 WE=1 OP=1
+A=02 D=B OE=1 WE=0 OP=1
+02 <<--DATA B
+0461 02 - 1 1 0    B
+<12                  >
+<                                     DEG        >
+A=03 D=B OE=1 WE=1 OP=1
+A=03 D=F OE=1 WE=0 OP=1
+03 <<--DATA F
+0463 03 - 1 1 0     F
+<12                  >
+<                                     DEG        >
+A=04 D=F OE=1 WE=1 OP=1
+A=04 D=F OE=1 WE=0 OP=1
+04 <<--DATA F
+0465 04 - 1 1 0      F
+<12                  >
+<                                     DEG        >
+A=05 D=F OE=1 WE=1 OP=1
+A=05 D=F OE=1 WE=0 OP=1
+05 <<--DATA F
+0467 05 - 1 1 0       F
+<12                  >
+<                                     DEG        >
+A=06 D=F OE=1 WE=1 OP=1
+A=06 D=F OE=1 WE=0 OP=1
+06 <<--DATA F
+0469 06 - 1 1 0        F
+<12                  >
+<                                     DEG        >
+A=06 D=F OE=1 WE=1 OP=1
+A=07 D=F OE=1 WE=0 OP=1
+07 <<--DATA F
+0471 07 - 1 1 0         F
+<12                  >
+<                                     DEG        >
+A=08 D=F OE=1 WE=1 OP=1
+A=08 D=F OE=1 WE=0 OP=1
+08 <<--DATA F
+0473 08 - 1 1 0          F
+<12                  >
+<                                     DEG        >
+A=09 D=F OE=1 WE=1 OP=1
+A=09 D=F OE=1 WE=0 OP=1
+09 <<--DATA F
+0475 09 - 1 1 0           F
+<12                  >
+<                                     DEG        >
+A=0A D=F OE=1 WE=1 OP=1
+A=0A D=F OE=1 WE=0 OP=1
+0A <<--DATA F
+0477 0A - 1 1 0            F
+<12                  >
+<                                     DEG        >
+A=0A D=F OE=1 WE=1 OP=1
+A=0B D=F OE=1 WE=0 OP=1
+0B <<--DATA F
+0479 0B - 1 1 0             F
+<12                  >
+<                                     DEG        >
+A=0C D=F OE=1 WE=1 OP=1
+A=0C D=F OE=1 WE=0 OP=1
+0C <<--DATA F
+0481 0C - 1 1 0              F
+<12                  >
+<                                     DEG        >
+A=09 D=F OE=1 WE=1 OP=0
+A=09 D=0 OE=1 WE=1 OP=0
+09 -->> CMD  0
+0483 09 - 1 0 1                                           0
+<12                  >
+<                                     DEG        >
+A=0A D=0 OE=1 WE=1 OP=0
+A=0A D=0 OE=1 WE=1 OP=0
+                                    ra=-
+0A -->> CMD  0
+0485 0A - 1 0 1                                            0
+<12                  >
+<                                     DEG        >
+A=0B D=0 OE=1 WE=1 OP=0
+A=0B D=4 OE=1 WE=1 OP=0
+                                                 an=4
+0B -->> CMD  4
+0487 0B - 1 0 1                                             4
+<12                  >
+<                                     DEG        >
+A=01 D=0 OE=1 WE=1 OP=1
+A=01 D=0 OE=1 WE=0 OP=1
+                                    ANN(01)=0
+01 <<--DATA 0
+0489 01 - 1 1 0   0
+<12                  >
+<                                     DEG        >
+A=02 D=0 OE=1 WE=1 OP=1
+A=02 D=0 OE=1 WE=0 OP=1
+                                    ANN(02)=0
+02 <<--DATA 0
+0491 02 - 1 1 0    0
+<12                  >
+<                                     DEG        >
+A=03 D=0 OE=1 WE=1 OP=1
+A=03 D=0 OE=1 WE=0 OP=1
+                                    ANN(03)=0
+03 <<--DATA 0
+0493 03 - 1 1 0     0
+<12                  >
+<                                     DEG        >
+A=04 D=0 OE=1 WE=1 OP=1
+A=04 D=0 OE=1 WE=0 OP=1
+                                    ANN(04)=0
+04 <<--DATA 0
+0495 04 - 1 1 0      0
+<12                  >
+<                                     DEG        >
+A=05 D=0 OE=1 WE=1 OP=1
+A=05 D=0 OE=1 WE=0 OP=1
+                                    ANN(05)=0
+05 <<--DATA 0
+0497 05 - 1 1 0       0
+<12                  >
+<                                     DEG        >
+A=06 D=0 OE=1 WE=1 OP=1
+A=06 D=0 OE=1 WE=0 OP=1
+                                    ANN(06)=0
+06 <<--DATA 0
+0499 06 - 1 1 0        0
+<12                  >
+<                                     DEG        >
+A=07 D=0 OE=1 WE=1 OP=1
+A=07 D=0 OE=1 WE=0 OP=1
+                                    ANN(07)=0
+07 <<--DATA 0
+0501 07 - 1 1 0         0
+<12                  >
+<                                     DEG        >
+A=08 D=0 OE=1 WE=1 OP=1
+A=08 D=0 OE=1 WE=0 OP=1
+                                    ANN(08)=0
+08 <<--DATA 0
+0503 08 - 1 1 0          0
+<12                  >
+<                                     DEG        >
+A=09 D=0 OE=1 WE=1 OP=1
+A=09 D=0 OE=1 WE=0 OP=1
+                                    ANN(09)=0
+09 <<--DATA 0
+0505 09 - 1 1 0           0
+<12                  >
+<                                     DEG        >
+A=0A D=0 OE=1 WE=1 OP=1
+A=0A D=8 OE=1 WE=0 OP=1
+                                    ANN(0A)=8
+0A <<--DATA 8
+0507 0A - 1 1 0            8
+<12                  >
+<                                     DEG        >
+A=0B D=8 OE=1 WE=1 OP=1
+A=0B D=0 OE=1 WE=0 OP=1
+                                    ANN(0B)=0
+0B <<--DATA 0
+0509 0B - 1 1 0             0
+<12                  >
+<                                     DEG        >
+A=0C D=0 OE=1 WE=1 OP=1
+A=0F D=F OE=0 WE=0 OP=0
+0F <<--CMD  F
+0511 0F - 0 0 0                 F
+<12                  >
+<                                     DEG        >
+A=0F D=F OE=0 WE=0 OP=0
+A=0F D=F OE=0 WE=0 OP=0
+0F <<--CMD  F
+0513 0F - 0 0 0                 F
+<12                  >
+<                                     DEG        >
+A=0F D=F OE=0 WE=0 OP=0
+A=0F D=F OE=0 WE=0 OP=0
+0F <<--CMD  F
+0515 0F - 0 0 0                 F
+<12                  >
+<                                     DEG        >
+A=0F D=F OE=0 WE=0 OP=0
+A=0F D=F OE=0 WE=0 OP=0
+0F <<--CMD  F
+0517 0F - 0 0 0                 F
+<12                  >
+<                                     DEG        >
+A=0F D=F OE=0 WE=0 OP=0
+A=0F D=F OE=0 WE=0 OP=0
+0F <<--CMD  F
+0519 0F - 0 0 0                 F
+<12                  >
+<                                     DEG        >
+A=0F D=F OE=0 WE=0 OP=0
+A=0F D=F OE=0 WE=0 OP=0
+0F <<--CMD  F
+0521 0F - 0 0 0                 F
+<12                  >
+<                                     DEG        >
+A=0F D=F OE=0 WE=0 OP=0
+A=0F D=F OE=0 WE=0 OP=0
+0F <<--CMD  F
+0523 0F - 0 0 0                 F
+<12                  >
+<                                     DEG        >
+A=0F D=F OE=0 WE=0 OP=0
+A=0F D=F OE=0 WE=0 OP=0
+0F <<--CMD  F
+0525 0F - 0 0 0                 F
+<12                  >
+<                                     DEG        >

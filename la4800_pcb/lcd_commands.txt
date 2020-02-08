@@ -1,0 +1,27 @@
+3    <-  D         Prefixes read or write of nibble display data
+3    <-  F         Prefixes read or write of nbble display data (dot matrix)
+3    <-  6         Prefixes 10 zeros written to 3..C  (Dot matrix relatd?)
+3    <-  4         Prefixes 10 Fs written to 3..C  (Dot matrix relatd?)      (With write of 6, 0F? Spaces?)
+3    <-  F         Another write to matrix? 0F again?
+3    <-  4
+345  <-  C 0 8     Prefixes upper nibbles half display
+
+
+
+345  <-  E 0 8     Prefixes upper nibbles half display
+
+345  <-  F 0 0     Followed by single data read of 07, got F      Mode 1 start
+345  <-  F 0 0     Folloed by read f 0F, got F
+345  <-  F 4 0     Precedes write of 6 to 03 and ten nibbles. Look like prefixes matrix setup or blanking
+345  <-  F C 0     Two of these after 6,4,F matrix? writes then matrix? writes to F,4 (
+345  <-  F D 0     Precedes 03-<F and 10 nibble writes
+345  <-  F E 0     Precdes matrix? ten nibble writes
+
+8    <-  0         Followed by read of 0 5 B, got 0 F F           Mode 1 start
+
+
+9AB  <-  F 0 0     Prefixes 12 data nibbles annunciators? Also prefixes write of 10 nibbles
+9AB  <-  0 0 4     Prefixes 12 data nibble
+
+9AB  <-  0 0 0     Prefixes 12 data nibble
+

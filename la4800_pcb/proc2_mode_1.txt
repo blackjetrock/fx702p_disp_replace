@@ -1,0 +1,4858 @@
+a,b = C, D
+a,b = E, F
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> 0
+CMD  05 -> 0
+DATA 07 -> F
+                                    ra=-
+CMD  00 -> 8
+DATA 00 -> 0
+DATA 05 -> F
+DATA 0B -> F
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> 0
+CMD  05 -> 0
+DATA 0F -> F
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> 4
+CMD  05 -> 0
+                                    ra=6
+CMD  03 -> 6
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=4
+CMD  03 -> 4
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=4
+CMD  03 -> 4
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=4
+CMD  03 -> 4
+
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> E
+CMD  05 -> 0
+
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+
+CMD  09 -> F
+CMD  0A -> 0
+CMD  0B -> 0
+
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 8
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+
+ra=F
+What is this following bit?
+Bad capture?
+
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+DATA 03 -> 0
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+
+CMD  02 -> F
+
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+
+CMD  02 -> 5
+
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=1
+CMD  03 -> 1
+
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+
+CMD  09 -> F
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+
+DATA 02 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+
+CMD  08 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 8
+DATA 0C -> 0
+
+CMD  02 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+
+DATA 0C -> 1
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- 4
+DATA 0C <- 1
+                                    ra=C
+CMD  03 -> C
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 0
+DATA 09 <- 0
+DATA 0A <- 0
+DATA 0B <- 4
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=0
+DATA 05 <- 0
+                                    ANN(06)=0
+DATA 06 <- 0
+                                    ANN(07)=0
+DATA 07 <- 0
+                                    ANN(08)=0
+DATA 08 <- 0
+                                    ANN(09)=0
+DATA 09 <- 0
+                                    ANN(0A)=8
+DATA 0A <- 8
+                                    ANN(0B)=0
+DATA 0B <- 0
+                                    ANN(0C)=0
+DATA 0C <- 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> 4
+DATA 0C -> 1
+
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 -> F
+DATA 08 -> F
+DATA 0A -> F
+DATA 0B -> 0
+DATA 0C -> 4
+
+CMD  02 -> F
+
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 4
+DATA 0C -> 4
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 4
+
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 04 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 08 -> F
+DATA 0A -> F
+DATA 0B -> 0
+DATA 0C -> 4
+
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=1
+CMD  03 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 08 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 02 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  08 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 8
+DATA 0C -> 0
+CMD  02 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 4
+DATA 0C -> 4
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> 0
+DATA 0C -> 4
+DATA 02 -> 5
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 04 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=1
+CMD  03 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 04 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 02 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 08 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 8
+DATA 0B -> 0
+DATA 0C <- 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- 8
+DATA 09 <- 3
+DATA 0A <- 0
+DATA 0B <- 4
+DATA 0C <- 1
+                                    ra=C
+CMD  03 -> C
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 5
+DATA 09 <- 4
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 0
+DATA 0C -> 0
+                                    ra=1
+CMD  03 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 02 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 08 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                    ra=-
+CMD  0A -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 8
+DATA 0C -> 0
+CMD  02 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 4
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 04 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0A -> 0
+DATA 0C -> 4
+DATA 02 -> 5
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 06 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=0
+DATA 05 <- 0
+                                    ANN(06)=0
+DATA 06 <- 0
+                                    ANN(07)=0
+DATA 07 <- 0
+                                    ANN(08)=0
+DATA 08 <- 0
+                                    ANN(09)=0
+DATA 09 <- 0
+                                    ANN(0A)=8
+DATA 0A <- 8
+                                    ANN(0B)=0
+DATA 0B <- 0
+                                    ANN(0C)=0
+DATA 0C <- 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- 8
+DATA 09 <- 3
+DATA 0A <- 0
+DATA 0B <- 4
+DATA 0C <- 1
+                                    ra=C
+CMD  03 -> C
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 4
+DATA 07 <- 0
+DATA 08 <- 5
+DATA 09 <- 4
+DATA 0A <- 4
+DATA 0B <- 4
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=0
+DATA 05 <- 0
+                                    ANN(06)=0
+DATA 06 <- 0
+                                    ANN(07)=0
+DATA 07 <- 0
+                                    ANN(08)=0
+DATA 08 <- 0
+                                    ANN(09)=0
+DATA 09 <- 0
+                                    ANN(0A)=8
+DATA 0A <- 8
+                                    ANN(0B)=0
+DATA 0B <- 0
+                                    ANN(0C)=0
+DATA 0C <- 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- 0
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- 8
+DATA 09 <- 3
+DATA 0A <- 0
+DATA 0B <- 4
+DATA 0C <- 1
+                                    ra=C
+CMD  03 -> C
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 3
+DATA 06 <- 4
+DATA 07 <- 0
+DATA 08 <- 5
+DATA 09 <- 4
+DATA 0A <- 4
+DATA 0B <- 4
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 0
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=1
+CMD  03 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 06 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=0
+DATA 05 <- 0
+                                    ANN(06)=0
+DATA 06 <- 0
+                                    ANN(07)=0
+DATA 07 <- 0
+                                    ANN(08)=0
+DATA 08 <- 0
+                                    ANN(09)=0
+DATA 09 <- 0
+                                    ANN(0A)=8
+DATA 0A <- 8
+                                    ANN(0B)=0
+DATA 0B <- 0
+                                    ANN(0C)=0
+DATA 0C <- 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 0
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+DATA 03 <- F
+DATA 04 <- 8
+DATA 05 <- 0
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- 8
+DATA 09 <- 3
+DATA 0A <- 0
+DATA 0B <- 4
+DATA 0C <- 1
+                                    ra=C
+CMD  03 -> C
+DATA 03 <- 0
+DATA 04 <- 1
+DATA 05 <- 3
+DATA 06 <- 4
+DATA 07 <- 0
+DATA 08 <- 5
+DATA 09 <- 4
+DATA 0A <- 4
+DATA 0B <- 4
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 1
+DATA 06 -> 3
+DATA 06 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 8
+DATA 05 -> 0
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- F
+CMD  08 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 02 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 8
+DATA 0C -> 0
+CMD  02 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 1
+DATA 06 -> 3
+DATA 07 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 4
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+DATA 02 -> 5
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 1
+DATA 06 -> 3
+DATA 06 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 1
+DATA 06 -> 3
+DATA 07 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0A -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=1
+CMD  03 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 03 -> 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 0
+DATA 09 <- 0
+DATA 0A <- 8
+DATA 0B <- 0
+DATA 0C <- 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=E
+CMD  03 -> E
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- 0
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 05 -> 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 0
+DATA 09 <- 0
+DATA 0A <- 0
+DATA 0B <- 0
+DATA 0C <- 3
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 1
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> 8
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+CMD  02 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 08 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 02 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> 0
+CMD  05 -> 0
+DATA 07 -> F
+                                    ra=-
+CMD  00 -> 8
+DATA 00 -> 0
+DATA 05 -> F
+DATA 0B -> F
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> 0
+CMD  05 -> 0
+DATA 0F -> F
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> 4
+CMD  05 -> 0
+                                    ra=5
+CMD  03 -> 5
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=4
+CMD  03 -> 4
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=4
+CMD  03 -> 4
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=4
+CMD  03 -> 4
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 8
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+DATA 03 -> 0
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  02 -> F
+                                    ra=C
+CMD  03 -> C
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 0
+DATA 09 <- 0
+DATA 0A <- 0
+DATA 0B <- 0
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=0
+DATA 05 <- 0
+                                    ANN(06)=0
+DATA 06 <- 0
+                                    ANN(07)=0
+DATA 07 <- 0
+                                    ANN(08)=0
+DATA 08 <- 0
+                                    ANN(09)=0
+DATA 09 <- 0
+                                    ANN(0A)=8
+DATA 0A <- 8
+                                    ANN(0B)=0
+DATA 0B <- 0
+                                    ANN(0C)=0
+DATA 0C <- 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> 1
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- 4
+DATA 0C <- 1
+                                    ra=C
+CMD  03 -> C
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 0
+DATA 09 <- 0
+DATA 0A <- 0
+DATA 0B <- 4
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=0
+DATA 05 <- 0
+                                    ANN(06)=0
+DATA 06 <- 0
+                                    ANN(07)=0
+DATA 07 <- 0
+                                    ANN(08)=0
+DATA 08 <- 0
+                                    ANN(09)=0
+DATA 09 <- 0
+                                    ANN(0A)=8
+DATA 0A <- 8
+                                    ANN(0B)=0
+DATA 0B <- 0
+                                    ANN(0C)=0
+DATA 0C <- 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> 4
+DATA 0C -> 1
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- 0
+DATA 0B <- 4
+DATA 0C <- 1
+                                    ra=C
+CMD  03 -> C
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 0
+DATA 09 <- 0
+DATA 0A <- 4
+DATA 0B <- 4
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                    ra=-
+CMD  0A -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 8
+DATA 0C -> 0
+CMD  02 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 4
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 08 -> F
+DATA 0A -> F
+DATA 0A -> 0
+DATA 0C -> 4
+DATA 02 -> 5
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 04 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=1
+CMD  03 -> 1
+DATA 03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 8
+DATA 0C -> 0
+CMD  02 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 4
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+DATA 02 -> 5
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 0
+DATA 0C -> 0
+                                    ra=1
+CMD  03 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  08 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 02 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 02 -> 0
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 0
+DATA 09 <- 0
+DATA 0A <- 8
+DATA 0B <- 0
+DATA 0C <- 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- 8
+DATA 09 <- 3
+DATA 0A <- 0
+DATA 0B <- 4
+DATA 0C <- 1
+                                    ra=C
+CMD  03 -> C
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 5
+DATA 09 <- 4
+DATA 0A <- 4
+DATA 0B <- 4
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                    ra=-
+CMD  0A -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 8
+DATA 0C -> 0
+CMD  02 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 4
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+DATA 02 -> 5
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 0
+DATA 0C -> 0
+                                    ra=1
+CMD  03 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                    ra=-
+CMD  0A -> 0
+DATA 02 -> F
+DATA 04 -> F
+DATA 04 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 08 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                    ra=-
+CMD  0A -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 0
+DATA 09 <- 0
+DATA 0A <- 8
+DATA 0B <- 0
+DATA 0C <- 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- 0
+DATA 06 <- F
+DATA 06 <- F
+DATA 08 <- 8
+DATA 09 <- 3
+DATA 0A <- 0
+DATA 0B <- 4
+DATA 0C <- 1
+                                    ra=C
+CMD  03 -> C
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 3
+DATA 06 <- 4
+DATA 07 <- 0
+DATA 08 <- 5
+DATA 09 <- 4
+DATA 0A <- 4
+DATA 0B <- 4
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 0
+DATA 0C -> 0
+                                    ra=1
+CMD  03 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 02 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  08 -> F
+                                    ra=-
+CMD  0A -> 0
+                                    ra=-
+CMD  0A -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 02 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 8
+DATA 0C -> 0
+DATA 0C -> 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 0
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+DATA 03 <- F
+DATA 04 <- 8
+DATA 05 <- 0
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- 8
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 1
+DATA 06 -> 3
+DATA 06 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 1
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> 8
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 0
+DATA 0C -> 0
+                                    ra=1
+CMD  03 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                    ra=-
+CMD  0A -> 0
+DATA 02 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> F
+DATA 0C -> F
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                    ra=-
+CMD  0A -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 02 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 8
+DATA 0C -> 0
+CMD  02 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 1
+DATA 06 -> 3
+DATA 06 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 4
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 0
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+DATA 03 <- F
+DATA 04 <- 8
+DATA 05 <- 0
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- 8
+DATA 09 <- 3
+DATA 0A <- 0
+DATA 0B <- 4
+DATA 0C <- 1
+                                    ra=C
+CMD  03 -> C
+DATA 03 <- 0
+DATA 04 <- 1
+DATA 05 <- 3
+DATA 06 <- 4
+DATA 07 <- 0
+DATA 08 <- 5
+DATA 09 <- 4
+DATA 0A <- 4
+DATA 0B <- 4
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 1
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> 8
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- F
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=0
+DATA 05 <- 0
+                                    ANN(06)=0
+DATA 06 <- 0
+                                    ANN(07)=0
+DATA 07 <- 0
+                                    ANN(08)=0
+DATA 08 <- 0
+                                    ANN(09)=0
+DATA 09 <- 0
+                                    ANN(0A)=8
+DATA 0A <- 8
+                                    ANN(0B)=0
+DATA 0B <- 0
+                                    ANN(0C)=0
+DATA 0C <- 0
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=E
+CMD  03 -> E
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> F
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- E
+                                    ra=E
+CMD  03 -> E
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 0
+DATA 09 <- 0
+DATA 0A <- 0
+DATA 0B <- 0
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 1
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> 8
+DATA 05 -> 0
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 5
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 06 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- F
+DATA 0C <- E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=0
+DATA 05 <- 0
+                                    ANN(06)=0
+DATA 06 <- 0
+                                    ANN(07)=0
+DATA 07 <- 0
+                                    ANN(08)=0
+DATA 08 <- 0
+                                    ANN(09)=0
+DATA 09 <- 0
+                                    ANN(0A)=8
+DATA 0A <- 8
+                                    ANN(0B)=0
+DATA 0B <- 0
+                                    ANN(0C)=5
+DATA 0C <- 5
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=E
+CMD  03 -> E
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 0
+DATA 0C -> 5
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> F
+DATA 0C -> E
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- 1
+DATA 0C <- E
+                                    ra=E
+CMD  03 -> E
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 0
+DATA 09 <- 0
+DATA 0A <- 0
+DATA 0B <- 3
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 1
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> 8
+DATA 05 -> 0
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 3
+DATA 0C -> 5
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0B -> 1
+DATA 0C -> E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 06 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- F
+DATA 0B <- 1
+DATA 0C <- E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=0
+DATA 05 <- 0
+                                    ANN(06)=0
+DATA 06 <- 0
+                                    ANN(07)=0
+DATA 07 <- 0
+                                    ANN(08)=0
+DATA 08 <- 0
+                                    ANN(09)=0
+DATA 09 <- 0
+                                    ANN(0A)=8
+DATA 0A <- 8
+                                    ANN(0B)=3
+DATA 0B <- 3
+                                    ANN(0C)=5
+DATA 0C <- 5
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=E
+CMD  03 -> E
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0B -> 3
+DATA 0C -> 5
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> 1
+DATA 0C -> E
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- F
+DATA 0A <- 2
+DATA 0B <- 1
+DATA 0C <- E
+                                    ra=E
+CMD  03 -> E
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 0
+DATA 07 <- 0
+DATA 08 <- 0
+DATA 09 <- 0
+DATA 0A -> 0
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 1
+DATA 06 -> 3
+DATA 07 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 04 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> F
+DATA 0A -> 2
+DATA 0C -> 1
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 02 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 08 -> F
+DATA 09 <- F
+DATA 0A <- 2
+DATA 0A -> 2
+DATA 0C -> 1
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                    ra=-
+CMD  0A -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> B
+DATA 0C -> 3
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 0
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> E
+DATA 03 -> F
+DATA 04 -> F
+DATA 04 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 08 -> F
+DATA 0A -> F
+DATA 0A -> 2
+DATA 0C -> 1
+DATA 02 -> 5
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 1
+DATA 06 -> 3
+DATA 06 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0A -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> 1
+DATA 03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> F
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+DATA 0C -> E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- F
+DATA 09 <- 3
+DATA 0A <- 2
+DATA 0B <- 1
+DATA 0C <- E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 -> 0
+                                    ANN(02)=0
+DATA 02 -> 0
+                                    ANN(03)=0
+DATA 03 -> 0
+                                    ANN(04)=0
+DATA 04 -> 0
+                                    ANN(05)=0
+DATA 05 -> 0
+                                    ANN(06)=0
+DATA 06 -> 0
+                                    ANN(07)=0
+DATA 07 -> 0
+                                    ANN(08)=0
+DATA 08 -> 0
+                                    ANN(09)=0
+DATA 09 -> 0
+                                    ANN(0A)=3
+DATA 0A -> 3
+                                    ANN(0A)=B
+DATA 0A -> B
+                                    ANN(0C)=3
+DATA 0C -> 3
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 0
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> E
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> F
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+DATA 02 -> 5
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> 0
+DATA 08 -> 0
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 1
+DATA 06 -> 3
+DATA 06 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0A -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 04 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+DATA 0C -> E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- F
+DATA 08 <- 4
+DATA 09 <- 3
+DATA 0A <- 2
+DATA 0B <- 1
+DATA 0C <- E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=0
+DATA 05 <- 0
+                                    ANN(06)=0
+DATA 06 <- 0
+                                    ANN(07)=0
+DATA 07 <- 0
+                                    ANN(08)=3
+DATA 08 <- 3
+                                    ANN(09)=3
+DATA 09 -> 3
+                                    ANN(0A)=3
+DATA 0A -> 3
+                                    ANN(0A)=B
+DATA 0A -> B
+                                    ANN(0C)=3
+DATA 0C -> 3
+CMD  02 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 0
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> E
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+DATA 02 -> 5
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> 0
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 1
+DATA 06 -> 3
+DATA 07 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 0
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 3
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 5
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 07 -> 5
+DATA 08 -> 4
+DATA 09 -> 3
+DATA 0A -> 2
+DATA 0B -> 1
+DATA 0C -> E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- F
+DATA 07 <- 5
+DATA 08 <- 4
+DATA 09 <- 3
+DATA 0A <- 2
+DATA 0B <- 1
+DATA 0C <- E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 3
+DATA 08 -> 3
+DATA 0A -> 3
+DATA 0A -> B
+DATA 0C -> 3
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 07 -> 0
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> E
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> F
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+DATA 02 -> 5
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> F
+DATA 06 -> 6
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0B <- 1
+DATA 0C -> 1
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 0
+DATA 04 <- 0
+DATA 05 <- 0
+DATA 06 <- 3
+DATA 07 <- 3
+DATA 08 <- 3
+DATA 09 <- 3
+DATA 0A <- 3
+DATA 0B <- 3
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 1
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+CMD  02 -> D
+DATA 03 -> F
+DATA 04 -> 8
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0A -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 02 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> 3
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> 1
+DATA 03 -> F
+DATA 04 -> F
+DATA 04 -> F
+DATA 06 -> F
+DATA 06 -> 6
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 02 -> F
+DATA 03 -> F
+DATA 04 <- F
+DATA 05 <- F
+DATA 06 <- 6
+DATA 07 <- 5
+DATA 08 <- 4
+DATA 09 <- 3
+DATA 0A <- 2
+DATA 0B <- 1
+DATA 0C <- E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=0
+DATA 05 <- 0
+                                    ANN(06)=3
+DATA 06 <- 3
+                                    ANN(07)=3
+DATA 07 <- 3
+                                    ANN(08)=3
+DATA 08 <- 3
+                                    ANN(09)=3
+DATA 09 <- 3
+                                    ANN(0A)=B
+DATA 0A <- B
+                                    ANN(0B)=3
+DATA 0B <- 3
+                                    ANN(0C)=5
+DATA 0C <- 5
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=E
+CMD  03 -> E
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 3
+DATA 06 -> 3
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 5
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> 6
+DATA 07 -> 5
+DATA 08 -> 4
+DATA 09 -> 3
+DATA 0A -> 2
+DATA 0B -> 1
+DATA 0C -> E
+DATA 03 <- F
+DATA 04 <- F
+DATA 05 <- 7
+DATA 06 <- 6
+DATA 07 <- 5
+DATA 08 <- 4
+DATA 09 -> 4
+DATA 09 <- 3
+DATA 0A <- 2
+DATA 0B <- 1
+DATA 0C <- E
+                                    ra=E
+CMD  03 -> E
+DATA 03 <- 0
+DATA 04 <- 0
+DATA 05 <- 3
+DATA 06 <- 3
+DATA 06 <- 3
+DATA 08 <- 3
+DATA 09 <- 3
+DATA 0A <- 3
+DATA 0B <- 3
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 1
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+CMD  02 -> D
+DATA 03 -> F
+DATA 04 -> 8
+DATA 05 -> 0
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 3
+DATA 06 -> 3
+DATA 07 -> 3
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0B -> 3
+DATA 0C -> 5
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 7
+DATA 06 -> 6
+DATA 07 -> 5
+DATA 08 -> 4
+DATA 09 -> 3
+DATA 0A -> 2
+DATA 0B -> 1
+DATA 0C -> 1
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 02 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> 7
+DATA 06 -> 6
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=0
+DATA 03 <- 0
+                                    ANN(04)=0
+DATA 04 <- 0
+                                    ANN(05)=3
+DATA 05 <- 3
+                                    ANN(06)=3
+DATA 06 <- 3
+                                    ANN(06)=3
+DATA 06 <- 3
+                                    ANN(08)=3
+DATA 08 <- 3
+                                    ANN(09)=3
+DATA 09 <- 3
+                                    ANN(0A)=B
+DATA 0A <- B
+                                    ANN(0B)=3
+DATA 0B <- 3
+                                    ANN(0C)=5
+DATA 0C <- 5
+CMD  02 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 0
+DATA 06 -> 3
+DATA 06 -> 3
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> E
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> F
+DATA 06 -> 7
+DATA 06 -> 6
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+DATA 02 -> 5
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 7
+DATA 06 -> 6
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+CMD  02 -> F
+                                    ra=E
+CMD  03 -> E
+DATA 03 <- 0
+DATA 04 <- 3
+DATA 05 <- 3
+DATA 06 <- 3
+DATA 06 <- 3
+DATA 08 <- 3
+DATA 09 <- 3
+DATA 0A <- 3
+DATA 0B <- 3
+DATA 0C <- 5
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 1
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> 8
+DATA 05 -> 0
+DATA 06 -> 0
+DATA 06 -> F
+DATA 08 -> F
+DATA 09 -> 8
+DATA 0A -> 3
+DATA 0B -> 0
+DATA 0C -> 4
+CMD  02 -> F
+CMD  04 -> E
+CMD  05 -> 0
+DATA 02 -> F
+DATA 04 -> 0
+DATA 04 -> 3
+DATA 06 -> 3
+DATA 06 -> 3
+DATA 08 -> 3
+DATA 08 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> 1
+DATA 02 -> E
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 7
+DATA 06 -> 6
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+CMD  09 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 02 -> F
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 7
+DATA 06 -> 6
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+CMD  08 -> F
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 01 -> 0
+DATA 02 -> 0
+DATA 03 -> 0
+DATA 04 -> 0
+DATA 05 -> 3
+DATA 06 -> 3
+DATA 06 -> 3
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> B
+DATA 0C -> 3
+CMD  02 -> F
+CMD  04 -> D
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 3
+DATA 06 -> 3
+DATA 06 -> 3
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> E
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 7
+DATA 06 -> 6
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+DATA 02 -> 5
+DATA 04 -> 9
+DATA 05 -> 8
+DATA 06 -> 7
+DATA 06 -> 6
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 3
+DATA 0A -> 2
+DATA 0C -> 1
+CMD  02 -> F
+DATA 02 -> F
+DATA 04 -> 3
+DATA 05 -> 3
+DATA 06 -> 3
+DATA 06 -> 3
+DATA 08 -> 3
+DATA 08 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 3
+CMD  02 -> F
+CMD  04 -> C
+CMD  05 -> 0
+                                    ra=F
+CMD  03 -> F
+CMD  04 -> C
+CMD  05 -> 0
+DATA 03 -> F
+DATA 04 -> 0
+DATA 05 -> 1
+DATA 06 -> 3
+DATA 06 -> 4
+DATA 08 -> 0
+DATA 09 -> 5
+DATA 0A -> 4
+DATA 0A -> 4
+DATA 0C -> 4
+CMD  02 -> 5
+DATA 03 -> F
+DATA 04 -> F
+DATA 05 -> 8
+DATA 06 -> 0
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 3
+DATA 04 -> 3
+DATA 05 -> 3
+DATA 06 -> 3
+DATA 06 -> 3
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0A -> 3
+DATA 0C -> 5
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> 9
+DATA 04 -> 8
+DATA 05 -> 7
+DATA 06 -> 6
+DATA 07 -> 5
+DATA 08 -> 4
+DATA 09 -> 3
+DATA 0A -> 2
+DATA 0B -> 1
+DATA 0C -> E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 03 <- 9
+DATA 04 <- 8
+DATA 05 <- 7
+DATA 06 <- 6
+DATA 07 <- 5
+DATA 08 <- 4
+DATA 09 <- 3
+DATA 0A <- 2
+DATA 0B <- 1
+DATA 0C <- E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=3
+DATA 03 <- 3
+                                    ANN(04)=3
+DATA 04 <- 3
+                                    ANN(05)=3
+DATA 05 <- 3
+                                    ANN(06)=3
+DATA 06 <- 3
+                                    ANN(06)=3
+DATA 06 <- 3
+                                    ANN(08)=3
+DATA 08 <- 3
+                                    ANN(09)=3
+DATA 09 <- 3
+                                    ANN(0A)=B
+DATA 0A <- B
+                                    ANN(0B)=3
+DATA 0B <- 3
+                                    ANN(0C)=5
+DATA 0C <- 5
+                                    ra=D
+CMD  03 -> D
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=E
+CMD  03 -> E
+DATA 03 -> 3
+DATA 04 -> 3
+DATA 05 -> 3
+DATA 06 -> 3
+DATA 07 -> 3
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0B -> 3
+DATA 0C -> 5
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> 9
+DATA 04 -> 8
+DATA 05 -> 7
+DATA 06 -> 6
+DATA 07 -> 5
+DATA 08 -> 4
+DATA 09 -> 3
+DATA 0A -> 2
+DATA 0B -> 1
+DATA 0C -> E
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=-
+CMD  00 -> B
+DATA 00 <- 6
+DATA 01 <- 6
+DATA 02 <- 6
+DATA 03 <- 1
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+                                    ra=-
+CMD  00 -> B
+DATA 00 -> 6
+DATA 01 -> 6
+DATA 02 -> 6
+DATA 03 -> 1
+                                    ra=C
+CMD  03 -> C
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 0
+DATA 04 -> 1
+DATA 05 -> 3
+DATA 06 -> 4
+DATA 07 -> 0
+DATA 08 -> 5
+DATA 09 -> 4
+DATA 0A -> 4
+DATA 0B -> 4
+DATA 0C -> 5
+                                    ra=D
+CMD  03 -> D
+DATA 03 -> F
+DATA 04 -> 8
+DATA 05 -> 0
+DATA 06 -> F
+DATA 07 -> F
+DATA 08 -> 8
+DATA 09 -> 3
+DATA 0A -> 0
+DATA 0B -> 4
+DATA 0C -> 1
+                                    ra=E
+CMD  03 -> E
+CMD  04 -> 0
+CMD  05 -> 8
+DATA 03 -> 3
+DATA 04 -> 3
+DATA 05 -> 3
+DATA 06 -> 3
+DATA 07 -> 3
+DATA 08 -> 3
+DATA 09 -> 3
+DATA 0A -> 3
+DATA 0B -> 3
+DATA 0C -> 5
+                                    ra=F
+CMD  03 -> F
+DATA 03 -> 9
+DATA 04 -> 8
+DATA 05 -> 7
+DATA 06 -> 6
+DATA 07 -> 5
+DATA 08 -> 4
+DATA 09 -> 3
+DATA 0A -> 2
+DATA 0B -> 1
+DATA 0C -> E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=0
+CMD  0B -> 0
+DATA 01 <- 6
+DATA 02 <- 6
+DATA 03 <- 9
+DATA 04 <- 8
+DATA 05 <- 7
+DATA 06 <- 6
+DATA 07 <- 5
+DATA 08 <- 4
+DATA 09 <- 3
+DATA 0A <- 2
+DATA 0B <- 1
+DATA 0C <- E
+CMD  09 -> 0
+                                    ra=-
+CMD  0A -> 0
+                                                 an=4
+CMD  0B -> 4
+                                    ANN(01)=0
+DATA 01 <- 0
+                                    ANN(02)=0
+DATA 02 <- 0
+                                    ANN(03)=3
+DATA 03 <- 3
+                                    ANN(04)=3
+DATA 04 <- 3
+                                    ANN(05)=3
+DATA 05 <- 3
+                                    ANN(06)=3
+DATA 06 <- 3
+                                    ANN(07)=3
+DATA 07 <- 3
+                                    ANN(08)=3
+DATA 08 <- 3
+                                    ANN(09)=3
+DATA 09 <- 3
+                                    ANN(0A)=B
+DATA 0A <- B
+                                    ANN(0B)=3
+DATA 0B <- 3
+CMD  0F <- F
