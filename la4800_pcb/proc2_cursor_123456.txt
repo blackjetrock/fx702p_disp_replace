@@ -71,6 +71,7 @@ DATA 0B -> 0
 DATA 0C -> 0
                                     ra=D
 CMD  03 -> D
+
 DATA 03 -> F
 DATA 04 -> F
 DATA 05 -> F
@@ -81,6 +82,7 @@ DATA 09 -> F
 DATA 0A -> F
 DATA 0B -> F
 DATA 0C -> F
+
 DATA 03 <- F
 DATA 04 <- F
 DATA 05 <- F
@@ -113,6 +115,8 @@ CMD  00 -> B
 CMD  03 -> C
 CMD  04 -> 0
 CMD  05 -> 8
+
+// We now have 31 or '1' on the display
 DATA 03 -> 0
 DATA 04 -> 0
 DATA 05 -> 0
@@ -135,10 +139,12 @@ DATA 09 -> F
 DATA 0A -> F
 DATA 0B -> F
 DATA 0C -> 1
-                                    ra=E
+
+ra=E
 CMD  03 -> E
 CMD  04 -> 0
 CMD  05 -> 8
+
 DATA 03 -> 0
 DATA 04 -> 0
 DATA 05 -> 0
@@ -151,6 +157,7 @@ DATA 0B -> 0
 DATA 0C -> 0
                                     ra=F
 CMD  03 -> F
+
 DATA 03 -> F
 DATA 04 -> F
 DATA 05 -> F
@@ -161,11 +168,13 @@ DATA 09 -> F
 DATA 0A -> F
 DATA 0B -> F
 DATA 0C -> F
+
+// 12 nibbles: annunciators?
+
 CMD  09 -> 0
-                                    ra=-
 CMD  0A -> 0
-                                                 an=0
 CMD  0B -> 0
+
 DATA 01 <- B
 DATA 02 <- B
 DATA 03 <- F
@@ -178,6 +187,7 @@ DATA 09 <- F
 DATA 0A <- F
 DATA 0B <- F
 DATA 0C <- F
+
 CMD  09 -> 0
                                     ra=-
 CMD  0A -> 0
@@ -201,7 +211,8 @@ DATA 07 <- 0
 DATA 08 <- 0
                                     ANN(09)=0
 DATA 09 <- 0
-                                    ANN(0A)=8
+
+// This is deg
 DATA 0A <- 8
                                     ANN(0B)=0
 DATA 0B <- 0
@@ -211,7 +222,10 @@ DATA 0C <- 0
 CMD  03 -> D
 CMD  04 -> 0
 CMD  05 -> 8
-                                    ra=C
+
+ra=C
+// Matrix data
+
 CMD  03 -> C
 DATA 03 -> 0
 DATA 04 -> 0
@@ -235,6 +249,7 @@ DATA 09 -> F
 DATA 0A -> F
 DATA 0B -> F
 DATA 0C -> 1
+
 DATA 03 <- F
 DATA 04 <- F
 DATA 05 <- F
@@ -261,12 +276,16 @@ DATA 0C <- 3
 CMD  03 -> C
 CMD  04 -> 0
 CMD  05 -> 8
-                                    ra=-
+
+// Maybe cursor pos?
+
 CMD  00 -> B
-                                    ra=C
+
+ra=C
 CMD  03 -> C
 CMD  04 -> 0
 CMD  05 -> 8
+
 DATA 03 -> 0
 DATA 04 -> 0
 DATA 05 -> 0
@@ -320,6 +339,7 @@ CMD  09 -> 0
 CMD  0A -> 0
                                                  an=0
 CMD  0B -> 0
+
 DATA 01 <- B
 DATA 02 <- B
 DATA 03 <- F
@@ -337,7 +357,8 @@ CMD  09 -> 0
 CMD  0A -> 0
                                                  an=4
 CMD  0B -> 4
-                                    ANN(01)=0
+
+ANN(01)=0
 DATA 01 <- 0
                                     ANN(02)=0
 DATA 02 <- 0
@@ -367,6 +388,7 @@ CMD  04 -> 0
 CMD  05 -> 8
                                     ra=C
 CMD  03 -> C
+
 DATA 03 -> 0
 DATA 04 -> 0
 DATA 05 -> 0
@@ -415,7 +437,10 @@ DATA 0C <- 3
 CMD  03 -> C
 CMD  04 -> 0
 CMD  05 -> 8
-                                    ra=-
+
+// B in to 0?
+// not cursor pos?
+ra=-
 CMD  00 -> B
                                     ra=C
 CMD  03 -> C

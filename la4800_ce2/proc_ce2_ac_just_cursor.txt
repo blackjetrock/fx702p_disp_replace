@@ -1,0 +1,60 @@
+a,b = C, D
+a,b = E, F
+                                    ra=-
+???? 00 <- 1
+
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0C <- E
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0C <- 5
+
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0C <- F
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0C <- 0
+
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0C <- E
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0C <- 5
+
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0C <- F
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0C <- 0
+
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0C <- E
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0C <- 5
+
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0C <- F
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0C <- 0
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0C <- E
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0C <- 5
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0C <- F
+CMD  05 -> 9
+CMD  06 -> 4
+CMD  0F <- F
+CMD  0F <- F
+CMD  0F <- F

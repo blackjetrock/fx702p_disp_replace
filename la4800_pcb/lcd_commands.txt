@@ -1,3 +1,13 @@
+Traces needed
+
+Backspace to move curor back
+AC after power on so just cursor
+CE on other display chip
+
+
+
+
+
 3    <-  D         Prefixes read or write of nibble display data
 3    <-  F         Prefixes read or write of nbble display data (dot matrix)
 3    <-  6         Prefixes 10 zeros written to 3..C  (Dot matrix relatd?)
@@ -25,3 +35,44 @@
 
 9AB  <-  0 0 0     Prefixes 12 data nibble
 
+Sequence for cursor:
+
+ON.off or off/on:
+(RH display) CE1 sequence:
+
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0C <- E
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0C <- 5
+
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0C <- F
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0C <- 0
+
+
+CE2, LH display sequence:
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0A -> E
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0A -> 5
+
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0A -> F
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0A -> 0
+
+CMD  01 -> 0
+CMD  02 -> 0
+DATA 0A -> E
+CMD  05 -> 9
+CMD  06 -> 4
+DATA 0A -> 5
