@@ -40,12 +40,15 @@ Sequence for cursor:
 ON.off or off/on:
 (RH display) CE1 sequence:
 
-CMD  01 -> 0
+Could be 5E (underline?)
+CMD  01 -> 0     Cursor lower nibble command? Direct write
 CMD  02 -> 0
-DATA 0C <- E
-CMD  05 -> 9
+DATA 0C <- E     Write lower nibble E to position C
+CMD  05 -> 9     Write command upper nibble
 CMD  06 -> 4
-DATA 0C <- 5
+DATA 0C <- 5     Upper nibble of 5
+
+Could be 0F (space), which is what the cursor is alternating with after AC
 
 CMD  01 -> 0
 CMD  02 -> 0
@@ -54,6 +57,7 @@ CMD  05 -> 9
 CMD  06 -> 4
 DATA 0C <- 0
 
+0C could be the position, as 3..C used for matrix display characters
 
 CE2, LH display sequence:
 CMD  01 -> 0

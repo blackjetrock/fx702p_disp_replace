@@ -194,6 +194,7 @@ DATA 0E -> B
 DATA 0F -> 4
 DATA 00 -> E
 
+Prefixes annunciators?
 CMD  09 -> F
 CMD  0A -> 0
 CMD  0B -> 0
@@ -228,6 +229,7 @@ DATA 09 -> 0
 DATA 0A -> 0
 DATA 0B -> 4
 DATA 0C -> 3
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 09 -> F
@@ -371,6 +373,7 @@ DATA 09 -> 4
 DATA 0A -> 4
 DATA 0B -> 4
 DATA 0C -> 3
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 07 -> F
@@ -386,6 +389,7 @@ CMD  05 -> 0
 DATA 0A -> 4
 DATA 0B -> 3
 DATA 0C -> 3
+
 CMD  01 -> F
 CMD  02 -> 2
                                     ra=0
@@ -442,24 +446,28 @@ DATA 09 -> 4
 DATA 0A -> 4
 DATA 0B -> 4
 DATA 0C -> 3
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 06 -> F
 CMD  05 -> F
 CMD  06 -> 9
 DATA 06 -> F
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 06 -> F
 CMD  05 -> F
 CMD  06 -> 9
 DATA 06 -> F
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 06 -> F
 CMD  05 -> F
 CMD  06 -> 9
 DATA 06 -> F
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 06 -> F
@@ -566,18 +574,21 @@ DATA 09 -> 4
 DATA 0A -> 4
 DATA 0B -> 3
 DATA 0C -> 3
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 07 -> E
 CMD  05 -> 9
 CMD  06 -> 4
 DATA 07 -> 5
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 07 -> B
 CMD  05 -> 9
 CMD  06 -> 4
 DATA 07 -> 4
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 07 -> E
@@ -931,18 +942,21 @@ DATA 09 -> 4
 DATA 0A -> 4
 DATA 0B -> 4
 DATA 0C -> 3
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 0A -> F
 CMD  05 -> F
 CMD  06 -> 9
 DATA 0A -> F
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 0A -> F
 CMD  05 -> F
 CMD  06 -> 9
 DATA 0A -> F
+
 CMD  01 -> 0
 CMD  02 -> 0
 DATA 0A -> F
@@ -1097,6 +1111,7 @@ DATA 0A -> 5
 DATA 0B -> 3
                                     ANN(0C)=3
 DATA 0C -> 3
+
 CMD  01 -> 0
 CMD  02 -> 0
                                     ANN(08)=E
@@ -1114,6 +1129,7 @@ CMD  05 -> 9
 DATA 0A -> 6
 DATA 0B -> 3
 DATA 0C -> 0
+
 CMD  01 -> 3
 CMD  02 -> 0
                                     ra=E
@@ -1182,6 +1198,7 @@ DATA 0A -> 5
 DATA 0B -> 3
                                     ANN(0C)=3
 DATA 0C -> 3
+
 CMD  01 -> 0
 CMD  02 -> 0
                                     ANN(07)=E
@@ -1190,6 +1207,7 @@ CMD  05 -> 9
 CMD  06 -> 4
                                     ANN(07)=5
 DATA 07 -> 5
+
 CMD  01 -> 0
 CMD  02 -> 0
                                     ANN(07)=B
@@ -1198,6 +1216,7 @@ CMD  05 -> 9
 CMD  06 -> 4
                                     ANN(07)=4
 DATA 07 -> 4
+
 CMD  01 -> 0
 CMD  02 -> 0
                                     ANN(07)=E
@@ -1283,6 +1302,7 @@ DATA 0A -> 5
 DATA 0B -> 3
                                     ANN(0C)=3
 DATA 0C -> 3
+
 CMD  01 -> 0
 CMD  02 -> 0
                                     ANN(06)=E
@@ -1291,6 +1311,7 @@ CMD  05 -> 9
 CMD  06 -> 4
                                     ANN(06)=D
 DATA 06 -> D
+
 CMD  01 -> 0
 CMD  02 -> 0
                                     ANN(06)=F
@@ -1376,6 +1397,7 @@ DATA 0A -> 5
 DATA 0B -> 3
                                     ANN(0C)=3
 DATA 0C -> 3
+
 CMD  01 -> 0
 CMD  02 -> 0
                                     ANN(05)=E
@@ -1463,6 +1485,7 @@ DATA 0A -> 5
 DATA 0B -> 3
                                     ANN(0C)=3
 DATA 0C -> 3
+
 CMD  01 -> 0
 CMD  02 -> 0
                                     ANN(04)=E
@@ -1471,6 +1494,7 @@ CMD  05 -> 9
 CMD  06 -> 4
                                     ANN(04)=5
 DATA 04 -> 5
+
 CMD  01 -> 0
 CMD  02 -> 0
                                     ANN(04)=F
@@ -1479,7 +1503,8 @@ CMD  05 -> 9
 CMD  06 -> 4
                                     ANN(04)=0
 DATA 04 -> 0
-                                    ra=-
+
+ra=-
 CMD  00 -> 0
                                     ra=F
 CMD  03 -> F
@@ -1488,6 +1513,7 @@ CMD  05 -> 9
 DATA 0A -> 3
 DATA 0B -> 8
 DATA 0C -> 0
+
 CMD  01 -> 5
 CMD  02 -> 0
                                     ra=E
@@ -1602,6 +1628,7 @@ DATA 0A -> 5
 DATA 0B -> 3
                                     ANN(0C)=3
 DATA 0C -> 3
+
 CMD  01 -> 0
 CMD  02 -> 0
                                     ANN(05)=E
