@@ -419,11 +419,22 @@ void ce_isr(void)
 // ISR that captures a trace of bu activity which is then decoded by
 // the main loop. This allows the code tobe used as a sort of logic analyser
 
+#define MASK_OP  1
+#define MASK_OE  2
+#define MASK_WE  4
+
+#define BITNUM_OP  0
+#define BITNUM_OE  1
+#define BITNUM_WE  2
+
+#define FLAGS 1
+
 typedef struct
 {
-  boolean op;          // Command or data
-  boolean we;
-  boolean oe;
+  unsigned char flags;
+  //boolean op;          // Command or data
+  //boolean we;
+  //boolean oe;
   unsigned char addr;
   unsigned char data;
 } ISR_TRACE_ENTRY;
@@ -432,14 +443,14 @@ volatile int isr_trace_1_in;  // Where next entry goes in
 volatile int isr_trace_1_out; // Where next entry goes out
 volatile boolean overflow_1 = false;    // If the buffer overflows
 
-#define NUM_ISR_CE1_TRACE    800
+#define NUM_ISR_CE1_TRACE    2900
 volatile ISR_TRACE_ENTRY isr_trace_ce1[NUM_ISR_CE1_TRACE];
 
 volatile int isr_trace_3_in;  // Where next entry goes in
 volatile int isr_trace_3_out; // Where next entry goes out
 volatile boolean overflow_3 = false;    // If the buffer overflows
 
-#define NUM_ISR_CE3_TRACE    800
+#define NUM_ISR_CE3_TRACE    1000
 volatile ISR_TRACE_ENTRY isr_trace_ce3[NUM_ISR_CE3_TRACE];
 
 // ISR for the CE interrupt
@@ -485,11 +496,14 @@ void ce3_isr_2(void)
 	  //
 	  clock_phase = !clock_phase;
 	}
-
+      else
+	{
+	  active_edge = 0;
+	}
       last_clk = clk;
 
       // If it's a clock edge and an active (alternate) clock edge, capture data
-      if( active_edge && (clock_phase == 1) )
+      if( active_edge && (clock_phase == 0) )
 	{
 	  data = BITFIELD(portval,fxnD0, 0xF);
 	  addr = BITFIELD(portval,fxnA0, 0xF);
@@ -503,10 +517,15 @@ void ce3_isr_2(void)
 	      overflow_3 = true;
 	      return;
 	    }
-	  
+
+#if FLAGS
+	  isr_trace_ce3[isr_trace_3_in].flags = (op << BITNUM_OP) + (oe << BITNUM_OE) + (we << BITNUM_WE);;
+#else
+
 	  isr_trace_ce3[isr_trace_3_in].op = op;
 	  isr_trace_ce3[isr_trace_3_in].oe = oe;
 	  isr_trace_ce3[isr_trace_3_in].we = we;
+#endif
 	  isr_trace_ce3[isr_trace_3_in].data = data;
 	  isr_trace_ce3[isr_trace_3_in].addr = addr;
 	  
@@ -573,7 +592,11 @@ void ce1_isr_2(void)
 	  //
 	  clock_phase = !clock_phase;
 	}
-
+      else
+	{
+	  active_edge = 0;
+	}
+      
       last_clk = clk;
 
       // If it's a clock edge and an active (alternate) clock edge, capture data
@@ -591,10 +614,16 @@ void ce1_isr_2(void)
 	      overflow_1 = true;
 	      return;
 	    }
-	  
-	  isr_trace_ce1[isr_trace_1_in].op = op;
-	  isr_trace_ce1[isr_trace_1_in].oe = oe;
-	  isr_trace_ce1[isr_trace_1_in].we = we;
+
+#if FLAGS
+	  isr_trace_ce1[isr_trace_1_in].flags = (op << BITNUM_OP) + (oe << BITNUM_OE) + (we << BITNUM_WE);
+#else
+
+	  isr_trace_ce3[isr_trace_1_in].op = op;
+	  isr_trace_ce3[isr_trace_1_in].oe = oe;
+	  isr_trace_ce3[isr_trace_1_in].we = we;
+#endif
+
 	  isr_trace_ce1[isr_trace_1_in].data = data;
 	  isr_trace_ce1[isr_trace_1_in].addr = addr;
 	  
@@ -631,7 +660,7 @@ void setup() {
       seven_seg[i] = 0;
     }
   
-  Serial.begin(115200);
+  Serial.begin(1000000);
   Serial.println("fx702p Replacement Display");
   
   // set up the LCD's number of columns and rows:
@@ -648,7 +677,7 @@ void setup() {
   
   // Attach an interrupt to the CE line
   //  attachInterrupt(digitalPinToInterrupt(PB0), ce_isr, FALLING);
-   attachInterrupt(fxCE, ce1_isr_2, FALLING);
+  attachInterrupt(fxCE, ce1_isr_2, FALLING);
   attachInterrupt(PA8, ce3_isr_2, FALLING);
   
 }
@@ -818,14 +847,28 @@ void old_loop() {
 // Loop that dumps trace
 //
 
+
 void loop() {
-  int j;
+  int a, j;
   boolean op, oe, we;
   unsigned char addr;
   unsigned char data;
+  unsigned char regs1[17];
+  boolean in_command = false;
   
   f = !f;
+
+  // We just display the buffers contiuously
+  // Interrupt routine might update mid loop, but next loop should
+  // correct any incoherency.
   
+  lcd.setCursor(0, 0);
+  for(i=0; i< DISPLAY_BUFFER_LEN; i++)
+    {
+      lcd.setCursor(19-i, 0);
+      lcd.print(fx702pschar(display_buffer[i]));
+    }
+
   if ( f )
     {
       lcd.setCursor(19, 3);
@@ -841,13 +884,99 @@ void loop() {
 
   // Dump trace to serial port
   // Process data at the same time
+
+  // CE1, this has the dot matrix character data
+  
   while( isr_trace_1_in != isr_trace_1_out )
     {
+#if FLAGS
+      op = (isr_trace_ce1[isr_trace_1_out].flags >> BITNUM_OP) & 1;
+      oe = (isr_trace_ce1[isr_trace_1_out].flags >> BITNUM_OE) & 1;
+      we = (isr_trace_ce1[isr_trace_1_out].flags >> BITNUM_WE) & 1;
+#else
       op = isr_trace_ce1[isr_trace_1_out].op;
       oe = isr_trace_ce1[isr_trace_1_out].oe;
       we = isr_trace_ce1[isr_trace_1_out].we;
+#endif
       data = isr_trace_ce1[isr_trace_1_out].data;
       addr = isr_trace_ce1[isr_trace_1_out].addr;
+      
+      // Get character data
+      if( op == false )
+	{
+	  switch(addr)
+	    {
+	      // Start of new commands
+	    case 3:
+	      
+	      break;
+	    case 9:
+	    case 0:
+	      for(i=0;i<16;i++)
+		{
+		  reg[i] = 0;
+		}
+	      break;
+
+	    default:
+	      break;
+	    }
+	  // register write
+	  reg[addr] = data;
+	  Serial.print("Reg ");
+	  Serial.print(addr, HEX);
+	  Serial.print(" = ");
+	  Serial.println(data, HEX);
+	}
+      
+      if( we == false )
+	{
+	  if( (reg[4] == 0) && (reg[5] == 8) )
+	    {
+	      if( (addr>=3) && (addr<=12))
+		{
+		  Serial.println("MATUPD");
+		  switch(reg[3])
+		    {
+		    case 0xC:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			}
+		      break;
+		      
+		    case 0xD:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    case 0xE:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			}
+		      break;
+		      
+		    case 0xF:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    default:
+		      //	  display_buffer[addr] = reg[3]+0x30;
+		      break;
+		    }
+		}
+	    }
+	}
 
       Serial.print("1 ");
       Serial.print(addr, HEX);
@@ -868,9 +997,15 @@ void loop() {
 
   while( isr_trace_3_in != isr_trace_3_out )
     {
+#if FLAGS
+      op = (isr_trace_ce3[isr_trace_3_out].flags >> BITNUM_OP) & 1;
+      oe = (isr_trace_ce3[isr_trace_3_out].flags >> BITNUM_OE) & 1;
+      we = (isr_trace_ce3[isr_trace_3_out].flags >> BITNUM_WE) & 1;
+#else
       op = isr_trace_ce3[isr_trace_3_out].op;
       oe = isr_trace_ce3[isr_trace_3_out].oe;
       we = isr_trace_ce3[isr_trace_3_out].we;
+#endif
       data = isr_trace_ce3[isr_trace_3_out].data;
       addr = isr_trace_ce3[isr_trace_3_out].addr;
 
@@ -887,6 +1022,16 @@ void loop() {
       Serial.println("");
 
       isr_trace_3_out = (isr_trace_3_out + 1) % NUM_ISR_CE3_TRACE;
+    }
+
+  if( overflow_1 )
+    {
+      Serial.println("Overflow 1");
+    }
+
+  if( overflow_3 )
+    {
+      Serial.println("Overflow 3");
     }
   
   int v = 0;
