@@ -914,7 +914,7 @@ void loop() {
 	    case 0:
 	      for(i=0;i<16;i++)
 		{
-		  reg[i] = 0;
+		  reg[i] = 100;
 		}
 	      break;
 
@@ -931,7 +931,16 @@ void loop() {
       
       if( we == false )
 	{
-	  if( (reg[4] == 0) && (reg[5] == 8) )
+      	  // write or read cycle
+	  if( (reg[0] = 0xB) && (reg[3]==0xE) )
+	    {
+	      if( (addr >=0) && (addr <=3) )
+		{
+		  seven_seg[addr] = data;
+		}
+	    }
+
+	  if( ((reg[4] == 0) && (reg[5] == 8))   )
 	    {
 	      if( (addr>=3) && (addr<=12))
 		{
@@ -976,6 +985,101 @@ void loop() {
 		    }
 		}
 	    }
+
+	  // Attempt at cursor, doesn't work
+#if 0
+	  if( ((reg[1] == 0) && (reg[2] == 0))   )
+	    {
+	      if( (addr>=3) && (addr<=12))
+		{
+		  Serial.println("MATUPD");
+		  switch(0xE)
+		    {
+		    case 0xC:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			}
+		      break;
+		      
+		    case 0xD:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    case 0xE:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			}
+		      break;
+		      
+		    case 0xF:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    default:
+		      //	  display_buffer[addr] = reg[3]+0x30;
+		      break;
+		    }
+		}
+	    }
+
+	  if( ((reg[5] == 9) && (reg[6] == 4))   )
+	    {
+	      if( (addr>=3) && (addr<=12))
+		{
+		  Serial.println("MATUPD");
+		  switch(0xF)
+		    {
+		    case 0xC:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			}
+		      break;
+		      
+		    case 0xD:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    case 0xE:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			}
+		      break;
+		      
+		    case 0xF:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    default:
+		      //	  display_buffer[addr] = reg[3]+0x30;
+		      break;
+		    }
+		}
+	    }
+#endif
 	}
 
       Serial.print("1 ");
