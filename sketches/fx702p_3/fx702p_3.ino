@@ -105,7 +105,10 @@ volatile unsigned char display_buffer[DISPLAY_BUFFER_LEN];
 volatile int seven_seg[4];
 
 // Annunciator display bits. Non zero means annunciator is on
-volatile int annunciators[13];
+// 1-C are annunciators, 0 unused
+// D and E are 9AB 000 addresses 1 and 2
+
+volatile int annunciators[20];
 
 char * anntext[12] = {
   "1",
@@ -684,6 +687,7 @@ void setup() {
 
 volatile int f = 0;
 volatile int i;
+
 #if 0
 void old_loop() {
   int j;
@@ -748,9 +752,10 @@ void old_loop() {
   
   for(j=1;j<=0xC;j++)
     {
+#if 0
       Serial.print(annunciators[j]);
       Serial.print(" ");
-      
+#endif 
       if( annunciators[j] )
 	{
 	  lcd.print(annunciators[j]);
@@ -760,7 +765,10 @@ void old_loop() {
 	  lcd.print(" ");  
 	}
     }
+#if 0
   Serial.println("");
+#endif
+  
 #endif
   
 
@@ -951,6 +959,20 @@ void loop() {
 	      if( (addr >=1) && (addr <=12) )
 		{
 		  annunciators[addr] = (data & 0x8);
+		}
+	    }
+
+	  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==0)  )
+	    {
+	      Serial.print("9AB 000");
+	      Serial.print(addr,HEX);
+	      Serial.print(" ");
+	      Serial.println(data,HEX);
+	      
+	      // Annunciators
+	      if( (addr >=1) && (addr <=2) )
+		{
+		  annunciators[addr-1+13] = (data);
 		}
 	    }
 
@@ -1167,24 +1189,28 @@ void loop() {
       lcd.print("        ");
     }
 
+#define S_ANN 0
 #if 1
   lcd.setCursor(0, 2);
   
-  for(j=1;j<=0xC;j++)
+  for(j=1;j<=0xE;j++)
     {
+#if S_ANN
       Serial.print(annunciators[j]);
       Serial.print(" ");
-      
+#endif
       if( annunciators[j] )
 	{
-	  lcd.print(annunciators[j]);
+	  lcd.print(annunciators[j],HEX);
 	}
       else
 	{
 	  lcd.print(" ");  
 	}
     }
+#if S_ANN
   Serial.println("");
+#endif
 #endif
   
 
@@ -1203,7 +1229,36 @@ void loop() {
       lcd.setCursor(0,1);
       lcd.print("DEG");
     }
+  
+  if( annunciators[12] )
+    {
+      lcd.setCursor(16,1);
+      lcd.print("STOP");
+    }
+  else
+    {
+      lcd.setCursor(16,1);
+      lcd.print("    ");
+    }
 
+  switch( annunciators[13] )
+    {
+    case 0xB:
+      lcd.setCursor(12, 1);
+      lcd.print("RUN");
+      break;
+
+    case 0x5:
+      lcd.setCursor(12, 1);
+      lcd.print("WRT");
+      break;
+
+    default:
+      lcd.setCursor(12, 1);
+      lcd.print("   ");
+      break;
+      
+    }
 
   if( annunciators[6] )
     {
