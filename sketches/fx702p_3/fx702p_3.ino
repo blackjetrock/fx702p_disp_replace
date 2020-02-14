@@ -105,7 +105,7 @@ volatile unsigned char display_buffer[DISPLAY_BUFFER_LEN];
 volatile int seven_seg[4];
 
 // Annunciator display bits. Non zero means annunciator is on
-volatile int annunciators[12];
+volatile int annunciators[13];
 
 char * anntext[12] = {
   "1",
@@ -746,7 +746,7 @@ void old_loop() {
 #if 1
   lcd.setCursor(0, 2);
   
-  for(j=1;j<0xB;j++)
+  for(j=1;j<=0xC;j++)
     {
       Serial.print(annunciators[j]);
       Serial.print(" ");
@@ -937,6 +937,20 @@ void loop() {
 	      if( (addr >=0) && (addr <=3) )
 		{
 		  seven_seg[addr] = data;
+		}
+	    }
+
+	  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==4)  )
+	    {
+	      Serial.print("9AB ");
+	      Serial.print(addr,HEX);
+	      Serial.print(" ");
+	      Serial.println(data,HEX);
+	      
+	      // Annunciators
+	      if( (addr >=1) && (addr <=12) )
+		{
+		  annunciators[addr] = (data & 0x8);
 		}
 	    }
 
@@ -1153,10 +1167,10 @@ void loop() {
       lcd.print("        ");
     }
 
-#if 0
+#if 1
   lcd.setCursor(0, 2);
   
-  for(j=1;j<0xB;j++)
+  for(j=1;j<=0xC;j++)
     {
       Serial.print(annunciators[j]);
       Serial.print(" ");
