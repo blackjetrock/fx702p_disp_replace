@@ -15,6 +15,8 @@
 #define SERIAL_TAGS      1
 #define SERIAL_7SEG      0
 #define SERIAL_CE3       1
+#define SERIAL_ANN       0
+#define SERIAL_SIGNALS   0
 
 #define FLAG_7SEG_COLON  0
 
@@ -203,10 +205,12 @@ void isr(void)
 volatile  int dri = 0;
 volatile  int reg[16];
 volatile int ce3_reg_ab_data[16];
+volatile int ce3_reg_45_data[16];
 volatile int ce3_reg_23_data[16];
 volatile int ce3_reg_value[16];
 boolean ce3_23_reg = false;
 boolean ce3_ab_reg = false;
+boolean ce3_45_reg = false;
 
 #define REG_BUFFER_LEN 16
 
@@ -1278,6 +1282,14 @@ void loop() {
 	    case 3:
 	      ce3_23_reg = true;
 	      ce3_ab_reg = false;
+	      ce3_45_reg = false;
+	      break;
+
+	    case 4:
+	    case 5:
+	      ce3_23_reg = false;
+	      ce3_45_reg = true;
+	      ce3_ab_reg = false;
 	      
 	      break;
 
@@ -1285,7 +1297,7 @@ void loop() {
 	    case 0xB:
 	      ce3_23_reg = false;
 	      ce3_ab_reg = true;
-	      
+	      ce3_45_reg = false;	      
 	      break;
 	    }
 
@@ -1300,6 +1312,10 @@ void loop() {
 	  if( ce3_ab_reg )
 	    {
 	      ce3_reg_ab_data[addr] = data;
+	    }
+	  if( ce3_45_reg )
+	    {
+	      ce3_reg_45_data[addr] = data;
 	    }
 
 #if SERIAL_CE3
@@ -1316,6 +1332,14 @@ void loop() {
 	      Serial.print(ce3_reg_23_data[i], HEX);
 	    }
 	  Serial.println("");
+
+	  Serial.print("CE3 45 Data:");
+	  for(i=0;i<16;i++)
+	    {
+	      Serial.print(ce3_reg_45_data[i], HEX);
+	    }
+	  Serial.println("");
+	  
 	  Serial.print("CE3 AB Data:");
 	  for(i=0;i<16;i++)
 	    {
@@ -1324,8 +1348,9 @@ void loop() {
 	  Serial.println("");
 #endif
 	}
+
       
-      
+#if SERIAL_SIGNALS
       Serial.print("3 ");
       Serial.print(addr, HEX);
       Serial.print(" ");
@@ -1337,7 +1362,8 @@ void loop() {
       Serial.print(" ");
       Serial.print(op);
       Serial.println("");
-
+#endif
+      
       isr_trace_3_out = (isr_trace_3_out + 1) % NUM_ISR_CE3_TRACE;
     }
 
@@ -1368,13 +1394,13 @@ void loop() {
       lcd.print("        ");
     }
 
-#define S_ANN 0
+
 #if 1
   lcd.setCursor(0, 2);
   
   for(j=1;j<=0xE;j++)
     {
-#if S_ANN
+#if SERIAL_ANN
       Serial.print(annunciators[j]);
       Serial.print(" ");
 #endif
@@ -1387,7 +1413,7 @@ void loop() {
 	  lcd.print(" ");  
 	}
     }
-#if S_ANN
+#if SERIAL_ANN
   Serial.println("");
 #endif
 #endif
@@ -1420,7 +1446,7 @@ void loop() {
       lcd.print("    ");
     }
 
-  switch( annunciators[13] )
+  switch( annunciators[14] )
     {
     case 0xB:
       lcd.setCursor(12, 1);
@@ -1434,7 +1460,9 @@ void loop() {
 
     default:
       lcd.setCursor(12, 1);
-      lcd.print("   ");
+      lcd.print(".");
+      lcd.print(annunciators[13],HEX);
+      lcd.print(".");
       break;
       
     }
