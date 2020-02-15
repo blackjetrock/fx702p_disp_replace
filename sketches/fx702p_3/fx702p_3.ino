@@ -11,6 +11,10 @@
 // include the library code:
 #include <LiquidCrystal.h>
 
+#define SERIAL_DUMP_REGS 0
+#define SERIAL_TAGS      1
+#define SERIAL_7SEG      1
+
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
 #define  PCB_VERSION 1
@@ -657,6 +661,10 @@ void setup() {
   isr_trace_1_in = 0;  // Where next entry goes in
   isr_trace_1_out = 0;  // Where next entry goes in
   
+  for(i=0;i<16;i++)
+    {
+      reg[i] = 100;
+    }
   
   for(i=0;i<4;i++)
     {
@@ -908,6 +916,15 @@ void loop() {
 #endif
       data = isr_trace_ce1[isr_trace_1_out].data;
       addr = isr_trace_ce1[isr_trace_1_out].addr;
+
+#if SERIAL_DUMP_REGS
+      for(i=0;i<16;i++)
+	{
+	  Serial.print(reg[i],HEX);
+	  Serial.print(" ");
+	}
+      Serial.println("");
+#endif
       
       // Get character data
       if( op == false )
@@ -915,11 +932,32 @@ void loop() {
 	  switch(addr)
 	    {
 	      // Start of new commands
+	      // Can't reset commands with reg3 as sometimes it is issued on it's own
 	    case 3:
-	      
 	      break;
+
+	    case 4:
+	      // Don't wipe out 3
+#if SERIAL_TAGS
+	      Serial.println("CLRregn3");
+#endif
+	      for(i=0;i<=2;i++)
+		{
+		  reg[i] = 100;
+		}
+	      for(i=4;i<=15;i++)
+		{
+		  reg[i] = 100;
+		}
+	      break;
+		
+	    case 0xc:
 	    case 9:
-	    case 0:
+	      // case 0:
+	      // reg 0 reset means 7 seg a problem.
+#if SERIAL_TAGS
+	      Serial.println("CLRreg");
+#endif
 	      for(i=0;i<16;i++)
 		{
 		  reg[i] = 100;
@@ -931,6 +969,7 @@ void loop() {
 	    }
 	  // register write
 	  reg[addr] = data;
+	  
 	  Serial.print("Reg ");
 	  Serial.print(addr, HEX);
 	  Serial.print(" = ");
@@ -939,47 +978,49 @@ void loop() {
       
       if( we == false )
 	{
-      	  // write or read cycle
-	  if( (reg[0] = 0xB) && (reg[3]==0xE) )
+      	  // write
+	  if( (reg[0] == 0xB) && (reg[3]==0xE) && (reg[4]==0) && (reg[5]==8) )
 	    {
+#if SERIAL_TAGS
+	      Serial.println("7SEG");
+#endif
+#if SERIAL_7SEG
+	      Serial.print("7seg");
+#endif
 	      if( (addr >=0) && (addr <=3) )
 		{
 		  seven_seg[addr] = data;
-		}
-	    }
+#if SERIAL_7SEG
 
-	  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==4)  )
-	    {
-	      Serial.print("9AB ");
-	      Serial.print(addr,HEX);
-	      Serial.print(" ");
-	      Serial.println(data,HEX);
-	      
-	      // Annunciators
-	      if( (addr >=1) && (addr <=12) )
+		  Serial.print(data, HEX);
+#endif
+
+		}
+#if SERIAL_7_SEG
+	      Serial.println("");
+#endif
+
+	      // Reset reg[0] once done
+	      if( (addr == 3) )
 		{
-		  annunciators[addr] = (data & 0x8);
+		  reg[0] = 100;
+		  reg[3] = 100;
 		}
 	    }
 
-	  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==0)  )
-	    {
-	      Serial.print("9AB 000");
-	      Serial.print(addr,HEX);
-	      Serial.print(" ");
-	      Serial.println(data,HEX);
-	      
-	      // Annunciators
-	      if( (addr >=1) && (addr <=2) )
-		{
-		  annunciators[addr-1+13] = (data);
-		}
-	    }
-
-	  if( ((reg[4] == 0) && (reg[5] == 8))   )
+	  if( ((reg[4] == 0) && (reg[5] == 8) && (reg[0] == 100))   )
 	    {
 	      if( (addr>=3) && (addr<=12))
 		{
+		  // Start of matrix update, clear any other commands
+		  reg[0] = 100;
+		  reg[1] = 100;
+		  reg[2] = 100;
+		  for(i=6;i<=0xC;i++)
+		    {
+		      reg[i] = 100;
+		    }
+		  
 		  Serial.println("MATUPD");
 		  switch(reg[3])
 		    {
@@ -1019,6 +1060,34 @@ void loop() {
 		      //	  display_buffer[addr] = reg[3]+0x30;
 		      break;
 		    }
+		}
+	    }
+
+	  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==4)  )
+	    {
+	      Serial.print("9AB ");
+	      Serial.print(addr,HEX);
+	      Serial.print(" ");
+	      Serial.println(data,HEX);
+	      
+	      // Annunciators
+	      if( (addr >=1) && (addr <=12) )
+		{
+		  annunciators[addr] = (data & 0x8);
+		}
+	    }
+
+	  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==0)  )
+	    {
+	      Serial.print("9AB 000");
+	      Serial.print(addr,HEX);
+	      Serial.print(" ");
+	      Serial.println(data,HEX);
+	      
+	      // Annunciators
+	      if( (addr >=1) && (addr <=2) )
+		{
+		  annunciators[addr-1+13] = (data);
 		}
 	    }
 
@@ -1181,7 +1250,7 @@ void loop() {
       for(j=3;j>=0;j--)
 	{
 	  lcd.print(seven_seg[j]);
-	  //lcd.print(":");
+	  lcd.print(":");
 	}
     }
   else
