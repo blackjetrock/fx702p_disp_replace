@@ -13,7 +13,10 @@
 
 #define SERIAL_DUMP_REGS 0
 #define SERIAL_TAGS      1
-#define SERIAL_7SEG      1
+#define SERIAL_7SEG      0
+#define SERIAL_CE3       1
+
+#define FLAG_7SEG_COLON  0
 
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
@@ -199,6 +202,12 @@ void isr(void)
 
 volatile  int dri = 0;
 volatile  int reg[16];
+volatile int ce3_reg_ab_data[16];
+volatile int ce3_reg_23_data[16];
+volatile int ce3_reg_value[16];
+boolean ce3_23_reg = false;
+boolean ce3_ab_reg = false;
+
 #define REG_BUFFER_LEN 16
 
 void ce_isr(void)
@@ -690,7 +699,8 @@ void setup() {
   //  attachInterrupt(digitalPinToInterrupt(PB0), ce_isr, FALLING);
   attachInterrupt(fxCE, ce1_isr_2, FALLING);
   attachInterrupt(PA8, ce3_isr_2, FALLING);
-  
+
+  lcd.cursor();
 }
 
 volatile int f = 0;
@@ -850,7 +860,9 @@ void old_loop() {
   for(i=3;i>=0;i--)
     {
       Serial.print(seven_seg[i]);
+#if FLAG_7SEG_COLON
       Serial.print(":");
+#endif
     }
   Serial.println("");
     
@@ -932,6 +944,32 @@ void loop() {
 	  switch(addr)
 	    {
 	      // Start of new commands
+	    case 2:
+	      if( reg[1] != 100 )
+		{
+		  reg[0] = 100;
+		  for(i=3;i<16;i++)
+		    {
+		      reg[i] = 100;
+		    }
+		}
+	      break;
+
+	    case 6:
+	      if( reg[5] != 100 )
+		{
+
+		  for(i=0;i<=4;i++)
+		    {
+		      reg[i] = 100;
+		    }
+		  for(i=7;i<16;i++)
+		    {
+		      reg[i] = 100;
+		    }
+		}
+	      break;
+	      
 	      // Can't reset commands with reg3 as sometimes it is issued on it's own
 	    case 3:
 	      break;
@@ -950,7 +988,7 @@ void loop() {
 		  reg[i] = 100;
 		}
 	      break;
-		
+
 	    case 0xc:
 	    case 9:
 	      // case 0:
@@ -1092,13 +1130,17 @@ void loop() {
 	    }
 
 	  // Attempt at cursor, doesn't work
-#if 0
+#if 1
 	  if( ((reg[1] == 0) && (reg[2] == 0))   )
 	    {
 	      if( (addr>=3) && (addr<=12))
 		{
-		  Serial.println("MATUPD");
-		  switch(0xE)
+		  Serial.println("CURUPD");
+		  for(i=0;i<16;i++)
+		    {
+		      reg[i] = 100;
+		    }
+		  switch(0xF)
 		    {
 		    case 0xC:
 		      a = (addr - 3)+10;
@@ -1143,8 +1185,15 @@ void loop() {
 	    {
 	      if( (addr>=3) && (addr<=12))
 		{
-		  Serial.println("MATUPD");
-		  switch(0xF)
+#if SERIAL_TAGS
+		  Serial.println("CURUPD");
+#endif
+		  for(i=0;i<16;i++)
+		    {
+		      reg[i] = 100;
+		    }
+
+		  switch(0xE)
 		    {
 		    case 0xC:
 		      a = (addr - 3)+10;
@@ -1166,7 +1215,8 @@ void loop() {
 		      a = (addr - 3);
 		      if( (a >= 0) && (a <=19))
 			{
-			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			  // For some reason top bit sometimes set, clear it
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + ((data & 7) << 4);
 			}
 		      break;
 		      
@@ -1218,6 +1268,64 @@ void loop() {
       data = isr_trace_ce3[isr_trace_3_out].data;
       addr = isr_trace_ce3[isr_trace_3_out].addr;
 
+      // CE3 controller seems to only be commands, no writes
+
+      if( op == 0 )
+	{
+	  switch(addr)
+	    {
+	    case 2:
+	    case 3:
+	      ce3_23_reg = true;
+	      ce3_ab_reg = false;
+	      
+	      break;
+
+	    case 0xA:
+	    case 0xB:
+	      ce3_23_reg = false;
+	      ce3_ab_reg = true;
+	      
+	      break;
+	    }
+
+	  ce3_reg_value[addr] = data;
+	}
+      else
+	{
+	  if( ce3_23_reg )
+	    {
+	      ce3_reg_23_data[addr] = data;
+	    }
+	  if( ce3_ab_reg )
+	    {
+	      ce3_reg_ab_data[addr] = data;
+	    }
+
+#if SERIAL_CE3
+	  Serial.print("CE3 Reg:");
+	  for(i=0;i<16;i++)
+	    {
+	      Serial.print(ce3_reg_value[i], HEX);
+	    }
+	  Serial.println("");
+
+	  Serial.print("CE3 23 Data:");
+	  for(i=0;i<16;i++)
+	    {
+	      Serial.print(ce3_reg_23_data[i], HEX);
+	    }
+	  Serial.println("");
+	  Serial.print("CE3 AB Data:");
+	  for(i=0;i<16;i++)
+	    {
+	      Serial.print(ce3_reg_ab_data[i], HEX);
+	    }
+	  Serial.println("");
+#endif
+	}
+      
+      
       Serial.print("3 ");
       Serial.print(addr, HEX);
       Serial.print(" ");
@@ -1250,7 +1358,9 @@ void loop() {
       for(j=3;j>=0;j--)
 	{
 	  lcd.print(seven_seg[j]);
-	  lcd.print(":");
+#if FLAG_7SEG_COLON
+	  Serial.print(":");
+#endif
 	}
     }
   else
