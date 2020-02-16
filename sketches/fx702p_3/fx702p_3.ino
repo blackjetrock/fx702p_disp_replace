@@ -204,7 +204,9 @@ void isr(void)
 
 volatile  int dri = 0;
 volatile  int reg[16];
+volatile int ab_index = 0;
 volatile int ce3_reg_ab_data[16];
+volatile int ce3_reg_ab2_data[16];
 volatile int ce3_reg_45_data[16];
 volatile int ce3_reg_23_data[16];
 volatile int ce3_reg_value[16];
@@ -1292,8 +1294,10 @@ void loop() {
 	      ce3_ab_reg = false;
 	      
 	      break;
-
+	      
 	    case 0xA:
+	      ab_index = !ab_index;
+	      
 	    case 0xB:
 	      ce3_23_reg = false;
 	      ce3_ab_reg = true;
@@ -1311,43 +1315,108 @@ void loop() {
 	    }
 	  if( ce3_ab_reg )
 	    {
-	      ce3_reg_ab_data[addr] = data;
+	      if( ab_index )
+		{
+		  ce3_reg_ab2_data[addr] =data;
+		}
+	      else
+		{
+		  ce3_reg_ab_data[addr] = data;
+		}
 	    }
 	  if( ce3_45_reg )
 	    {
 	      ce3_reg_45_data[addr] = data;
 	    }
 
-#if SERIAL_CE3
-	  Serial.print("CE3 Reg:");
-	  for(i=0;i<16;i++)
-	    {
-	      Serial.print(ce3_reg_value[i], HEX);
-	    }
-	  Serial.println("");
-
-	  Serial.print("CE3 23 Data:");
-	  for(i=0;i<16;i++)
-	    {
-	      Serial.print(ce3_reg_23_data[i], HEX);
-	    }
-	  Serial.println("");
-
-	  Serial.print("CE3 45 Data:");
-	  for(i=0;i<16;i++)
-	    {
-	      Serial.print(ce3_reg_45_data[i], HEX);
-	    }
-	  Serial.println("");
-	  
-	  Serial.print("CE3 AB Data:");
-	  for(i=0;i<16;i++)
-	    {
-	      Serial.print(ce3_reg_ab_data[i], HEX);
-	    }
-	  Serial.println("");
-#endif
 	}
+      
+#if SERIAL_CE3
+      Serial.print("CE3 Reg:");
+      for(i=0;i<16;i++)
+	{
+	  Serial.print(ce3_reg_value[i], HEX);
+	}
+      Serial.println("");
+      
+      Serial.print("CE3 23 Data:");
+      for(i=0;i<16;i++)
+	{
+	  Serial.print(ce3_reg_23_data[i], HEX);
+	}
+      Serial.println("");
+      
+      Serial.print("CE3 45 Data:");
+      for(i=0;i<16;i++)
+	{
+	  Serial.print(ce3_reg_45_data[i], HEX);
+	}
+      Serial.println("");
+      
+      Serial.print("CE3 AB Data:");
+      for(i=0;i<16;i++)
+	{
+	  Serial.print(ce3_reg_ab_data[i], HEX);
+	}
+      Serial.println("");
+      
+      Serial.print("CE3 AB2 Data:");
+      for(i=0;i<16;i++)
+	{
+	  Serial.print(ce3_reg_ab2_data[i], HEX);
+	}
+      Serial.println("");
+      if( ce3_reg_23_data[11] & 1 )
+	{
+	  lcd.setCursor(13,3);
+	  lcd.print("F1");
+	  Serial.println("F1");
+	}
+      else
+	{
+	  lcd.setCursor(13,3);
+	  lcd.print("  ");
+	  Serial.println(" ");
+	}
+      
+      if( (ce3_reg_ab_data[12] & 8) )
+	{
+	  lcd.setCursor(16,3);
+	  lcd.print("F2");
+	  Serial.println("F2");
+	}
+      else
+	{
+	  lcd.setCursor(16,3);
+	  lcd.print("  ");
+	  Serial.println(" ");
+	}
+      if( (ce3_reg_ab_data[10] & 8) )
+	{
+	  lcd.setCursor(9,3);
+	  lcd.print("HYP");
+	  Serial.println("HYP");
+	}
+      else
+	{
+	  lcd.setCursor(9,3);
+	  lcd.print("   ");
+	  Serial.println(" ");
+	}
+      if( (ce3_reg_ab_data[9] & 8) )
+	{
+	  lcd.setCursor(5,3);
+	  lcd.print("ARC");
+	  Serial.println("ARC");
+	}
+      else
+	{
+	  lcd.setCursor(5,3);
+	  lcd.print("   ");
+	  Serial.println(" ");
+	}
+#endif
+
 
       
 #if SERIAL_SIGNALS
@@ -1376,7 +1445,8 @@ void loop() {
     {
       Serial.println("Overflow 3");
     }
-  
+
+  lcd.setCursor(0,3);
   int v = 0;
   if( seven_seg[3] != 0xF )
     {
@@ -1446,25 +1516,32 @@ void loop() {
       lcd.print("    ");
     }
 
-  switch( annunciators[14] )
+  switch( annunciators[13] )
     {
     case 0xB:
       lcd.setCursor(12, 1);
       lcd.print("RUN");
       break;
 
-    case 0x5:
+    default:
       lcd.setCursor(12, 1);
       lcd.print("WRT");
       break;
 
+
+#if 0
+    case 0x5:
+      lcd.setCursor(12, 1);
+      lcd.print("WRT");
+      break;
+      
     default:
       lcd.setCursor(12, 1);
       lcd.print(".");
       lcd.print(annunciators[13],HEX);
       lcd.print(".");
       break;
-      
+#endif      
     }
 
   if( annunciators[6] )
