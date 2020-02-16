@@ -12,7 +12,7 @@
 #include <LiquidCrystal.h>
 
 #define SERIAL_DUMP_REGS 0
-#define SERIAL_TAGS      1
+#define SERIAL_TAGS      0
 #define SERIAL_7SEG      0
 #define SERIAL_CE3       1
 #define SERIAL_ANN       0
@@ -1242,7 +1242,7 @@ void loop() {
 	    }
 #endif
 	}
-
+#if SERIAL_SIGNALS
       Serial.print("1 ");
       Serial.print(addr, HEX);
       Serial.print(" ");
@@ -1254,7 +1254,8 @@ void loop() {
       Serial.print(" ");
       Serial.print(op);
       Serial.println("");
-
+#endif
+      
       // We can get dot matrix info from here
       
       isr_trace_1_out = (isr_trace_1_out + 1) % NUM_ISR_CE1_TRACE;
@@ -1333,12 +1334,13 @@ void loop() {
       
 #if SERIAL_CE3
       Serial.print("CE3 Reg:");
+
       for(i=0;i<16;i++)
 	{
 	  Serial.print(ce3_reg_value[i], HEX);
 	}
       Serial.println("");
-      
+
       Serial.print("CE3 23 Data:");
       for(i=0;i<16;i++)
 	{
@@ -1366,58 +1368,56 @@ void loop() {
 	  Serial.print(ce3_reg_ab2_data[i], HEX);
 	}
       Serial.println("");
-      if( ce3_reg_23_data[11] & 1 )
+
+#endif
+
+      // F2 has it's own flag, F1 isn't as clean, so we have to
+      // perform some logic
+      
+      // F1 is on if it's flag is on or HYP or ARC
+      // If F2 is on then F1 is off
+
+      if( (((ce3_reg_23_data[3] ==4)&&(ce3_reg_23_data[2] == 7))||((ce3_reg_23_data[3] ==0xA)&&(ce3_reg_23_data[2] == 2)) || (ce3_reg_ab_data[10] & 8) || (ce3_reg_ab_data[9] & 8)) && !(ce3_reg_ab_data[12] & 8) )
 	{
 	  lcd.setCursor(13,3);
 	  lcd.print("F1");
-	  Serial.println("F1");
 	}
       else
 	{
 	  lcd.setCursor(13,3);
 	  lcd.print("  ");
-	  Serial.println(" ");
 	}
       
       if( (ce3_reg_ab_data[12] & 8) )
 	{
 	  lcd.setCursor(16,3);
 	  lcd.print("F2");
-	  Serial.println("F2");
 	}
       else
 	{
 	  lcd.setCursor(16,3);
 	  lcd.print("  ");
-	  Serial.println(" ");
 	}
       if( (ce3_reg_ab_data[10] & 8) )
 	{
 	  lcd.setCursor(9,3);
 	  lcd.print("HYP");
-	  Serial.println("HYP");
 	}
       else
 	{
 	  lcd.setCursor(9,3);
 	  lcd.print("   ");
-	  Serial.println(" ");
 	}
       if( (ce3_reg_ab_data[9] & 8) )
 	{
 	  lcd.setCursor(5,3);
 	  lcd.print("ARC");
-	  Serial.println("ARC");
 	}
       else
 	{
 	  lcd.setCursor(5,3);
 	  lcd.print("   ");
-	  Serial.println(" ");
 	}
-#endif
-
-
       
 #if SERIAL_SIGNALS
       Serial.print("3 ");
