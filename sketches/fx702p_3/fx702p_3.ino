@@ -14,9 +14,10 @@
 #define SERIAL_DUMP_REGS 0
 #define SERIAL_TAGS      0
 #define SERIAL_7SEG      0
-#define SERIAL_CE3       1
+#define SERIAL_CE3       0
 #define SERIAL_ANN       0
 #define SERIAL_SIGNALS   0
+#define SERIAL_REGDUMP   0
 
 #define FLAG_7SEG_COLON  0
 
@@ -712,169 +713,6 @@ void setup() {
 volatile int f = 0;
 volatile int i;
 
-#if 0
-void old_loop() {
-  int j;
-  
-  //return;
-
-  f = !f;
-  
-  // We just display the buffers contiuously
-  // Interrupt routine might update mid loop, but next loop should
-  // correct any incoherency.
-
-  lcd.setCursor(0, 0);
-  for(i=0; i< DISPLAY_BUFFER_LEN; i++)
-    {
-      lcd.setCursor(19-i, 0);
-      lcd.print(fx702pschar(display_buffer[i]));
-    }
-
-#if 0
-  lcd.setCursor(0, 3);
-  for(i=0; i< REG_BUFFER_LEN; i++)
-    {
-      lcd.setCursor(i, 3);
-      lcd.print(fx702pschar(reg[i]+0x30));
-    }
-#endif
-  //return;
-  // set the cursor to column 0, line 1
-  // (note: line 1 is the second row, since counting begins with 0):
-
-  if ( f )
-    {
-      lcd.setCursor(19, 3);
-      lcd.print("*");
-    }
-  else
-    {
-      lcd.setCursor(19, 3);
-      lcd.print(" ");
-    }
-
-  lcd.setCursor(0,3);
-  
-  int v = 0;
-  if( seven_seg[3] != 0xF )
-    {
-      seven_seg[3] = seven_seg[3] & 3;
-      for(j=3;j>=0;j--)
-	{
-	  lcd.print(seven_seg[j]);
-	  //lcd.print(":");
-	}
-    }
-  else
-    {
-      lcd.print("        ");
-    }
-
-#if 1
-  lcd.setCursor(0, 2);
-  
-  for(j=1;j<=0xC;j++)
-    {
-#if 0
-      Serial.print(annunciators[j]);
-      Serial.print(" ");
-#endif 
-      if( annunciators[j] )
-	{
-	  lcd.print(annunciators[j]);
-	}
-      else
-	{
-	  lcd.print(" ");  
-	}
-    }
-#if 0
-  Serial.println("");
-#endif
-  
-#endif
-  
-
-  if( annunciators[8] )
-    {
-      lcd.setCursor(0,1);
-      lcd.print("GRA");
-    }
-  if( annunciators[9] )
-    {
-      lcd.setCursor(0,1);
-      lcd.print("RAD");
-    }
-  if( annunciators[10] )
-    {
-      lcd.setCursor(0,1);
-      lcd.print("DEG");
-    }
-
-
-  if( annunciators[6] )
-    {
-      lcd.setCursor(4,1);
-      lcd.print("TRC");
-    }
-  else
-    {
-      lcd.setCursor(4,1);
-      lcd.print("   ");
-    }
-
-
-  if( annunciators[4] )
-    {
-      lcd.setCursor(8,1);
-      lcd.print("PRT");
-    }
-  else
-    {
-      lcd.setCursor(8,1);
-      lcd.print("   ");
-    }
-
-  // print the number of seconds since reset:
-  //lcd.print(millis() / 100);
-
-  //  Serial.println((PIN_MAP[fxD0].gpio_device)->regs->IDR);
-  delay(100);
-
-#if 1
-  for(i=19; i>=0;i--)
-    {
-      Serial.print(fx702pschar(display_buffer[i]));
-    }
-  Serial.println("");  
-
-  for(i=19; i>=0;i--)
-    {
-      Serial.print(display_buffer[i], HEX);
-      Serial.print(" ");  
-    }
-  Serial.println("");
-
-  for(i=0; i<16;i++)
-    {
-      Serial.print(reg[i]);
-      Serial.print(" ");
-    }
-  Serial.println("");
-
-  for(i=3;i>=0;i--)
-    {
-      Serial.print(seven_seg[i]);
-#if FLAG_7SEG_COLON
-      Serial.print(":");
-#endif
-    }
-  Serial.println("");
-    
-#endif
-}
-#endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -1013,11 +851,13 @@ void loop() {
 	    }
 	  // register write
 	  reg[addr] = data;
-	  
+
+#if SERIAL_REGDUMP
 	  Serial.print("Reg ");
 	  Serial.print(addr, HEX);
 	  Serial.print(" = ");
 	  Serial.println(data, HEX);
+#endif
 	}
       
       if( we == false )
@@ -1064,8 +904,9 @@ void loop() {
 		    {
 		      reg[i] = 100;
 		    }
-		  
+#if SERIAL_TAGS		  
 		  Serial.println("MATUPD");
+#endif
 		  switch(reg[3])
 		    {
 		    case 0xC:
@@ -1109,11 +950,12 @@ void loop() {
 
 	  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==4)  )
 	    {
+#if SERIAL_TAGS	      
 	      Serial.print("9AB ");
 	      Serial.print(addr,HEX);
 	      Serial.print(" ");
 	      Serial.println(data,HEX);
-	      
+#endif
 	      // Annunciators
 	      if( (addr >=1) && (addr <=12) )
 		{
@@ -1123,11 +965,12 @@ void loop() {
 
 	  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==0)  )
 	    {
+#if SERIAL_TAGS
 	      Serial.print("9AB 000");
 	      Serial.print(addr,HEX);
 	      Serial.print(" ");
 	      Serial.println(data,HEX);
-	      
+#endif
 	      // Annunciators
 	      if( (addr >=1) && (addr <=2) )
 		{
@@ -1141,7 +984,9 @@ void loop() {
 	    {
 	      if( (addr>=3) && (addr<=12))
 		{
+#if SERIAL_TAGS
 		  Serial.println("CURUPD");
+#endif
 		  for(i=0;i<16;i++)
 		    {
 		      reg[i] = 100;
@@ -1355,7 +1200,7 @@ void loop() {
 	}
       Serial.println("");
       
-      Serial.print("CE3 AB Data:");
+      Serial.print("CE3 AB  Data:");
       for(i=0;i<16;i++)
 	{
 	  Serial.print(ce3_reg_ab_data[i], HEX);
@@ -1376,47 +1221,41 @@ void loop() {
       
       // F1 is on if it's flag is on or HYP or ARC
       // If F2 is on then F1 is off
-
+      lcd.setCursor(5,3);
       if( (((ce3_reg_23_data[3] ==4)&&(ce3_reg_23_data[2] == 7))||((ce3_reg_23_data[3] ==0xA)&&(ce3_reg_23_data[2] == 2)) || (ce3_reg_ab_data[10] & 8) || (ce3_reg_ab_data[9] & 8)) && !(ce3_reg_ab_data[12] & 8) )
 	{
-	  lcd.setCursor(13,3);
-	  lcd.print("F1");
+	  lcd.print("F1 ");
 	}
       else
 	{
-	  lcd.setCursor(13,3);
-	  lcd.print("  ");
+	  lcd.print("   ");
 	}
-      
+
       if( (ce3_reg_ab_data[12] & 8) )
 	{
-	  lcd.setCursor(16,3);
-	  lcd.print("F2");
+	  lcd.print("F2 ");
 	}
       else
 	{
-	  lcd.setCursor(16,3);
-	  lcd.print("  ");
+	  lcd.print("   ");
 	}
+
       if( (ce3_reg_ab_data[10] & 8) )
 	{
-	  lcd.setCursor(9,3);
-	  lcd.print("HYP");
+	  lcd.print("HYP ");
 	}
       else
 	{
-	  lcd.setCursor(9,3);
-	  lcd.print("   ");
+	  lcd.print("    ");
 	}
+
       if( (ce3_reg_ab_data[9] & 8) )
 	{
-	  lcd.setCursor(5,3);
-	  lcd.print("ARC");
+	  lcd.print("ARC ");
 	}
       else
 	{
-	  lcd.setCursor(5,3);
-	  lcd.print("   ");
+	  lcd.print("    ");
 	}
       
 #if SERIAL_SIGNALS
@@ -1571,7 +1410,7 @@ void loop() {
   //lcd.print(millis() / 100);
 
   //  Serial.println((PIN_MAP[fxD0].gpio_device)->regs->IDR);
-  delay(100);
+  delay(1);
 
 #if 0
   for(i=19; i>=0;i--)
