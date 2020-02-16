@@ -20,7 +20,7 @@
 #define SERIAL_REGDUMP   0
 
 #define FLAG_7SEG_COLON  0
-
+#define LCD_ANNUNCIATORS  0
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
 #define  PCB_VERSION 1
@@ -1304,7 +1304,7 @@ void loop() {
     }
 
 
-#if 1
+#if LCD_ANNUNCIATORS
   lcd.setCursor(0, 2);
   
   for(j=1;j<=0xE;j++)
@@ -1328,81 +1328,59 @@ void loop() {
 #endif
   
 
+  lcd.setCursor(0,1);
   if( annunciators[8] )
     {
-      lcd.setCursor(0,1);
       lcd.print("GRA");
     }
   if( annunciators[9] )
     {
-      lcd.setCursor(0,1);
       lcd.print("RAD");
     }
   if( annunciators[10] )
     {
-      lcd.setCursor(0,1);
       lcd.print("DEG");
     }
-  
+
+  lcd.setCursor(16,1);
   if( annunciators[12] )
     {
-      lcd.setCursor(16,1);
       lcd.print("STOP");
     }
   else
     {
-      lcd.setCursor(16,1);
       lcd.print("    ");
     }
 
+  lcd.setCursor(12, 1);
   switch( annunciators[13] )
     {
     case 0xB:
-      lcd.setCursor(12, 1);
       lcd.print("RUN");
       break;
 
     default:
-      lcd.setCursor(12, 1);
       lcd.print("WRT");
       break;
-
-
-#if 0
-    case 0x5:
-      lcd.setCursor(12, 1);
-      lcd.print("WRT");
-      break;
-      
-    default:
-      lcd.setCursor(12, 1);
-      lcd.print(".");
-      lcd.print(annunciators[13],HEX);
-      lcd.print(".");
-      break;
-#endif      
     }
 
+  lcd.setCursor(4,1);
   if( annunciators[6] )
     {
-      lcd.setCursor(4,1);
       lcd.print("TRC");
     }
   else
     {
-      lcd.setCursor(4,1);
       lcd.print("   ");
     }
 
-
+  lcd.setCursor(8,1);
   if( annunciators[4] )
     {
-      lcd.setCursor(8,1);
       lcd.print("PRT");
     }
   else
     {
-      lcd.setCursor(8,1);
       lcd.print("   ");
     }
 
