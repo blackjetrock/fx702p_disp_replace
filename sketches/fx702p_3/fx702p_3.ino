@@ -1240,7 +1240,7 @@ void loop() {
 	  lcd.print("   ");
 	}
 
-      if( (ce3_reg_ab_data[10] & 8) )
+      if( (ce3_reg_ab_data[9] & 8) )
 	{
 	  lcd.print("HYP ");
 	}
@@ -1249,7 +1249,7 @@ void loop() {
 	  lcd.print("    ");
 	}
 
-      if( (ce3_reg_ab_data[9] & 8) )
+      if( (ce3_reg_ab_data[10] & 8) )
 	{
 	  lcd.print("ARC ");
 	}
@@ -1420,5 +1420,3 @@ void loop() {
     
 #endif
 }
-
-
