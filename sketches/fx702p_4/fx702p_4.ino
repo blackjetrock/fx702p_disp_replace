@@ -34,7 +34,7 @@
 //   main loop. Much faster and more efficient.
 //
 
-#define LOGIC_ANALYSER  1
+#define LOGIC_ANALYSER  0
 
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
@@ -236,8 +236,526 @@ boolean ce3_45_reg = false;
 //
 
 #if !LOGIC_ANALYSER
+void ce1_isr(void)
+{
+  volatile int portval, portvalce;
+  volatile int oe, ce, we, op, clk;
+  unsigned char data, addr;
+  int clock_phase = 0;  // First transition is phase 0
+  int last_clk = 0;
+  int done = 0;
+  int active_edge = 0;
+  int a;
+  int i;
+  int glitch_count = 0;
 
-void ce_isr(void)
+#if 0
+  display_buffer[5] = 0x40;
+#endif
+  
+  portval = (PIN_MAP[fxD0].gpio_device)->regs->IDR;
+  last_clk = BITVAL(portval, fxnCLK);
+  
+  // Clock in on falling edges of clock, only use second clock
+  while( !done )
+    {
+      // Read port B, that has all our signals
+      portval = (PIN_MAP[fxD0].gpio_device)->regs->IDR;
+      portvalce = (PIN_MAP[fxCE].gpio_device)->regs->IDR;
+	    
+      
+      ce = BITVAL(portvalce, fxnCE);
+      op = BITVAL(portval, fxnOP);
+      we = BITVAL(portval, fxnWE);
+      oe = BITVAL(portval, fxnOE);
+      clk = BITVAL(portval, fxnCLK);
+      
+      // display port
+  
+#if 0
+      display_buffer[0] = 0x30 + ce;
+      display_buffer[1] = 0x30 + oe;
+#endif
+
+#if 0
+      display_buffer[2] = 0x30 + we;
+      display_buffer[3] = 0x30 + op;
+      display_buffer[4] = 0x30 + clk;
+#endif
+
+#if 0
+      
+      display_buffer[5] = 0x30 + data;
+      display_buffer[6] = 0x30 + addr;
+
+      display_buffer[addr] = 0x30+data;
+    
+#endif
+      
+      // Detect rising edges
+      // Debounce possible glitches
+      if( glitch_count > 0 )
+	{
+	  glitch_count--;
+	}
+
+      // Don't look for rising edges immediately after we have found one
+      if( glitch_count == 0 )
+	{
+	  if( (last_clk == 0) && (clk == 1) )
+	    {
+	      active_edge = 1;
+	      glitch_count = 2;
+	      
+	      // Next clock phase. First phase is 0, second phase is 1
+	      // We ignore anything on phase 0
+	      //
+	      clock_phase = !clock_phase;
+	    }
+	  else
+	    {
+	      active_edge = 0;
+	    }
+	}
+      last_clk = clk;
+
+      if( (op == 1) && (we == 0) && active_edge && (clock_phase == 1) )
+	{
+	  data = BITFIELD(portval,fxnD0, 0xF);
+	  addr = BITFIELD(portval,fxnA0, 0xF);
+	  data ^= 0xF;
+	  addr ^= 0xF;
+	  
+	}
+
+      // register writes
+      
+      if( (oe == 1) && active_edge && (clock_phase == 1) )
+	{
+	  data = BITFIELD(portval,fxnD0, 0xF);
+	  addr = BITFIELD(portval,fxnA0, 0xF);
+	  data ^= 0xF;
+	  addr ^= 0xF;
+
+	  if( op== 0 )
+	    {
+	      switch(addr)
+		{
+		  // Start of new commands
+		case 2:
+		  if( reg[1] != 100 )
+		    {
+		  reg[0] = 100;
+		  for(i=3;i<16;i++)
+		    {
+		      reg[i] = 100;
+		    }
+		    }
+		  break;
+		  
+		case 6:
+		  if( reg[5] != 100 )
+		    {
+		      
+		      for(i=0;i<=4;i++)
+			{
+			  reg[i] = 100;
+			}
+		      for(i=7;i<16;i++)
+			{
+			  reg[i] = 100;
+			}
+		    }
+		  break;
+		  
+		  // Can't reset commands with reg3 as sometimes it is issued on it's own
+		case 3:
+		  break;
+		  
+		case 4:
+		  // Don't wipe out 3
+#if SERIAL_TAGS
+		  Serial.println("CLRregn3");
+#endif
+		  for(i=0;i<=2;i++)
+		    {
+		      reg[i] = 100;
+		    }
+		  for(i=4;i<=15;i++)
+		    {
+		      reg[i] = 100;
+		    }
+		  break;
+		  
+		case 0xc:
+		case 9:
+		  // case 0:
+		  // reg 0 reset means 7 seg a problem.
+#if SERIAL_TAGS
+		  Serial.println("CLRreg");
+#endif
+		  for(i=0;i<16;i++)
+		    {
+		      reg[i] = 100;
+		    }
+		  break;
+		  
+		default:
+		  break;
+		}
+	      // register write
+	      reg[addr] = data;
+	    }
+
+#if 0
+	  if( op == 0 )
+	    {
+	      int j;
+	      
+	      // Command read/write. reads and writes seem to set commands up
+	      for(j=0;j<16;j++)
+		{
+		  reg[j] = 0;
+		}
+	      
+	      reg[addr] = data;
+	      
+#if 0
+	      display_buffer[dri++] = data+0x30;
+	      if( dri >= 20 )
+		{
+		  dri = 0;
+		}
+#endif
+	    }
+#endif	  
+	}
+
+      
+      // Data write
+      if( (op == 1) && (we == 0) && active_edge && (clock_phase ==1) )
+	{
+	  data = BITFIELD(portval,fxnD0, 0xF);
+	  addr = BITFIELD(portval,fxnA0, 0xF);
+	  data ^= 0xF;
+	  addr ^= 0xF;
+	  
+	  //display_buffer[1] = 0x43;
+#if 0
+	  display_buffer[dri++] = data+0x30;
+	  if( dri >= 20 )
+	    {
+	      dri = 0;
+	    }
+#endif
+#if 0
+	  if( reg[0] = 0xB )
+	    {
+	      if( (addr >=0) && (addr <=3) )
+		{
+		  seven_seg[addr] = data;
+		}
+	    }
+#endif
+	  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==4)  )
+	    {
+#if SERIAL_TAGS	      
+	      Serial.print("9AB ");
+	      Serial.print(addr,HEX);
+	      Serial.print(" ");
+	      Serial.println(data,HEX);
+#endif
+	      // Annunciators
+	      if( (addr >=1) && (addr <=12) )
+		{
+		  annunciators[addr] = (data & 0x8);
+		}
+	    }
+
+	  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==0)  )
+	    {
+#if SERIAL_TAGS
+	      Serial.print("9AB 000");
+	      Serial.print(addr,HEX);
+	      Serial.print(" ");
+	      Serial.println(data,HEX);
+#endif
+	      // Annunciators
+	      if( (addr >=1) && (addr <=2) )
+		{
+		  annunciators[addr-1+13] = (data);
+		}
+	    }
+
+#if 0	  
+	  if( reg[0xB] = 0x4 )
+	    {
+	      if( (addr >=1) && (addr <=0xB) )
+		{
+		  annunciators[addr] = data;
+		}
+	    }
+#endif
+
+	  //================================================================================
+	  
+	  // Attempt at cursor, only works for right hand half of display
+#if 1
+	  if( ((reg[1] == 0) && (reg[2] == 0))   )
+	    {
+	      if( (addr>=3) && (addr<=12))
+		{
+#if SERIAL_TAGS
+		  Serial.println("CURUPD");
+#endif
+		  for(i=0;i<16;i++)
+		    {
+		      reg[i] = 100;
+		    }
+		  switch(0xF)
+		    {
+		    case 0xC:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			}
+		      break;
+		      
+		    case 0xD:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    case 0xE:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			}
+		      break;
+		      
+		    case 0xF:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    default:
+		      //	  display_buffer[addr] = reg[3]+0x30;
+		      break;
+		    }
+		}
+	    }
+
+	  if( ((reg[5] == 9) && (reg[6] == 4))   )
+	    {
+	      if( (addr>=3) && (addr<=12))
+		{
+#if SERIAL_TAGS
+		  Serial.println("CURUPD");
+#endif
+		  for(i=0;i<16;i++)
+		    {
+		      reg[i] = 100;
+		    }
+
+		  switch(0xE)
+		    {
+		    case 0xC:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			}
+		      break;
+		      
+		    case 0xD:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    case 0xE:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  // For some reason top bit sometimes set, clear it
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + ((data & 7) << 4);
+			}
+		      break;
+		      
+		    case 0xF:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    default:
+		      //	  display_buffer[addr] = reg[3]+0x30;
+		      break;
+		    }
+		}
+	    }
+#endif
+	  
+	  //================================================================================
+	  //
+	  // Dot matrix display
+	  //
+
+	  // Original
+#if 1	  
+	  if( (addr>=3) && (addr<=12))
+	    {
+	      switch(reg[3])
+		{
+		case 0xC:
+		  a = (addr - 3)+10;
+		  if( (a >= 0) && (a <=19))
+		    {
+		      display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+		    }
+		  break;
+		  
+		case 0xD:
+		  a = (addr - 3)+10;
+		  if( (a >= 0) && (a <=19))
+		    {
+		      display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+		    }
+		  break;
+		  
+		case 0xE:
+		  a = (addr - 3);
+		  if( (a >= 0) && (a <=19))
+		    {
+		      display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+		    }
+		  break;
+		  
+		case 0xF:
+		  a = (addr - 3);
+		  if( (a >= 0) && (a <=19))
+		    {
+		      display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+		    }
+		  break;
+		  
+		default:
+		  //	  display_buffer[addr] = reg[3]+0x30;
+		  break;
+		}
+	    }
+#endif
+
+	  // Seven segment update
+	        	  // write or read cycle
+	  if( (reg[0] = 0xB) && (reg[3]==0xE) &&(reg[4]==0) && (reg[5]==8)  )
+	    {
+	      if( (addr >=0) && (addr <=3) )
+		{
+		  seven_seg[addr] = data;
+		}
+
+#if 0
+	      // Logic analyser coe ehas this, but it doesn't seem to work here
+	      // Reset reg[0] once done
+	      if( (addr == 3) )
+		{
+		  reg[0] = 100;
+		  reg[3] = 100;
+		}
+#endif
+	    }
+
+#if 0
+	  // New matrix update from LA code
+	  // Matrix update
+	  if( ((reg[4] == 0) && (reg[5] == 8) && (reg[0] == 100))   )
+	    {
+	      if( (addr>=3) && (addr<=12))
+		{
+		  // Start of matrix update, clear any other commands
+		  reg[0] = 100;
+		  reg[1] = 100;
+		  reg[2] = 100;
+		  for(i=6;i<=0xC;i++)
+		    {
+		      reg[i] = 100;
+		    }
+#if SERIAL_TAGS		  
+		  Serial.println("MATUPD");
+#endif
+		  switch(reg[3])
+		    {
+		    case 0xC:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			}
+		      break;
+		      
+		    case 0xD:
+		      a = (addr - 3)+10;
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    case 0xE:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+			}
+		      break;
+		      
+		    case 0xF:
+		      a = (addr - 3);
+		      if( (a >= 0) && (a <=19))
+			{
+			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+			}
+		      break;
+		      
+		    default:
+		      //	  display_buffer[addr] = reg[3]+0x30;
+		      break;
+		    }
+		}
+	    }
+#endif
+	  
+	}
+      
+      
+      // CE goes inactive, we stop processing the cycle
+      if( ce == 1 )
+	{
+	  done = 1;
+	}
+    }  
+#if 0
+  display_buffer[6] = 0x41;
+#endif
+
+}
+
+// ISR for RH display chip
+
+void ce3_isr(void)
 {
   volatile int portval, portvalce;
   volatile int oe, ce, we, op, clk;
@@ -319,23 +837,6 @@ void ce_isr(void)
 	}
       last_clk = clk;
 
-      if( (oe == 0) && (we == 1) && active_edge && (clock_phase == 1) )
-	{
-	  data = BITFIELD(portval,fxnD0, 0xF);
-	  addr = BITFIELD(portval,fxnA0, 0xF);
-	  data ^= 0xF;
-	  addr ^= 0xF;
-	  
-      	  // write or read cycle
-	  if( reg[0] = 0xB )
-	    {
-	      if( (addr >=0) && (addr <=3) )
-		{
-		  seven_seg[addr] = data;
-		}
-	    }
-	}
-      
       if( (oe == 1) && active_edge && (clock_phase == 1) )
 	{
 	  data = BITFIELD(portval,fxnD0, 0xF);
@@ -351,7 +852,7 @@ void ce_isr(void)
 	      // Command read/write. reads and writes seem to set commands up
 	      for(j=0;j<16;j++)
 		{
-		  reg[j] = 0;
+		  reg[j] = 100;
 		}
 	      
 	      reg[addr] = data;
@@ -368,7 +869,7 @@ void ce_isr(void)
 
       
       // Data write
-      if( (op == 1) && (we == 0) && active_edge && (clock_phase ==1) )
+      if( (op == 1) && active_edge && (clock_phase ==1) )
 	{
 	  data = BITFIELD(portval,fxnD0, 0xF);
 	  addr = BITFIELD(portval,fxnA0, 0xF);
@@ -400,7 +901,7 @@ void ce_isr(void)
 		}
 	    }
 
-	  
+#if 0	  
 	  if( (addr>=3) && (addr<=12))
 	    {
 	      switch(reg[3])
@@ -442,6 +943,7 @@ void ce_isr(void)
 		  break;
 		}
 	    }
+#endif
 	}
       
       
@@ -456,12 +958,13 @@ void ce_isr(void)
 #endif
 
 }
+
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // ISR that captures a trace of bu activity which is then decoded by
-// the main loop. This allows the code tobe used as a sort of logic analyser
+// the main loop. This allows the code to be used as a sort of logic analyser
 
 #define MASK_OP  1
 #define MASK_OE  2
@@ -500,6 +1003,8 @@ volatile ISR_TRACE_ENTRY isr_trace_ce3[NUM_ISR_CE3_TRACE];
 // ISR for the CE interrupt
 // We will probably need two ISRs, one for each display chip CE
 // This ISR is for CE3 (LH display chip)
+
+#if LOGIC_ANALYSER
 
 void ce3_isr_2(void)
 {
@@ -688,6 +1193,8 @@ void ce1_isr_2(void)
   
 }
 
+#endif
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -722,12 +1229,17 @@ void setup() {
   //  pinMode(PB0, INPUT);
   pinMode(fxCE, INPUT);
   pinMode(PA8, INPUT);
-  
+
+#if LOGIC_ANALYSER
   // Attach an interrupt to the CE line
   //  attachInterrupt(digitalPinToInterrupt(PB0), ce_isr, FALLING);
   attachInterrupt(fxCE, ce1_isr_2, FALLING);
-  attachInterrupt(PA8, ce3_isr_2, FALLING);
-
+  attachInterrupt(PA8,  ce3_isr_2, FALLING);
+#else
+    attachInterrupt(fxCE, ce1_isr, FALLING);
+    attachInterrupt(PA8,  ce3_isr, FALLING);
+#endif
+  
   lcd.cursor();
 }
 
@@ -778,6 +1290,7 @@ void loop() {
   // Dump trace to serial port
   // Process data at the same time
 
+#if LOGIC_ANALYSER  
   // CE1, this has the dot matrix character data
   
   while( isr_trace_1_in != isr_trace_1_out )
@@ -904,7 +1417,7 @@ void loop() {
 #if SERIAL_7_SEG
 	      Serial.println("");
 #endif
-
+	      
 	      // Reset reg[0] once done
 	      if( (addr == 3) )
 		{
@@ -1306,6 +1819,8 @@ void loop() {
       Serial.println("Overflow 3");
     }
 
+  #endif
+  
   lcd.setCursor(0,3);
   int v = 0;
   if( seven_seg[3] != 0xF )
