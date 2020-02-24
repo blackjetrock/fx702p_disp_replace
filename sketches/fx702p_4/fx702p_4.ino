@@ -34,7 +34,9 @@
 //   main loop. Much faster and more efficient.
 //
 
-#define LOGIC_ANALYSER  0
+#define LOGIC_ANALYSER  1
+
+#define INLINE 0
 
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
@@ -217,18 +219,191 @@ void isr(void)
 #define BITFIELD(VAL,LSBITNUM,MASK) ((VAL >> LSBITNUM) & MASK)
 
 volatile  int dri = 0;
-volatile  int reg[16];
+
 volatile int ab_index = 0;
 volatile int ce3_reg_ab_data[16];
 volatile int ce3_reg_ab2_data[16];
 volatile int ce3_reg_45_data[16];
 volatile int ce3_reg_23_data[16];
 volatile int ce3_reg_value[16];
+unsigned char reg[17];
 boolean ce3_23_reg = false;
 boolean ce3_ab_reg = false;
 boolean ce3_45_reg = false;
 
 #define REG_BUFFER_LEN 16
+
+void proc_annunciators(unsigned char reg[], unsigned char addr, unsigned char data)
+{
+  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==4)  )
+    {
+#if SERIAL_TAGS	      
+      Serial.print("9AB ");
+      Serial.print(addr,HEX);
+      Serial.print(" ");
+      Serial.println(data,HEX);
+#endif
+      // Annunciators
+      if( (addr >=1) && (addr <=12) )
+	{
+	  annunciators[addr] = (data & 0x8);
+	}
+    }
+
+  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==0)  )
+    {
+#if SERIAL_TAGS
+      Serial.print("9AB 000");
+      Serial.print(addr,HEX);
+      Serial.print(" ");
+      Serial.println(data,HEX);
+#endif
+      // Annunciators
+      if( (addr >=1) && (addr <=2) )
+	{
+	  annunciators[addr-1+13] = (data);
+	}
+    }
+}
+
+void proc_matrix(unsigned char reg[], unsigned char addr, unsigned char data)
+{
+  unsigned char a;
+  int i;
+  
+  if( ((reg[4] == 0) && (reg[5] == 8) && (reg[0] == 100))   )
+    {
+      if( (addr>=3) && (addr<=12))
+	{
+	  // Start of matrix update, clear any other commands
+	  reg[0] = 100;
+	  reg[1] = 100;
+	  reg[2] = 100;
+	  for(i=6;i<=0xC;i++)
+	    {
+	      reg[i] = 100;
+	    }
+#if SERIAL_TAGS		  
+	  Serial.println("MATUPD");
+#endif
+	  switch(reg[3])
+	    {
+	    case 0xC:
+	      a = (addr - 3)+10;
+	      if( (a >= 0) && (a <=19))
+		{
+		  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+		}
+	      break;
+		      
+	    case 0xD:
+	      a = (addr - 3)+10;
+	      if( (a >= 0) && (a <=19))
+		{
+		  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+		}
+	      break;
+		      
+	    case 0xE:
+	      a = (addr - 3);
+	      if( (a >= 0) && (a <=19))
+		{
+		  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+		}
+	      break;
+		      
+	    case 0xF:
+	      a = (addr - 3);
+	      if( (a >= 0) && (a <=19))
+		{
+		  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+		}
+	      break;
+		      
+	    default:
+	      //	  display_buffer[addr] = reg[3]+0x30;
+	      break;
+	    }
+	}
+    }
+}
+
+void proc_regs(boolean op, boolean oe, boolean we, unsigned char data, unsigned char addr, unsigned char reg[])
+{
+  int i;
+  
+  // Get character data
+  if( op == false )
+    {
+      switch(addr)
+	{
+	  // Start of new commands
+	case 2:
+	  if( reg[1] != 100 )
+	    {
+	      reg[0] = 100;
+	      for(i=3;i<16;i++)
+		{
+		  reg[i] = 100;
+		}
+	    }
+	  break;
+	  
+	case 6:
+	  if( reg[5] != 100 )
+	    {
+	      
+	      for(i=0;i<=4;i++)
+		{
+		  reg[i] = 100;
+		}
+	      for(i=7;i<16;i++)
+		{
+		  reg[i] = 100;
+		}
+	    }
+	  break;
+	  
+	  // Can't reset commands with reg3 as sometimes it is issued on it's own
+	case 3:
+	  break;
+	  
+	case 4:
+	  // Don't wipe out 3
+#if SERIAL_TAGS
+	  Serial.println("CLRregn3");
+#endif
+	  for(i=0;i<=2;i++)
+	    {
+	      reg[i] = 100;
+	    }
+	  for(i=4;i<=15;i++)
+	    {
+	      reg[i] = 100;
+	    }
+	  break;
+	  
+	case 0xc:
+	case 9:
+	  // case 0:
+	  // reg 0 reset means 7 seg a problem.
+#if SERIAL_TAGS
+	  Serial.println("CLRreg");
+#endif
+	  for(i=0;i<16;i++)
+	    {
+	      reg[i] = 100;
+	    }
+	  break;
+	  
+	default:
+	  break;
+	}
+      // register write
+      reg[addr] = data;
+    }
+}
+
 
 //--------------------------------------------------------------------------------
 //
@@ -239,7 +414,8 @@ boolean ce3_45_reg = false;
 void ce1_isr(void)
 {
   volatile int portval, portvalce;
-  volatile int oe, ce, we, op, clk;
+  boolean oe, ce, we, op, clk;
+
   unsigned char data, addr;
   int clock_phase = 0;  // First transition is phase 0
   int last_clk = 0;
@@ -337,6 +513,7 @@ void ce1_isr(void)
 	  data ^= 0xF;
 	  addr ^= 0xF;
 
+#if INLINE	  
 	  if( op== 0 )
 	    {
 	      switch(addr)
@@ -345,11 +522,11 @@ void ce1_isr(void)
 		case 2:
 		  if( reg[1] != 100 )
 		    {
-		  reg[0] = 100;
-		  for(i=3;i<16;i++)
-		    {
-		      reg[i] = 100;
-		    }
+		      reg[0] = 100;
+		      for(i=3;i<16;i++)
+			{
+			  reg[i] = 100;
+			}
 		    }
 		  break;
 		  
@@ -406,7 +583,11 @@ void ce1_isr(void)
 	      // register write
 	      reg[addr] = data;
 	    }
-
+#else
+	  proc_regs(op, oe, we, data, addr, reg);
+#endif
+	  
+	  
 #if 0
 	  if( op == 0 )
 	    {
@@ -614,7 +795,7 @@ void ce1_isr(void)
 	  //
 
 	  // Original
-#if 1	  
+#if INLINE	  
 	  if( (addr>=3) && (addr<=12))
 	    {
 	      switch(reg[3])
@@ -659,7 +840,7 @@ void ce1_isr(void)
 #endif
 
 	  // Seven segment update
-	        	  // write or read cycle
+	  // write or read cycle
 	  if( (reg[0] = 0xB) && (reg[3]==0xE) &&(reg[4]==0) && (reg[5]==8)  )
 	    {
 	      if( (addr >=0) && (addr <=3) )
@@ -678,6 +859,7 @@ void ce1_isr(void)
 #endif
 	    }
 
+#if INLINE
 #if 0
 	  // New matrix update from LA code
 	  // Matrix update
@@ -737,7 +919,9 @@ void ce1_isr(void)
 		}
 	    }
 #endif
-	  
+#else
+	  proc_matrix(reg, addr, data);
+#endif	  
 	}
       
       
@@ -1236,8 +1420,8 @@ void setup() {
   attachInterrupt(fxCE, ce1_isr_2, FALLING);
   attachInterrupt(PA8,  ce3_isr_2, FALLING);
 #else
-    attachInterrupt(fxCE, ce1_isr, FALLING);
-    attachInterrupt(PA8,  ce3_isr, FALLING);
+  attachInterrupt(fxCE, ce1_isr, FALLING);
+  attachInterrupt(PA8,  ce3_isr, FALLING);
 #endif
   
   lcd.cursor();
@@ -1251,7 +1435,9 @@ volatile int i;
 //
 // Loop that dumps trace
 //
-
+// In logic analyser mode the signal traces are processed
+// In non LA (and LA)  mode the display buffers are sent to the LCD
+//
 
 void loop() {
   int a, j;
@@ -1260,7 +1446,8 @@ void loop() {
   unsigned char data;
   unsigned char regs1[17];
   boolean in_command = false;
-  
+
+  // Loop flag, shows we are looping
   f = !f;
 
   // We just display the buffers contiuously
@@ -1315,7 +1502,8 @@ void loop() {
 	}
       Serial.println("");
 #endif
-      
+
+#if INLINE      
       // Get character data
       if( op == false )
 	{
@@ -1385,7 +1573,10 @@ void loop() {
 	    }
 	  // register write
 	  reg[addr] = data;
-
+#else
+	  proc_regs(op, oe, we, data, addr, reg);
+#endif
+	  
 #if SERIAL_REGDUMP
 	  Serial.print("Reg ");
 	  Serial.print(addr, HEX);
@@ -1426,6 +1617,7 @@ void loop() {
 		}
 	    }
 
+#if INLINE	  
 	  if( ((reg[4] == 0) && (reg[5] == 8) && (reg[0] == 100))   )
 	    {
 	      if( (addr>=3) && (addr<=12))
@@ -1481,7 +1673,11 @@ void loop() {
 		    }
 		}
 	    }
+#else
+	  proc_matrix(reg, addr, data);
+#endif
 
+#if INLINE	  
 	  if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==4)  )
 	    {
 #if SERIAL_TAGS	      
@@ -1511,450 +1707,452 @@ void loop() {
 		  annunciators[addr-1+13] = (data);
 		}
 	    }
-
+#else
+	  proc_annunciators(reg, addr, data);
+#endif
 	  // Attempt at cursor, doesn't work
 #if 1
-	  if( ((reg[1] == 0) && (reg[2] == 0))   )
+	  if( (reg[1] == 0) && (reg[2] == 0))
 	    {
-	      if( (addr>=3) && (addr<=12))
-		{
+	  if( (addr>=3) && (addr<=12))
+	    {
 #if SERIAL_TAGS
-		  Serial.println("CURUPD");
+	  Serial.println("CURUPD");
 #endif
-		  for(i=0;i<16;i++)
-		    {
-		      reg[i] = 100;
-		    }
-		  switch(0xF)
-		    {
-		    case 0xC:
-		      a = (addr - 3)+10;
-		      if( (a >= 0) && (a <=19))
-			{
-			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
-			}
-		      break;
+	  for(i=0;i<16;i++)
+	    {
+	  reg[i] = 100;
+	}
+	  switch(0xF)
+	    {
+	case 0xC:
+	  a = (addr - 3)+10;
+	  if( (a >= 0) && (a <=19))
+	    {
+	  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+	}
+	  break;
 		      
-		    case 0xD:
-		      a = (addr - 3)+10;
-		      if( (a >= 0) && (a <=19))
-			{
-			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
-			}
-		      break;
+	case 0xD:
+	  a = (addr - 3)+10;
+	  if( (a >= 0) && (a <=19))
+	    {
+	  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+	}
+	  break;
 		      
-		    case 0xE:
-		      a = (addr - 3);
-		      if( (a >= 0) && (a <=19))
-			{
-			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
-			}
-		      break;
+	case 0xE:
+	  a = (addr - 3);
+	  if( (a >= 0) && (a <=19))
+	    {
+	  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+	}
+	  break;
 		      
-		    case 0xF:
-		      a = (addr - 3);
-		      if( (a >= 0) && (a <=19))
-			{
-			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
-			}
-		      break;
+	case 0xF:
+	  a = (addr - 3);
+	  if( (a >= 0) && (a <=19))
+	    {
+	  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+	}
+	  break;
 		      
-		    default:
-		      //	  display_buffer[addr] = reg[3]+0x30;
-		      break;
-		    }
-		}
-	    }
+	default:
+	  //	  display_buffer[addr] = reg[3]+0x30;
+	  break;
+	}
+	}
+	}
 
 	  if( ((reg[5] == 9) && (reg[6] == 4))   )
 	    {
-	      if( (addr>=3) && (addr<=12))
-		{
+	  if( (addr>=3) && (addr<=12))
+	    {
 #if SERIAL_TAGS
-		  Serial.println("CURUPD");
+	  Serial.println("CURUPD");
 #endif
-		  for(i=0;i<16;i++)
-		    {
-		      reg[i] = 100;
-		    }
+	  for(i=0;i<16;i++)
+	    {
+	  reg[i] = 100;
+	}
 
-		  switch(0xE)
-		    {
-		    case 0xC:
-		      a = (addr - 3)+10;
-		      if( (a >= 0) && (a <=19))
-			{
-			  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
-			}
-		      break;
+	  switch(0xE)
+	    {
+	case 0xC:
+	  a = (addr - 3)+10;
+	  if( (a >= 0) && (a <=19))
+	    {
+	  display_buffer[a] = (display_buffer[a] & 0x0F) + (data << 4);
+	}
+	  break;
 		      
-		    case 0xD:
-		      a = (addr - 3)+10;
-		      if( (a >= 0) && (a <=19))
-			{
-			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
-			}
-		      break;
+	case 0xD:
+	  a = (addr - 3)+10;
+	  if( (a >= 0) && (a <=19))
+	    {
+	  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+	}
+	  break;
 		      
-		    case 0xE:
-		      a = (addr - 3);
-		      if( (a >= 0) && (a <=19))
-			{
-			  // For some reason top bit sometimes set, clear it
-			  display_buffer[a] = (display_buffer[a] & 0x0F) + ((data & 7) << 4);
-			}
-		      break;
+	case 0xE:
+	  a = (addr - 3);
+	  if( (a >= 0) && (a <=19))
+	    {
+	  // For some reason top bit sometimes set, clear it
+	  display_buffer[a] = (display_buffer[a] & 0x0F) + ((data & 7) << 4);
+	}
+	  break;
 		      
-		    case 0xF:
-		      a = (addr - 3);
-		      if( (a >= 0) && (a <=19))
-			{
-			  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
-			}
-		      break;
+	case 0xF:
+	  a = (addr - 3);
+	  if( (a >= 0) && (a <=19))
+	    {
+	  display_buffer[a] = (display_buffer[a] & 0xF0) + (data << 0);
+	}
+	  break;
 		      
-		    default:
-		      //	  display_buffer[addr] = reg[3]+0x30;
-		      break;
-		    }
-		}
-	    }
+	default:
+	  //	  display_buffer[addr] = reg[3]+0x30;
+	  break;
+	}
+	}
+	}
 #endif
 	}
 #if SERIAL_SIGNALS
-      Serial.print("1 ");
-      Serial.print(addr, HEX);
-      Serial.print(" ");
-      Serial.print(data, HEX);
-      Serial.print(" ");
-      Serial.print(oe);
-      Serial.print(" ");
-      Serial.print(we);
-      Serial.print(" ");
-      Serial.print(op);
-      Serial.println("");
+	Serial.print("1 ");
+	Serial.print(addr, HEX);
+	Serial.print(" ");
+	Serial.print(data, HEX);
+	Serial.print(" ");
+	Serial.print(oe);
+	Serial.print(" ");
+	Serial.print(we);
+	Serial.print(" ");
+	Serial.print(op);
+	Serial.println("");
 #endif
       
-      // We can get dot matrix info from here
+	// We can get dot matrix info from here
       
-      isr_trace_1_out = (isr_trace_1_out + 1) % NUM_ISR_CE1_TRACE;
-    }
+	isr_trace_1_out = (isr_trace_1_out + 1) % NUM_ISR_CE1_TRACE;
+	}
 
-  while( isr_trace_3_in != isr_trace_3_out )
-    {
+	  while( isr_trace_3_in != isr_trace_3_out )
+	    {
 #if FLAGS
-      op = (isr_trace_ce3[isr_trace_3_out].flags >> BITNUM_OP) & 1;
-      oe = (isr_trace_ce3[isr_trace_3_out].flags >> BITNUM_OE) & 1;
-      we = (isr_trace_ce3[isr_trace_3_out].flags >> BITNUM_WE) & 1;
+	  op = (isr_trace_ce3[isr_trace_3_out].flags >> BITNUM_OP) & 1;
+	  oe = (isr_trace_ce3[isr_trace_3_out].flags >> BITNUM_OE) & 1;
+	  we = (isr_trace_ce3[isr_trace_3_out].flags >> BITNUM_WE) & 1;
 #else
-      op = isr_trace_ce3[isr_trace_3_out].op;
-      oe = isr_trace_ce3[isr_trace_3_out].oe;
-      we = isr_trace_ce3[isr_trace_3_out].we;
+	  op = isr_trace_ce3[isr_trace_3_out].op;
+	  oe = isr_trace_ce3[isr_trace_3_out].oe;
+	  we = isr_trace_ce3[isr_trace_3_out].we;
 #endif
-      data = isr_trace_ce3[isr_trace_3_out].data;
-      addr = isr_trace_ce3[isr_trace_3_out].addr;
+	  data = isr_trace_ce3[isr_trace_3_out].data;
+	  addr = isr_trace_ce3[isr_trace_3_out].addr;
 
-      // CE3 controller seems to only be commands, no writes
+	  // CE3 controller seems to only be commands, no writes
 
-      if( op == 0 )
-	{
+	  if( op == 0 )
+	    {
 	  switch(addr)
 	    {
-	    case 2:
-	    case 3:
-	      ce3_23_reg = true;
-	      ce3_ab_reg = false;
-	      ce3_45_reg = false;
-	      break;
+	case 2:
+	case 3:
+	  ce3_23_reg = true;
+	  ce3_ab_reg = false;
+	  ce3_45_reg = false;
+	  break;
 
-	    case 4:
-	    case 5:
-	      ce3_23_reg = false;
-	      ce3_45_reg = true;
-	      ce3_ab_reg = false;
+	case 4:
+	case 5:
+	  ce3_23_reg = false;
+	  ce3_45_reg = true;
+	  ce3_ab_reg = false;
 	      
-	      break;
+	  break;
 	      
-	    case 0xA:
-	      ab_index = !ab_index;
+	case 0xA:
+	  ab_index = !ab_index;
 	      
-	    case 0xB:
-	      ce3_23_reg = false;
-	      ce3_ab_reg = true;
-	      ce3_45_reg = false;	      
-	      break;
-	    }
+	case 0xB:
+	  ce3_23_reg = false;
+	  ce3_ab_reg = true;
+	  ce3_45_reg = false;	      
+	  break;
+	}
 
 	  ce3_reg_value[addr] = data;
 	}
-      else
-	{
+	  else
+	    {
 	  if( ce3_23_reg )
 	    {
-	      ce3_reg_23_data[addr] = data;
-	    }
+	  ce3_reg_23_data[addr] = data;
+	}
 	  if( ce3_ab_reg )
 	    {
-	      if( ab_index )
-		{
-		  ce3_reg_ab2_data[addr] =data;
-		}
-	      else
-		{
-		  ce3_reg_ab_data[addr] = data;
-		}
-	    }
+	  if( ab_index )
+	    {
+	  ce3_reg_ab2_data[addr] =data;
+	}
+	  else
+	    {
+	  ce3_reg_ab_data[addr] = data;
+	}
+	}
 	  if( ce3_45_reg )
 	    {
-	      ce3_reg_45_data[addr] = data;
-	    }
+	  ce3_reg_45_data[addr] = data;
+	}
 
 	}
       
 #if SERIAL_CE3
-      Serial.print("CE3 Reg:");
+	  Serial.print("CE3 Reg:");
 
-      for(i=0;i<16;i++)
-	{
+	  for(i=0;i<16;i++)
+	    {
 	  Serial.print(ce3_reg_value[i], HEX);
 	}
-      Serial.println("");
+	  Serial.println("");
 
-      Serial.print("CE3 23 Data:");
-      for(i=0;i<16;i++)
-	{
+	  Serial.print("CE3 23 Data:");
+	  for(i=0;i<16;i++)
+	    {
 	  Serial.print(ce3_reg_23_data[i], HEX);
 	}
-      Serial.println("");
+	  Serial.println("");
       
-      Serial.print("CE3 45 Data:");
-      for(i=0;i<16;i++)
-	{
+	  Serial.print("CE3 45 Data:");
+	  for(i=0;i<16;i++)
+	    {
 	  Serial.print(ce3_reg_45_data[i], HEX);
 	}
-      Serial.println("");
+	  Serial.println("");
       
-      Serial.print("CE3 AB  Data:");
-      for(i=0;i<16;i++)
-	{
+	  Serial.print("CE3 AB  Data:");
+	  for(i=0;i<16;i++)
+	    {
 	  Serial.print(ce3_reg_ab_data[i], HEX);
 	}
-      Serial.println("");
+	  Serial.println("");
       
-      Serial.print("CE3 AB2 Data:");
-      for(i=0;i<16;i++)
-	{
+	  Serial.print("CE3 AB2 Data:");
+	  for(i=0;i<16;i++)
+	    {
 	  Serial.print(ce3_reg_ab2_data[i], HEX);
 	}
-      Serial.println("");
+	  Serial.println("");
 
 #endif
 
-      // F2 has it's own flag, F1 isn't as clean, so we have to
-      // perform some logic
+	  // F2 has it's own flag, F1 isn't as clean, so we have to
+	  // perform some logic
       
-      // F1 is on if it's flag is on or HYP or ARC
-      // If F2 is on then F1 is off
-      lcd.setCursor(5,3);
-      if( (((ce3_reg_23_data[3] ==4)&&(ce3_reg_23_data[2] == 7))||((ce3_reg_23_data[3] ==0xA)&&(ce3_reg_23_data[2] == 2)) || (ce3_reg_ab_data[10] & 8) || (ce3_reg_ab_data[9] & 8)) && !(ce3_reg_ab_data[12] & 8) )
-	{
+	  // F1 is on if it's flag is on or HYP or ARC
+	  // If F2 is on then F1 is off
+	  lcd.setCursor(5,3);
+	  if( (((ce3_reg_23_data[3] ==4)&&(ce3_reg_23_data[2] == 7))||((ce3_reg_23_data[3] ==0xA)&&(ce3_reg_23_data[2] == 2)) || (ce3_reg_ab_data[10] & 8) || (ce3_reg_ab_data[9] & 8)) && !(ce3_reg_ab_data[12] & 8) )
+	    {
 	  lcd.print("F1 ");
 	}
-      else
-	{
+	  else
+	    {
 	  lcd.print("   ");
 	}
 
-      if( (ce3_reg_ab_data[12] & 8) )
-	{
+	  if( (ce3_reg_ab_data[12] & 8) )
+	    {
 	  lcd.print("F2 ");
 	}
-      else
-	{
+	  else
+	    {
 	  lcd.print("   ");
 	}
 
-      if( (ce3_reg_ab_data[9] & 8) )
-	{
+	  if( (ce3_reg_ab_data[9] & 8) )
+	    {
 	  lcd.print("HYP ");
 	}
-      else
-	{
+	  else
+	    {
 	  lcd.print("    ");
 	}
 
-      if( (ce3_reg_ab_data[10] & 8) )
-	{
+	  if( (ce3_reg_ab_data[10] & 8) )
+	    {
 	  lcd.print("ARC ");
-	}
-      else
-	{
-	  lcd.print("    ");
-	}
+	    }
+	  else
+	    {
+	      lcd.print("    ");
+	    }
       
 #if SERIAL_SIGNALS
-      Serial.print("3 ");
-      Serial.print(addr, HEX);
-      Serial.print(" ");
-      Serial.print(data, HEX);
-      Serial.print(" ");
-      Serial.print(oe);
-      Serial.print(" ");
-      Serial.print(we);
-      Serial.print(" ");
-      Serial.print(op);
-      Serial.println("");
+	  Serial.print("3 ");
+	  Serial.print(addr, HEX);
+	  Serial.print(" ");
+	  Serial.print(data, HEX);
+	  Serial.print(" ");
+	  Serial.print(oe);
+	  Serial.print(" ");
+	  Serial.print(we);
+	  Serial.print(" ");
+	  Serial.print(op);
+	  Serial.println("");
 #endif
       
-      isr_trace_3_out = (isr_trace_3_out + 1) % NUM_ISR_CE3_TRACE;
-    }
-
-  if( overflow_1 )
-    {
-      Serial.println("Overflow 1");
-    }
-
-  if( overflow_3 )
-    {
-      Serial.println("Overflow 3");
-    }
-
-  #endif
-  
-  lcd.setCursor(0,3);
-  int v = 0;
-  if( seven_seg[3] != 0xF )
-    {
-      seven_seg[3] = seven_seg[3] & 3;
-      for(j=3;j>=0;j--)
-	{
-	  lcd.print(seven_seg[j]);
-#if FLAG_7SEG_COLON
-	  Serial.print(":");
-#endif
+	  isr_trace_3_out = (isr_trace_3_out + 1) % NUM_ISR_CE3_TRACE;
 	}
-    }
-  else
-    {
-      lcd.print("        ");
-    }
+
+	  if( overflow_1 )
+	    {
+	      Serial.println("Overflow 1");
+	    }
+
+	  if( overflow_3 )
+	    {
+	      Serial.println("Overflow 3");
+	    }
+
+#endif
+  
+	  lcd.setCursor(0,3);
+	  int v = 0;
+	  if( seven_seg[3] != 0xF )
+	    {
+	      seven_seg[3] = seven_seg[3] & 3;
+	      for(j=3;j>=0;j--)
+		{
+		  lcd.print(seven_seg[j]);
+#if FLAG_7SEG_COLON
+		  Serial.print(":");
+#endif
+		}
+	    }
+	  else
+	    {
+	      lcd.print("        ");
+	    }
 
 
 #if LCD_ANNUNCIATORS
-  lcd.setCursor(0, 2);
+	  lcd.setCursor(0, 2);
   
-  for(j=1;j<=0xE;j++)
-    {
+	  for(j=1;j<=0xE;j++)
+	    {
 #if SERIAL_ANN
-      Serial.print(annunciators[j]);
-      Serial.print(" ");
+	      Serial.print(annunciators[j]);
+	      Serial.print(" ");
 #endif
-      if( annunciators[j] )
-	{
-	  lcd.print(annunciators[j],HEX);
-	}
-      else
-	{
-	  lcd.print(" ");  
-	}
-    }
+	      if( annunciators[j] )
+		{
+		  lcd.print(annunciators[j],HEX);
+		}
+	      else
+		{
+		  lcd.print(" ");  
+		}
+	    }
 #if SERIAL_ANN
-  Serial.println("");
+	  Serial.println("");
 #endif
 #endif
   
 
-  lcd.setCursor(0,1);
-  if( annunciators[8] )
-    {
-      lcd.print("GRA");
-    }
-  if( annunciators[9] )
-    {
-      lcd.print("RAD");
-    }
-  if( annunciators[10] )
-    {
-      lcd.print("DEG");
-    }
+	  lcd.setCursor(0,1);
+	  if( annunciators[8] )
+	    {
+	      lcd.print("GRA");
+	    }
+	  if( annunciators[9] )
+	    {
+	      lcd.print("RAD");
+	    }
+	  if( annunciators[10] )
+	    {
+	      lcd.print("DEG");
+	    }
 
-  lcd.setCursor(16,1);
-  if( annunciators[12] )
-    {
-      lcd.print("STOP");
-    }
-  else
-    {
-      lcd.print("    ");
-    }
+	  lcd.setCursor(16,1);
+	  if( annunciators[12] )
+	    {
+	      lcd.print("STOP");
+	    }
+	  else
+	    {
+	      lcd.print("    ");
+	    }
 
-  lcd.setCursor(12, 1);
-  switch( annunciators[13] )
-    {
-    case 0xB:
-      lcd.print("RUN");
-      break;
+	  lcd.setCursor(12, 1);
+	  switch( annunciators[13] )
+	    {
+	    case 0xB:
+	      lcd.print("RUN");
+	      break;
 
-    default:
-      lcd.print("WRT");
-      break;
-    }
+	    default:
+	      lcd.print("WRT");
+	      break;
+	    }
 
-  lcd.setCursor(4,1);
-  if( annunciators[6] )
-    {
-      lcd.print("TRC");
-    }
-  else
-    {
-      lcd.print("   ");
-    }
+	  lcd.setCursor(4,1);
+	  if( annunciators[6] )
+	    {
+	      lcd.print("TRC");
+	    }
+	  else
+	    {
+	      lcd.print("   ");
+	    }
 
-  lcd.setCursor(8,1);
-  if( annunciators[4] )
-    {
-      lcd.print("PRT");
-    }
-  else
-    {
-      lcd.print("   ");
-    }
+	  lcd.setCursor(8,1);
+	  if( annunciators[4] )
+	    {
+	      lcd.print("PRT");
+	    }
+	  else
+	    {
+	      lcd.print("   ");
+	    }
 
-  // print the number of seconds since reset:
-  //lcd.print(millis() / 100);
+	  // print the number of seconds since reset:
+	  //lcd.print(millis() / 100);
 
-  //  Serial.println((PIN_MAP[fxD0].gpio_device)->regs->IDR);
-  delay(1);
+	  //  Serial.println((PIN_MAP[fxD0].gpio_device)->regs->IDR);
+	  delay(1);
 
 #if 0
-  for(i=19; i>=0;i--)
-    {
-      Serial.print(fx702pschar(display_buffer[i]));
-    }
-  Serial.println("");  
+	  for(i=19; i>=0;i--)
+	    {
+	      Serial.print(fx702pschar(display_buffer[i]));
+	    }
+	  Serial.println("");  
 
-  for(i=19; i>=0;i--)
-    {
-      Serial.print(display_buffer[i], HEX);
-      Serial.print(" ");  
-    }
-  Serial.println("");
+	  for(i=19; i>=0;i--)
+	    {
+	      Serial.print(display_buffer[i], HEX);
+	      Serial.print(" ");  
+	    }
+	  Serial.println("");
 
-  for(i=0; i<16;i++)
-    {
-      Serial.print(reg[i]);
-      Serial.print(" ");
-    }
-  Serial.println("");
+	  for(i=0; i<16;i++)
+	    {
+	      Serial.print(reg[i]);
+	      Serial.print(" ");
+	    }
+	  Serial.println("");
 
-  for(i=3;i>=0;i--)
-    {
-      Serial.print(seven_seg[i]);
-      Serial.print(":");
-    }
-  Serial.println("");
+	  for(i=3;i>=0;i--)
+	    {
+	      Serial.print(seven_seg[i]);
+	      Serial.print(":");
+	    }
+	  Serial.println("");
     
 #endif
-}
+    }
 
 
