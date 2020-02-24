@@ -100,7 +100,7 @@ const int fxOP  = PB4;
 const int fxWE  = PB11;
 const int fxCLK = PB10;
 const int fxCE2 = PA12;
-const int fxCE3 = PA10;
+const int fxCE3 = PA8;
 
 // Pin bit offsets
 const int fxnD0  = 12;
@@ -116,7 +116,7 @@ const int fxnOE  = 3;
 const int fxnOP  = 4;
 const int fxnWE  = 11;
 const int fxnCLK = 10;
-const int fxnCE2 = 12;    // Port A
+const int fxnCE3 = 8;     // Port A
 
 #endif
 
@@ -677,9 +677,9 @@ void ce3_isr(void)
     {
       // Read port B, that has all our signals
       portval = (PIN_MAP[fxD0].gpio_device)->regs->IDR;
-      portvalce = (PIN_MAP[PA8].gpio_device)->regs->IDR;
+      portvalce = (PIN_MAP[fxCE3].gpio_device)->regs->IDR;
       
-      ce = BITVAL(portvalce, 8);
+      ce = BITVAL(portvalce, fxnCE3);
       op = BITVAL(portval, fxnOP);
       we = BITVAL(portval, fxnWE);
       oe = BITVAL(portval, fxnOE);
@@ -1045,7 +1045,7 @@ void setup() {
   attachInterrupt(PA8,  ce3_isr_2, FALLING);
 #else
   attachInterrupt(fxCE, ce1_isr, FALLING);
-  attachInterrupt(PA8,  ce3_isr, FALLING);
+  attachInterrupt(fxCE3,  ce3_isr, FALLING);
 #endif
   
   lcd.cursor();
