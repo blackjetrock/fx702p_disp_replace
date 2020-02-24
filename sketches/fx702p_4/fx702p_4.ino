@@ -11,10 +11,11 @@
 // The LCD library is used to display the data we collect
 #include <LiquidCrystal.h>
 
+// Serial output only works in logic analyser mode.
 #define SERIAL_DUMP_REGS 0
 #define SERIAL_TAGS      0
 #define SERIAL_7SEG      0
-#define SERIAL_CE3       0
+#define SERIAL_CE3       1
 #define SERIAL_ANN       0
 #define SERIAL_SIGNALS   0
 #define SERIAL_REGDUMP   0
@@ -34,7 +35,7 @@
 //   main loop. Much faster and more efficient.
 //
 
-#define LOGIC_ANALYSER  0
+#define LOGIC_ANALYSER  1
 
 #define INLINE 0
 
@@ -386,8 +387,6 @@ void proc_annunciators(unsigned char reg[], unsigned char addr, unsigned char da
 {
   if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==4)  )
     {
-      //display_buffer[6] = 0x40;
-      
 #if SERIAL_TAGS	      
       Serial.print("9AB ");
       Serial.print(addr,HEX);
@@ -1023,7 +1022,7 @@ void setup() {
       seven_seg[i] = 0;
     }
   
-  Serial.begin(1000000);
+  Serial.begin(2000000);
   Serial.println("fx702p Replacement Display");
   
   // set up the LCD's number of columns and rows:
