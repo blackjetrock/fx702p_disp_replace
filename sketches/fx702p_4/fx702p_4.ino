@@ -23,7 +23,7 @@
 //   main loop. Much faster and more efficient.
 //
 
-#define LOGIC_ANALYSER  1
+#define LOGIC_ANALYSER  0
 
 // Serial output only works in logic analyser mode.
 
@@ -45,12 +45,12 @@
 #define SERIAL_ANN            0   /** Do not alter */
 #define SERIAL_SIGNALS        0   /** Do not alter */
 #define SERIAL_REGDUMP        0   /** Do not alter */
-#define SERIAL_DISPLAY_BUFFER 1   /** Do not alter */
+#define SERIAL_DISPLAY_BUFFER 0   /** Do not alter */
 #endif
 
-#define FLAG_7SEG_COLON  0
-#define LCD_ANNUNCIATORS  1
-
+#define FLAG_7SEG_COLON       0
+#define LCD_ANNUNCIATORS      1
+#define SERIAL_DISPLAY_ONLY   1
 
 #define INLINE 0
 
@@ -1534,6 +1534,18 @@ void loop()
   //  Serial.println((PIN_MAP[fxD0].gpio_device)->regs->IDR);
   delay(1);
 
+#if SERIAL_DISPLAY_ONLY
+  if( buf_disp_flag )
+    {
+      buf_disp_flag = false;
+      for(i=19; i>=0;i--)
+	{
+	  Serial.print(fx702pschar(display_buffer[i]));
+	}
+      Serial.println("");  
+    }
+#endif
+  
 #if SERIAL_DISPLAY_BUFFER
   if( buf_disp_flag )
     {
