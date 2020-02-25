@@ -23,32 +23,33 @@
 //   main loop. Much faster and more efficient.
 //
 
-#define LOGIC_ANALYSER  0
+#define LOGIC_ANALYSER  1
 
 // Serial output only works in logic analyser mode.
 
 #if LOGIC_ANALYSER
-#define SERIAL_DUMP_REGS 0
-#define SERIAL_TAGS      0
-#define SERIAL_7SEG      0
-#define SERIAL_CE3       0
-#define SERIAL_ANN       0
-#define SERIAL_SIGNALS   0
-#define SERIAL_REGDUMP   0
+#define SERIAL_DUMP_REGS      1
+#define SERIAL_TAGS           0
+#define SERIAL_7SEG           0
+#define SERIAL_CE3            0
+#define SERIAL_ANN            0
+#define SERIAL_SIGNALS        0
+#define SERIAL_REGDUMP        0
+#define SERIAL_DISPLAY_BUFFER 1
 #else
 
-#define SERIAL_DUMP_REGS 0   /** Do not altr */
-#define SERIAL_TAGS      0   /** Do not altr */
-#define SERIAL_7SEG      0   /** Do not altr */
-#define SERIAL_CE3       0   /** Do not altr */
-#define SERIAL_ANN       0   /** Do not altr */
-#define SERIAL_SIGNALS   0   /** Do not altr */
-#define SERIAL_REGDUMP   0   /** Do not altr */
-
+#define SERIAL_DUMP_REGS      0   /** Do not alter */
+#define SERIAL_TAGS           0   /** Do not alter */
+#define SERIAL_7SEG           0   /** Do not alter */
+#define SERIAL_CE3            0   /** Do not alter */
+#define SERIAL_ANN            0   /** Do not alter */
+#define SERIAL_SIGNALS        0   /** Do not alter */
+#define SERIAL_REGDUMP        0   /** Do not alter */
+#define SERIAL_DISPLAY_BUFFER 1   /** Do not alter */
 #endif
 
 #define FLAG_7SEG_COLON  0
-#define LCD_ANNUNCIATORS  0
+#define LCD_ANNUNCIATORS  1
 
 
 #define INLINE 0
@@ -150,6 +151,9 @@ volatile int seven_seg[4];
 // 1-C are annunciators, 0 unused
 // D and E are 9AB 000 addresses 1 and 2
 
+volatile boolean ann_disp_flag = false;
+volatile boolean buf_disp_flag = false;
+
 volatile int annunciators[20];
 
 char * anntext[12] = {
@@ -173,7 +177,49 @@ typedef struct
   char ascii;
 } MAP702P;
 
-// It's difficult to map some characters, this table uses the A02 character set
+// User defined characters for some things the font can't do
+
+byte udc_exponent[8] = {
+  B00000,
+  B00000,
+  B11111,
+  B10000,
+  B11110,
+  B10000,
+  B11111,
+};
+
+byte udc_neq[8] = {
+  B00000,
+  B00001,
+  B11111,
+  B00100,
+  B11111,
+  B10000,
+  B00000,
+};
+
+byte udc_geq[8] = {
+  B10000,
+  B01000,
+  B00100,
+  B00010,
+  B00101,
+  B01010,
+  B10100,
+};
+
+byte udc_leq[8] = {
+  B00001,
+  B00010,
+  B00100,
+  B01000,
+  B10100,
+  B01010,
+  B00101,
+};
+
+// It's difficult to map some characters, this table uses the A00 character set
 // to have a go at some special characters
 // like <> >= and <=
 // Exponent E is also a problem.
@@ -182,9 +228,9 @@ typedef struct
 unsigned char map702ps[259] =
   // 0123456789ABCDEF
   "??????????????? "
-  "????\"#$;:,>\xa6=\xd1<\xb7"
+  "??\xdf\x60\"#$;:,>\x03=\x04<\x02"
   "+-*/^?!?)???(???"
-  "0123456789.\xf7???\xe3"
+  "0123456789.\xf7???\x01"
   "ABCDEFGHIJKLMNOP"
   "QRSTUVWXYZ????\x5f?"
   "????????????????"
@@ -401,6 +447,8 @@ void proc_annunciators(unsigned char reg[], unsigned char addr, unsigned char da
 {
   if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==4)  )
     {
+      ann_disp_flag = true;
+      
 #if SERIAL_TAGS	      
       Serial.print("9AB ");
       Serial.print(addr,HEX);
@@ -416,6 +464,8 @@ void proc_annunciators(unsigned char reg[], unsigned char addr, unsigned char da
 
   if( (reg[9] == 0) && (reg[0xA]==0) && (reg[0xB]==0)  )
     {
+      ann_disp_flag = true;
+      
 #if SERIAL_TAGS
       Serial.print("9AB 000");
       Serial.print(addr,HEX);
@@ -437,6 +487,7 @@ void proc_matrix(unsigned char reg[], unsigned char addr, unsigned char data)
   
   if( ((reg[4] == 0) && (reg[5] == 8) && (reg[0] == 100))   )
     {
+      buf_disp_flag = true;
       if( (addr>=3) && (addr<=12))
 	{
 	  // Start of matrix update, clear any other commands
@@ -1045,6 +1096,12 @@ void setup() {
       display_buffer[i] = 0x0F;
     }
 
+  // user defined characters
+  lcd.createChar(1, udc_exponent);
+  lcd.createChar(2, udc_neq);
+  lcd.createChar(3, udc_geq);
+  lcd.createChar(4, udc_leq);
+  
   //  pinMode(PB0, INPUT);
   pinMode(fxCE, INPUT);
   pinMode(PA8, INPUT);
@@ -1056,7 +1113,7 @@ void setup() {
   attachInterrupt(PA8,  ce3_isr_2, FALLING);
 #else
   attachInterrupt(fxCE, ce1_isr, FALLING);
-  //attachInterrupt(fxCE3,  ce3_isr, FALLING);
+  attachInterrupt(fxCE3,  ce3_isr, FALLING);
 #endif
   
   lcd.cursor();
@@ -1083,6 +1140,7 @@ void loop()
   unsigned char regs1[17];
   boolean in_command = false;
 
+  
   // Loop flag, shows we are looping
   f = !f;
 
@@ -1118,6 +1176,8 @@ void loop()
   
   while( isr_trace_1_in != isr_trace_1_out )
     {
+      ann_disp_flag = true;
+      
 #if FLAGS
       op = (isr_trace_ce1[isr_trace_1_out].flags >> BITNUM_OP) & 1;
       oe = (isr_trace_ce1[isr_trace_1_out].flags >> BITNUM_OE) & 1;
@@ -1131,9 +1191,18 @@ void loop()
       addr = isr_trace_ce1[isr_trace_1_out].addr;
 
 #if SERIAL_DUMP_REGS
+      Serial.print("R:");
       for(i=0;i<16;i++)
 	{
-	  Serial.print(reg[i],HEX);
+	  switch(reg[i])
+	    {
+	    case 64:
+	      Serial.print(".");
+	      break;
+	    default:
+	      Serial.print(reg[i],HEX);
+	      break;
+	    }
 	  Serial.print(" ");
 	}
       Serial.println("");
@@ -1176,6 +1245,8 @@ void loop()
 
   while( isr_trace_3_in != isr_trace_3_out )
     {
+      ann_disp_flag = true;
+      
 #if FLAGS
       op = (isr_trace_ce3[isr_trace_3_out].flags >> BITNUM_OP) & 1;
       oe = (isr_trace_ce3[isr_trace_3_out].flags >> BITNUM_OE) & 1;
@@ -1375,26 +1446,29 @@ void loop()
 
 
 #if LCD_ANNUNCIATORS
-  lcd.setCursor(0, 2);
-  
-  for(j=1;j<=0xE;j++)
+  if( ann_disp_flag )
     {
+      lcd.setCursor(0, 2);
+      
+      for(j=1;j<=0xE;j++)
+	{
 #if SERIAL_ANN
-      Serial.print(annunciators[j]);
-      Serial.print(" ");
+	  Serial.print(annunciators[j]);
+	  Serial.print(" ");
 #endif
-      if( annunciators[j] )
-	{
-	  lcd.print(annunciators[j],HEX);
+	  if( annunciators[j] )
+	    {
+	      lcd.print(annunciators[j],HEX);
+	    }
+	  else
+	    {
+	      lcd.print(" ");  
+	    }
 	}
-      else
-	{
-	  lcd.print(" ");  
-	}
+#if SERIAL_ANN
+      Serial.println("");
+#endif
     }
-#if SERIAL_ANN
-  Serial.println("");
-#endif
 #endif
   
 
@@ -1423,7 +1497,7 @@ void loop()
     }
 
   lcd.setCursor(12, 1);
-  switch( annunciators[13] )
+  switch( annunciators[14] )
     {
     case 0xB:
       lcd.print("RUN");
@@ -1460,34 +1534,35 @@ void loop()
   //  Serial.println((PIN_MAP[fxD0].gpio_device)->regs->IDR);
   delay(1);
 
-#if 0
-  for(i=19; i>=0;i--)
+#if SERIAL_DISPLAY_BUFFER
+  if( buf_disp_flag )
     {
-      Serial.print(fx702pschar(display_buffer[i]));
+      for(i=19; i>=0;i--)
+	{
+	  Serial.print(fx702pschar(display_buffer[i]));
+	}
+      Serial.println("");  
+      
+      for(i=19; i>=0;i--)
+	{
+	  Serial.print(display_buffer[i], HEX);
+	  Serial.print(" ");  
+	}
+      Serial.println("");
+      for(i=0; i<16;i++)
+	{
+	  Serial.print(reg[i]);
+	  Serial.print(" ");
+	}
+      Serial.println("");
+      
+      for(i=3;i>=0;i--)
+	{
+	  Serial.print(seven_seg[i]);
+	  Serial.print(":");
+	}
+      Serial.println("");
     }
-  Serial.println("");  
-
-  for(i=19; i>=0;i--)
-    {
-      Serial.print(display_buffer[i], HEX);
-      Serial.print(" ");  
-    }
-  Serial.println("");
-
-  for(i=0; i<16;i++)
-    {
-      Serial.print(reg[i]);
-      Serial.print(" ");
-    }
-  Serial.println("");
-
-  for(i=3;i>=0;i--)
-    {
-      Serial.print(seven_seg[i]);
-      Serial.print(":");
-    }
-  Serial.println("");
-    
 #endif
 }
 
