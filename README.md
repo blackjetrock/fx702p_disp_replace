@@ -1,5 +1,6 @@
 # fx702p_disp_replace
-Cla4800_pcb/proc2_cursor_123456.txt~asio fx702p display replacement
+
+Casio fx702p display replacement
 
 This is a replacement fx702p display that uses a 'bluepill' board to sniff the fx702p bus looking for display controller accesses. Those accesss are decoded and the display data that is found is written to a 4x20 character LCD display.
 
