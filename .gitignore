@@ -12,3 +12,4 @@ pictures
 *.bak*
 la4800_phi2_clk_ce_qual
 *.txt
+*~lock*
