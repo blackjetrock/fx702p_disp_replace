@@ -11,18 +11,6 @@
 // The LCD library is used to display the data we collect
 #include <LiquidCrystal.h>
 
-// Serial output only works in logic analyser mode.
-#define SERIAL_DUMP_REGS 0
-#define SERIAL_TAGS      0
-#define SERIAL_7SEG      0
-#define SERIAL_CE3       1
-#define SERIAL_ANN       0
-#define SERIAL_SIGNALS   0
-#define SERIAL_REGDUMP   0
-
-#define FLAG_7SEG_COLON  0
-#define LCD_ANNUNCIATORS  0
-
 // There's two ways to get the data:
 //
 // A.Logic analyser
@@ -35,7 +23,33 @@
 //   main loop. Much faster and more efficient.
 //
 
-#define LOGIC_ANALYSER  1
+#define LOGIC_ANALYSER  0
+
+// Serial output only works in logic analyser mode.
+
+#if LOGIC_ANALYSER
+#define SERIAL_DUMP_REGS 0
+#define SERIAL_TAGS      0
+#define SERIAL_7SEG      0
+#define SERIAL_CE3       0
+#define SERIAL_ANN       0
+#define SERIAL_SIGNALS   0
+#define SERIAL_REGDUMP   0
+#else
+
+#define SERIAL_DUMP_REGS 0   /** Do not altr */
+#define SERIAL_TAGS      0   /** Do not altr */
+#define SERIAL_7SEG      0   /** Do not altr */
+#define SERIAL_CE3       0   /** Do not altr */
+#define SERIAL_ANN       0   /** Do not altr */
+#define SERIAL_SIGNALS   0   /** Do not altr */
+#define SERIAL_REGDUMP   0   /** Do not altr */
+
+#endif
+
+#define FLAG_7SEG_COLON  0
+#define LCD_ANNUNCIATORS  0
+
 
 #define INLINE 0
 
@@ -574,8 +588,8 @@ void ce1_isr(void)
   int active_edge = 0;
   int a;
   int i;
-  int glitch_count = 0;
 
+  // Set last clock to a correct value
   portval = (PIN_MAP[fxD0].gpio_device)->regs->IDR;
   last_clk = BITVAL(portval, fxnCLK);
   
@@ -593,35 +607,26 @@ void ce1_isr(void)
       clk = BITVAL(portval, fxnCLK);
       
       // Detect rising edges
-      // Debounce possible glitches
-      if( glitch_count > 0 )
-	{
-	  glitch_count--;
-	}
 
-      // Don't look for rising edges immediately after we have found one
-      if( glitch_count == 0 )
+      if( (last_clk == 0) && (clk == 1) )
 	{
-	  if( (last_clk == 0) && (clk == 1) )
-	    {
-	      active_edge = 1;
-	      glitch_count = 2;
-	      
-	      // Next clock phase. First phase is 0, second phase is 1
-	      // We ignore anything on phase 0
-	      //
-	      clock_phase = !clock_phase;
-	    }
-	  else
-	    {
-	      active_edge = 0;
-	    }
+	  active_edge = 1;
+	  
+	  // Next clock phase. First phase is 0, second phase is 1
+	  // We ignore anything on phase 0
+	  //
+	  clock_phase = !clock_phase;
 	}
+      else
+	{
+	  active_edge = 0;
+	}
+      
       last_clk = clk;
-
+      
       // register writes
       
-      if( (oe == 1) && active_edge && (clock_phase == 1) )
+      if(  active_edge && (clock_phase == 1) )
 	{
 	  data = BITFIELD(portval,fxnD0, 0xF);
 	  addr = BITFIELD(portval,fxnA0, 0xF);
@@ -632,7 +637,7 @@ void ce1_isr(void)
 	}
       
       // Data write
-      if( (op == 1) && (we == 0) && active_edge && (clock_phase ==1) )
+      if( (we == 0) && active_edge && (clock_phase ==1) )
 	{
 	  data = BITFIELD(portval,fxnD0, 0xF);
 	  addr = BITFIELD(portval,fxnA0, 0xF);
@@ -670,7 +675,14 @@ void ce3_isr(void)
 
   portval = (PIN_MAP[fxD0].gpio_device)->regs->IDR;
   last_clk = BITVAL(portval, fxnCLK);
-  
+  #define SERIAL_DUMP_REGS 0
+#define SERIAL_TAGS      0
+#define SERIAL_7SEG      0
+#define SERIAL_CE3       0
+#define SERIAL_ANN       0
+#define SERIAL_SIGNALS   0
+#define SERIAL_REGDUMP   0
+
   // Clock in on falling edges of clock, only use second clock
   while( !done )
     {
@@ -1044,7 +1056,7 @@ void setup() {
   attachInterrupt(PA8,  ce3_isr_2, FALLING);
 #else
   attachInterrupt(fxCE, ce1_isr, FALLING);
-  attachInterrupt(fxCE3,  ce3_isr, FALLING);
+  //attachInterrupt(fxCE3,  ce3_isr, FALLING);
 #endif
   
   lcd.cursor();
